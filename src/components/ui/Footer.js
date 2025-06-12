@@ -1,9 +1,8 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useTheme } from "@material-ui/core/styles";
+import React  from "react";
+import { makeStyles } from "@mui/styles";
+import Grid from "@mui/material/Grid";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/styles";
 import { Link } from "react-router-dom";
 import FooterAdornment from "../../svgToReact/FooterAdornment.js";
 import MobileFooterAdornment from "../../svgToReact/MobileFooterAdornment.js";
@@ -98,8 +97,8 @@ const Footer = (props) => {
   const smaller = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Grid container className={classes.footer}>
-      <Hidden smDown>
-        <Grid
+      {!smaller && (<>
+              <Grid
           item
           container
           justify="center"
@@ -289,7 +288,8 @@ const Footer = (props) => {
             </Grid>
           </Grid>
         </Grid>
-      </Hidden>
+      </>)}
+
       {smaller ? null : (
         <Grid item className={classes.adornment}>
           <FooterAdornment className={classes.adornment} />

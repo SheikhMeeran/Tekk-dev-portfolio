@@ -2,19 +2,22 @@ import React, { useState, useRef } from "react";
 import axios from "axios";
 import Lottie from "react-lottie";
 import { cloneDeep } from "lodash";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import TextField from "@material-ui/core/TextField";
-import Hidden from "@material-ui/core/Hidden";
-import Snackbar from "@material-ui/core/Snackbar";
-import CircularProgress from "@material-ui/core/CircularProgress";
+
+import { makeStyles } from "@mui/styles"; // if you still need legacy styling
+import { useTheme } from "@mui/material/styles";
+
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import TextField from "@mui/material/TextField";
+import Snackbar from "@mui/material/Snackbar";
+
+import CircularProgress from "@mui/material/CircularProgress";
 
 import check from "../assets/check.svg";
 import send from "../assets/send.svg";
@@ -393,6 +396,7 @@ const websiteQuestions = [
     active: true,
   },
 ];
+
 
 const Estimate = (props) => {
   const classes = useStyles();
@@ -1221,8 +1225,8 @@ const Estimate = (props) => {
                   )}
                 </Button>
               </Grid>
-              <Hidden mdUp>
-                <Grid item style={{ marginBottom: "3em" }}>
+              {!medium && (<>
+                       <Grid item style={{ marginBottom: "3em" }}>
                   <Button
                     variant="text"
                     color="secondary"
@@ -1233,7 +1237,8 @@ const Estimate = (props) => {
                     Cancel
                   </Button>
                 </Grid>
-              </Hidden>
+              </>)}
+
             </Grid>
           </Grid>
         </DialogContent>

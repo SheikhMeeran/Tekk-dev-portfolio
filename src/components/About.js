@@ -1,9 +1,10 @@
 import React from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Avatar from "@material-ui/core/Avatar";
+import { makeStyles } from "@mui/styles"; // still OK for v5 legacy users
+import { useTheme } from "@mui/material/styles"; // CORRECT place for useTheme
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Avatar from "@mui/material/Avatar";
 import CallToAction from "../components/ui/CallToAction.js";
 import history from "../assets/history.svg";
 import founder from "../assets/founder.jpg";

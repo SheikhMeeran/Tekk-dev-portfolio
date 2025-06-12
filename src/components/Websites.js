@@ -1,17 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@mui/styles"; // still OK for v5 legacy users
+import { useTheme } from "@mui/material/styles"; // CORRECT place for useTheme
+import Grid from "@mui/material/Grid";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
 import backArrow from "../assets/backArrow.svg";
 import forwardArrow from "../assets/forwardArrow.svg";
 import CallToAction from "./ui/CallToAction";
 import digitalImage from "../assets/Digital Transformation .jpg";
 import Cloud from "../assets/Cloud Assessment.jpg";
-
 
 const useStyles = makeStyles((theme) => ({
   heading: {
@@ -60,37 +59,48 @@ const Websites = (props) => {
         className={classes.rowContainer}
         justify="center"
       >
-        <Hidden smDown>
-          <Grid item className={classes.arrowContainer} style={{ marginRight: "2em" }}>
-            <IconButton
-              className={classes.arrowIcons}
-              component={Link}
-              to="/mobileapps"
-              onClick={() => {
-                props.setValue(1);
-                props.setSelected(1);
-              }}
+        {!smaller && (
+          <>
+            <Grid
+              item
+              className={classes.arrowContainer}
+              style={{ marginRight: "2em" }}
             >
-              <img src={backArrow} alt="Back to Mobile App Development Page" />
-            </IconButton>
-          </Grid>
-        </Hidden>
+              <IconButton
+                className={classes.arrowIcons}
+                component={Link}
+                to="/mobileapps"
+                onClick={() => {
+                  props.setValue(1);
+                  props.setSelected(1);
+                }}
+              >
+                <img
+                  src={backArrow}
+                  alt="Back to Mobile App Development Page"
+                />
+              </IconButton>
+            </Grid>
+          </>
+        )}
 
-        <Hidden smDown>
-          <Grid item className={classes.arrowContainer}>
-            <IconButton
-              className={classes.arrowIcons}
-              component={Link}
-              to="/services"
-              onClick={() => {
-                props.setValue(1);
-                props.setSelected(null);
-              }}
-            >
-              <img src={forwardArrow} alt="Forward to Services Page" />
-            </IconButton>
-          </Grid>
-        </Hidden>
+        {!smaller && (
+          <>
+            <Grid item className={classes.arrowContainer}>
+              <IconButton
+                className={classes.arrowIcons}
+                component={Link}
+                to="/services"
+                onClick={() => {
+                  props.setValue(1);
+                  props.setSelected(null);
+                }}
+              >
+                <img src={forwardArrow} alt="Forward to Services Page" />
+              </IconButton>
+            </Grid>
+          </>
+        )}
       </Grid>
 
       {/* Digital Transformation Section */}
@@ -132,7 +142,13 @@ const Websites = (props) => {
           </Typography>
         </Grid>
 
-        <Grid item xs={12} md={6} container justify={smaller ? "center" : "flex-end"}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          container
+          justify={smaller ? "center" : "flex-end"}
+        >
           <img
             src={digitalImage}
             alt="Digital Transformation Illustration"
@@ -141,44 +157,50 @@ const Websites = (props) => {
         </Grid>
       </Grid>
 
+      <Grid
+        item
+        container
+        direction={smaller ? "column" : "row"}
+        alignItems="center"
+        justify="space-between"
+        className={classes.rowContainer}
+      >
+        {/* Image on the left now */}
+        <Grid
+          item
+          xs={12}
+          md={6}
+          container
+          justify={smaller ? "center" : "flex-start"}
+        >
+          <img
+            src={Cloud}
+            alt="Digital Transformation Illustration"
+            className={classes.image}
+          />
+        </Grid>
 
-
-     <Grid
-  item
-  container
-  direction={smaller ? "column" : "row"}
-  alignItems="center"
-  justify="space-between"
-  className={classes.rowContainer}
->
-  {/* Image on the left now */}
-  <Grid item xs={12} md={6} container justify={smaller ? "center" : "flex-start"}>
-    <img
-      src={Cloud}
-      alt="Digital Transformation Illustration"
-      className={classes.image}
-    />
-  </Grid>
-
-  {/* Text on the right */}
-  <Grid item xs={12} md={6} className={classes.heading}>
-    <Typography
-      variant="h2"
-      align={smaller ? "center" : "left"}
-      gutterBottom
-    >
-      Cloud Assessment 
-    </Typography>
-    <Typography variant="body1" paragraph>
-      ❖	Cloud based business over the years is now the preferred modality of hosting applications these days, but as maturity is in the process to be achieved. We “Do More”.
-    </Typography>
-    <Typography variant="body1" paragraph>
-      ❖ Our Cloud Security Analysts perform complete, holistic mapping of your cloud architecture to prevent breaches, threats and ensure risks are mitigated.
-    </Typography>
-   
-  </Grid>
-</Grid>
-
+        {/* Text on the right */}
+        <Grid item xs={12} md={6} className={classes.heading}>
+          <Typography
+            variant="h2"
+            align={smaller ? "center" : "left"}
+            gutterBottom
+          >
+            Cloud Assessment
+          </Typography>
+          <Typography variant="body1" paragraph>
+            ❖ Cloud based business over the years is now the preferred modality
+            of hosting applications these days, but as maturity is in the
+            process to be achieved. We “Do More”.
+          </Typography>
+          <Typography variant="body1" paragraph>
+            ❖ Our Cloud Security Analysts perform complete, holistic mapping of
+            your cloud architecture to prevent breaches, threats and ensure
+            risks are mitigated.
+          </Typography>
+        </Grid>
+      </Grid>
 
       {/* CTA */}
       <Grid item>

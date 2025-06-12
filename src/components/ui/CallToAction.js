@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import { makeStyles } from "@mui/styles"; // still OK for v5 legacy users
+import { useTheme } from "@mui/material/styles"; // CORRECT place for useTheme
+import Button from "@mui/material/Button";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import ButtonArrow from "./ButtonArrow";
 
 import background from "../../assets/background.jpg";

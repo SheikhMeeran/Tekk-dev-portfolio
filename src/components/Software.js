@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Lottie from "react-lottie";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Hidden from "@material-ui/core/Hidden";
+import { makeStyles } from "@mui/styles"; // still OK for v5 legacy users
+import { useTheme } from "@mui/material/styles"; // CORRECT place for useTheme
+
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import backArrow from "../assets/backArrow.svg";
 import forwardArrow from "../assets/forwardArrow.svg";
 import lightbulb from "../assets/bulb.svg";
@@ -62,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
 const Software = (props) => {
   const classes = useStyles();
   const theme = useTheme();
-  const smaller = useMediaQuery(theme.breakpoints.down("sm"));
+   const smaller = useMediaQuery(theme.breakpoints.down("sm"));
   const smallest = useMediaQuery(theme.breakpoints.down("xs"));
   const medium = useMediaQuery(theme.breakpoints.down("md"));
   const documentsAnimationOptions = {
@@ -169,8 +170,8 @@ const Software = (props) => {
           marginTop: medium ? "1rem" : "2rem",
         }}
       >
-        <Hidden smDown>
-          <Grid
+          {!smaller && (<>
+                   <Grid
             item
             className={classes.arrowContainer}
             style={{
@@ -190,7 +191,9 @@ const Software = (props) => {
               <img src={backArrow} alt="Back to Services Page" />
             </IconButton>
           </Grid>
-        </Hidden>
+          </>)}
+ 
+   
 
 
        
@@ -413,9 +416,8 @@ const Software = (props) => {
 
 
 
-
-        <Hidden smDown>
-          <Grid
+ {!smaller && (<>
+           <Grid
             item
             className={classes.arrowContainer}
             style={{ marginRight: medium ? "-1.5rem" : 0 }}
@@ -432,7 +434,8 @@ const Software = (props) => {
               <img src={forwardArrow} alt="Forward to App Development Page" />
             </IconButton>
           </Grid>
-        </Hidden>
+ </>)}
+
       </Grid>
       <Grid
         item

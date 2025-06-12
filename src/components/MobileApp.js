@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Lottie from "react-lottie";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import Hidden from "@material-ui/core/Hidden";
+import { makeStyles } from "@mui/styles"; // still OK for v5 legacy users
+import { useTheme } from "@mui/material/styles"; // CORRECT place for useTheme
+import Grid from "@mui/material/Grid";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
 import backArrow from "../assets/backArrow.svg";
 import forwardArrow from "../assets/forwardArrow.svg";
 import CallToAction from "./ui/CallToAction";
@@ -90,28 +90,31 @@ const MobileApps = (props) => {
           marginTop: medium ? "1rem" : "2rem",
         }}
       >
-        <Hidden smDown>
-          <Grid
-            item
-            className={classes.arrowContainer}
-            style={{
-              marginRight: medium ? "1rem" : "2.5em",
-              marginLeft: medium ? "-1.5rem" : "-2.5em",
-            }}
-          >
-            <IconButton
-              className={classes.arrowIcons}
-              component={Link}
-              to="/software"
-              onClick={() => {
-                props.setValue(1);
-                props.setSelected(0);
+        {!smaller && (
+          <>
+            <Grid
+              item
+              className={classes.arrowContainer}
+              style={{
+                marginRight: medium ? "1rem" : "2.5em",
+                marginLeft: medium ? "-1.5rem" : "-2.5em",
               }}
             >
-              <img src={backArrow} alt="Back to Software Development Page" />
-            </IconButton>
-          </Grid>
-        </Hidden>
+              <IconButton
+                className={classes.arrowIcons}
+                component={Link}
+                to="/software"
+                onClick={() => {
+                  props.setValue(1);
+                  props.setSelected(0);
+                }}
+              >
+                <img src={backArrow} alt="Back to Software Development Page" />
+              </IconButton>
+            </Grid>
+          </>
+        )}
+
         <Grid item container direction="column" className={classes.heading}>
           <Grid item>
             <Typography
@@ -138,28 +141,30 @@ const MobileApps = (props) => {
             </Typography>
           </Grid>
         </Grid>
-        <Hidden smDown>
-          <Grid
-            item
-            className={classes.arrowContainer}
-            style={{ marginRight: medium ? "-1.5rem" : 0 }}
-          >
-            <IconButton
-              className={classes.arrowIcons}
-              component={Link}
-              to="/websites"
-              onClick={() => {
-                props.setValue(1);
-                props.setSelected(2);
-              }}
+        {!smaller && (
+          <>
+            <Grid
+              item
+              className={classes.arrowContainer}
+              style={{ marginRight: medium ? "-1.5rem" : 0 }}
             >
-              <img
-                src={forwardArrow}
-                alt="Forward to Website Development Page"
-              />
-            </IconButton>
-          </Grid>
-        </Hidden>
+              <IconButton
+                className={classes.arrowIcons}
+                component={Link}
+                to="/websites"
+                onClick={() => {
+                  props.setValue(1);
+                  props.setSelected(2);
+                }}
+              >
+                <img
+                  src={forwardArrow}
+                  alt="Forward to Website Development Page"
+                />
+              </IconButton>
+            </Grid>
+          </>
+        )}
       </Grid>
       <Grid
         item
@@ -253,8 +258,8 @@ const MobileApps = (props) => {
           alignItems="center"
           style={{
             maxWidth: smaller ? "100%" : "30em",
-            marginLeft: medium ? smaller ? 0 : "2em" : 0,
-            marginRight: medium ? smaller ? 0 : "2em" : 0,
+            marginLeft: medium ? (smaller ? 0 : "2em") : 0,
+            marginRight: medium ? (smaller ? 0 : "2em") : 0,
             marginTop: smaller ? "7em" : 0,
             marginBottom: smaller ? "7em" : 0,
           }}
@@ -266,7 +271,8 @@ const MobileApps = (props) => {
             <img
               style={{ maxWidth: smallest ? 250 : 300 }}
               src={extendingAccess}
-              alt="extending form options"/>
+              alt="extending form options"
+            />
           </Grid>
         </Grid>
         <Grid

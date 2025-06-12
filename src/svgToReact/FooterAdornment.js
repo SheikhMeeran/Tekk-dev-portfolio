@@ -35,7 +35,7 @@ const FooterAdornment = (props) => {
         transform="matrix(1 0 0 1 5 175)"
         style={svgStyles.st1}
       >
-        © beri.dev {new Date().getFullYear()}
+        © TekkDev {new Date().getFullYear()}
       </text>
       <text
         transform="matrix(1 0 0 1 207.1765 175)"
