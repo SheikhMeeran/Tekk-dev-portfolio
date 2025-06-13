@@ -14,7 +14,6 @@ import mysql from '../assets/mysql.png';
 import mongodb from '../assets/leaf.png';
 import django from '../assets/django.png';
 import nginx from '../assets/nginx.png';
-import apache from '../assets/apache.jpg';
 import Cloud from '../assets/cloud.png';
 import internet from '../assets/internet.png';
 import three  from '../assets/three tier.png';

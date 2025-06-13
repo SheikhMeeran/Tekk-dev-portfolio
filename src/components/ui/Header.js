@@ -1,4 +1,3 @@
-// src/components/ui/Header.js
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -24,12 +23,12 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-} from "@material-ui/core";
-import {
-  Menu as MenuIcon,
-  ExpandMore as ExpandMoreIcon,
-} from "@material-ui/icons";
-import { makeStyles } from "@mui/icons-material";
+} from "@mui/material";
+
+import MenuIcon from "@mui/icons-material/Menu";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { makeStyles } from "@mui/styles";
+
 import logo from "../../assets/logo.jpg";
 
 const useStyles = makeStyles((theme) => ({
@@ -51,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
   },
   tabContainer: { marginLeft: "auto" },
   tab: {
-    ...theme.typography.tab,
     minWidth: 9,
     marginLeft: "15px",
     color: "inherit",
@@ -66,13 +64,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   button: {
-    ...theme.typography.estimate,
     borderRadius: "10px",
     marginLeft: "12px",
     marginRight: "15px",
     padding: "0.4em",
     [theme.breakpoints.up("lg")]: {
-      // fontSize: "1.2em",
       marginLeft: "30px",
       marginRight: "20px",
     },
@@ -82,7 +78,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "7px",
   },
   menuItem: {
-    ...theme.typography.tab,
     color: "black",
     opacity: 0.9,
     "&:hover": {
@@ -109,13 +104,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.common.orange,
   },
   drawerItem: {
-    ...theme.typography.tab,
     opacity: 0.7,
     "&:hover": { opacity: 1 },
   },
   drawerItemSelected: { opacity: 1 },
   drawerItemEstimate: {
-    ...theme.typography.tab,
     backgroundColor: theme.palette.common.blue,
     color: "white",
     "&:hover": {
@@ -148,7 +141,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
   },
   accordianSummary: {
-    backgroundColor: theme.palette.common.Blue,
+    backgroundColor: theme.palette.common.blue,
     "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.08)" },
   },
   accordianSummarySelected: {
@@ -164,14 +157,14 @@ const ElevationScroll = (props) => {
 
 const menuOptions = [
   { name: "Cyber Security", link: "/software", activeTabIndex: 1, activeMenuIndex: 0 },
-  { name: " Software Development", link: "/websites", activeTabIndex: 1, activeMenuIndex: 2 },
+  { name: "Software Development", link: "/websites", activeTabIndex: 1, activeMenuIndex: 2 },
 ];
 
 const Header = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const smaller = useMediaQuery(theme.breakpoints.down("sm"));
-  const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const iOS = typeof navigator !== "undefined" && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(false);
@@ -185,7 +178,6 @@ const Header = (props) => {
   }, [props]);
 
   const handleClose = () => setOpenMenu(false);
-
   const handleListKeyDown = (event) => {
     if (event.key === "Tab") {
       event.preventDefault();
@@ -379,7 +371,7 @@ const Header = (props) => {
         Get Estimate
       </Button>
       <Popper open={openMenu} anchorEl={anchorEl} role={undefined} transition disablePortal>
-        {({ TransitionProps, placement }) => (
+        {({ TransitionProps }) => (
           <Grow {...TransitionProps} style={{ transformOrigin: "center top" }}>
             <Paper elevation={0} classes={{ root: classes.menu }}>
               <ClickAwayListener onClickAway={handleClose}>

@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Lottie from "react-lottie";
-import { makeStyles, useTheme } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles"; // if you still need legacy styling
+import { useTheme } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Hidden from "@mui/material/Hidden";
 import backArrow from "../assets/backArrow.svg";
 import forwardArrow from "../assets/forwardArrow.svg";
 import CallToAction from "./ui/CallToAction";
@@ -90,8 +90,8 @@ const MobileApps = (props) => {
           marginTop: medium ? "1rem" : "2rem",
         }}
       >
-        <Hidden smDown>
-          <Grid
+        {!smaller && (<>
+              <Grid
             item
             className={classes.arrowContainer}
             style={{
@@ -111,7 +111,8 @@ const MobileApps = (props) => {
               <img src={backArrow} alt="Back to Software Development Page" />
             </IconButton>
           </Grid>
-        </Hidden>
+        </>)}
+
         <Grid item container direction="column" className={classes.heading}>
           <Grid item>
             <Typography
@@ -138,8 +139,8 @@ const MobileApps = (props) => {
             </Typography>
           </Grid>
         </Grid>
-        <Hidden smDown>
-          <Grid
+        {!smaller && (<>
+                  <Grid
             item
             className={classes.arrowContainer}
             style={{ marginRight: medium ? "-1.5rem" : 0 }}
@@ -159,7 +160,8 @@ const MobileApps = (props) => {
               />
             </IconButton>
           </Grid>
-        </Hidden>
+        </>)}
+
       </Grid>
       <Grid
         item

@@ -1,12 +1,15 @@
+
+
+
 import React from "react";
 import { Link } from "react-router-dom";
 import Lottie from "react-lottie";
-import { makeStyles, useTheme } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles"; // if you still need legacy styling
+import { useTheme } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Hidden from "@mui/material/Hidden";
 import backArrow from "../assets/backArrow.svg";
 import forwardArrow from "../assets/forwardArrow.svg";
 import lightbulb from "../assets/bulb.svg";
@@ -174,8 +177,8 @@ const Software = (props) => {
           marginTop: medium ? "1rem" : "2rem",
         }}
       >
-        <Hidden smDown>
-          <Grid
+        {!smaller && (<>
+                  <Grid
             item
             className={classes.arrowContainer}
             style={{
@@ -195,8 +198,7 @@ const Software = (props) => {
               <img src={backArrow} alt="Back to Services Page" />
             </IconButton>
           </Grid>
-        </Hidden>
-
+        </>)}
 
        
 
@@ -486,9 +488,7 @@ const Software = (props) => {
 
 
 
-
-
-        <Hidden smDown>
+{!smaller && (<>
           <Grid
             item
             className={classes.arrowContainer}
@@ -506,7 +506,9 @@ const Software = (props) => {
               <img src={forwardArrow} alt="Forward to App Development Page" />
             </IconButton>
           </Grid>
-        </Hidden>
+</>)}
+
+    
       </Grid>
       <Grid
         item
@@ -766,5 +768,3 @@ const Software = (props) => {
 };
 
 export default Software;
-
-

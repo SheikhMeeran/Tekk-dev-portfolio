@@ -1,8 +1,11 @@
+
 import React, { useState, useRef } from "react";
 import axios from "axios";
 import Lottie from "react-lottie";
 import { cloneDeep } from "lodash";
-import { makeStyles, useTheme } from "@mui/material/styles";
+
+import { makeStyles } from "@mui/styles"; // if you still need legacy styling
+import { useTheme } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -12,7 +15,6 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
-import Hidden from "@mui/material/Hidden";
 import Snackbar from "@mui/material/Snackbar";
 import CircularProgress from "@mui/material/CircularProgress";
 
@@ -1221,8 +1223,8 @@ const Estimate = (props) => {
                   )}
                 </Button>
               </Grid>
-              <Hidden mdUp>
-                <Grid item style={{ marginBottom: "3em" }}>
+              {!medium && (<>
+                         <Grid item style={{ marginBottom: "3em" }}>
                   <Button
                     variant="text"
                     color="secondary"
@@ -1233,7 +1235,7 @@ const Estimate = (props) => {
                     Cancel
                   </Button>
                 </Grid>
-              </Hidden>
+              </>)}
             </Grid>
           </Grid>
         </DialogContent>
@@ -1251,3 +1253,4 @@ const Estimate = (props) => {
 };
 
 export default Estimate;
+
