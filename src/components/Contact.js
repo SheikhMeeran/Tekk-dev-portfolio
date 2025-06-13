@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { makeStyles } from "@mui/styles"; // This is still from @mui/styles, not @mui/material
-import { useTheme } from "@mui/material/styles"; // Correct theme import for MUI v5
-
+import { makeStyles, useTheme } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -50,24 +48,25 @@ const useStyles = makeStyles((theme) => ({
       paddingRight: 0,
     },
   },
-  itemContainer: {
-    textAlign: "center",
-  },
   sendMessageButton: {
     ...theme.typography.learnButton,
     backgroundColor: theme.palette.common.orange,
     height: "45px",
-    opacity: 0.85,
     borderRadius: "5px",
     marginTop: "1em",
   },
   message: {
-    border: `2px solid ${theme.palette.common.orange}`,
-    marginTop: "4em",
+    border: "1px solid black",
+    marginTop: "2em",
     borderRadius: "5px",
   },
   confirmationButton: {
     verticalAlign: "bottom",
+  },
+  input: {
+    border: "1px solid black",
+    borderRadius: 4,
+    padding: "10px",
   },
 }));
 
@@ -98,13 +97,7 @@ const Contact = (props) => {
         setName(event.target.value);
         if (event.target.value !== "") {
           valid = /^[a-z ,.'-]+$/i.test(event.target.value);
-          if (!valid) {
-            setNameHelperText(
-              "Cannot include numbers, brackets and special characters"
-            );
-          } else {
-            setNameHelperText("");
-          }
+          setNameHelperText(valid ? "" : "Cannot include numbers or symbols");
         } else {
           setNameHelperText("");
         }
@@ -112,14 +105,8 @@ const Contact = (props) => {
       case "email":
         setEmail(event.target.value);
         if (event.target.value !== "") {
-          valid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
-            event.target.value
-          );
-          if (!valid) {
-            setEmailHelperText("Invalid email.");
-          } else {
-            setEmailHelperText("");
-          }
+          valid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(event.target.value);
+          setEmailHelperText(valid ? "" : "Invalid email.");
         } else {
           setEmailHelperText("");
         }
@@ -127,14 +114,8 @@ const Contact = (props) => {
       case "phone":
         setPhone(event.target.value);
         if (event.target.value !== "") {
-          valid = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(
-            event.target.value
-          );
-          if (!valid) {
-            setPhoneHelperText("Invalid Phone Number");
-          } else {
-            setPhoneHelperText("");
-          }
+          valid = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(event.target.value);
+          setPhoneHelperText(valid ? "" : "Invalid phone number");
         } else {
           setPhoneHelperText("");
         }
@@ -166,7 +147,7 @@ const Contact = (props) => {
           message: message,
         },
       })
-      .then((res) => {
+      .then(() => {
         setLoading(false);
         setOpen(false);
         setName("");
@@ -179,7 +160,7 @@ const Contact = (props) => {
           backgroundColor: "#4BB543",
         });
       })
-      .catch((err) => {
+      .catch(() => {
         setLoading(false);
         setAlert({
           open: true,
@@ -191,245 +172,172 @@ const Contact = (props) => {
 
   return (
     <Grid container direction="row">
-      <Grid
-        item
-        container
-        direction="column"
-        style={{ paddingBottom: "10em" }}
-        alignItems="center"
-        lg={4}
-      >
+      <Grid item container direction="column" alignItems="center" lg={4}>
         <Grid item className={classes.heading}>
           <Typography variant="h2" style={{ lineHeight: 1 }}>
             Contact Us
           </Typography>
           <Typography variant="subtitle1">
-            Thank you for contact us. Our authorized representative will contact
-            you shortly.
+            Thank you for contacting us. We’ll reach out shortly.
           </Typography>
         </Grid>
-        <Grid item container alignItems="center" justify="center">
-          <Grid item>
-            <img
-              src={phoneIcon}
-              alt="phone icon"
-              style={{ marginRight: "0.5em", verticalAlign: "baseline" }}
-            />
-          </Grid>
-          <Grid item>
-            <Typography variant="body1" style={{ fontSize: "1rem" }}>
+
+        {/* Phone and Email Centered */}
+        <Grid
+          item
+          container
+          direction="column"
+          alignItems="center"
+          style={{ marginTop: "1em", gap: "1em" }}
+        >
+          <Grid item container justifyContent="center" alignItems="center" style={{ width: "auto" }}>
+            <img src={phoneIcon} alt="phone" style={{ marginRight: "0.5em" }} />
+            <Typography variant="body1">
               <a
-                href="tel:5555555555"
-                style={{ textDecoration: "none", color: "inherit" }}
+                href="tel:+924235774258"
+                style={{ color: "inherit", textDecoration: "none" }}
+                onMouseOver={(e) => (e.target.style.color = "#1976d2")}
+                onMouseOut={(e) => (e.target.style.color = "inherit")}
               >
-                (555) 555-5555
+                +92 (42) 3577-4258
+              </a>
+            </Typography>
+          </Grid>
+          <Grid item container justifyContent="center" alignItems="center" style={{ width: "auto" }}>
+            <img src={emailIcon} alt="email" style={{ marginRight: "0.5em" }} />
+            <Typography variant="body1">
+              <a
+                href="mailto:Info@tekkdev.com"
+                style={{ color: "inherit", textDecoration: "none" }}
+                onMouseOver={(e) => (e.target.style.color = "#1976d2")}
+                onMouseOut={(e) => (e.target.style.color = "inherit")}
+              >
+                Info@tekkdev.com
               </a>
             </Typography>
           </Grid>
         </Grid>
-        <Grid item container alignItems="center" justify="center">
-          <Grid item>
-            <img
-              src={emailIcon}
-              alt="phone icon"
-              style={{ marginRight: "0.5em", verticalAlign: "middle" }}
-            />
-          </Grid>
-          <Grid item>
-            <Typography variant="body1" style={{ fontSize: "1rem" }}>
-              <a
-                href="mailto:hassaan.zuberi@ucalgary.ca"
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
-                hassaan.zuberi@ucalgary.ca
-              </a>
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid
-          item
-          container
-          justify="center"
-          style={{ maxWidth: smallest ? "80%" : "25em", marginTop: "2em" }}
-        >
-          <Grid item style={{ width: "100%", marginTop: "0.5em" }}>
-            <TextField
-              label="Name"
-              id="name"
-              error={nameHelperText.length !== 0}
-              helperText={nameHelperText}
-              value={name}
-              onChange={onFieldInputChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item style={{ width: "100%", marginTop: "0.5em" }}>
-            <TextField
-              label="Email"
-              id="email"
-              error={emailHelperText.length !== 0}
-              helperText={emailHelperText}
-              value={email}
-              onChange={onFieldInputChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item style={{ width: "100%", marginTop: "0.5em" }}>
-            <TextField
-              label="Phone"
-              id="phone"
-              error={phoneHelperText.length !== 0}
-              helperText={phoneHelperText}
-              value={phone}
-              onChange={onFieldInputChange}
-              fullWidth
-            />
-          </Grid>
-        </Grid>
-        <Grid
-          item
-          container
-          justify="center"
-          style={{ maxWidth: smallest ? "80%" : "25em" }}
-        >
-          <Grid item style={{ width: "100%" }}>
-            <TextField
-              InputProps={{ disableUnderline: true }}
-              id="message"
-              placeholder="Tell us about your project here..."
-              rows={10}
-              value={message}
-              className={classes.message}
-              onChange={(e) => setMessage(e.target.value)}
-              multiline
-              fullWidth
-            />
-          </Grid>
-          <Grid item>
-            <Button
-              disabled={
-                name.length === 0 ||
-                nameHelperText.length !== 0 ||
-                email.length === 0 ||
-                emailHelperText.length !== 0 ||
-                phone.length === 0 ||
-                phoneHelperText.length !== 0 ||
-                message.length === 0
-              }
-              className={classes.sendMessageButton}
-              variant="contained"
-              onClick={() => setOpen(true)}
-            >
-              {sendButtonJSX("Send Message")}
-            </Button>
-          </Grid>
+
+        {/* Contact Form */}
+        <Grid item container direction="column" alignItems="center" style={{ maxWidth: "25em", marginTop: "2em" }}>
+          <TextField
+            label="Name"
+            id="name"
+            error={nameHelperText.length !== 0}
+            helperText={nameHelperText}
+            value={name}
+            onChange={onFieldInputChange}
+            fullWidth
+            InputProps={{ className: classes.input }}
+            style={{ marginBottom: "1em" }}
+          />
+          <TextField
+            label="Email"
+            id="email"
+            error={emailHelperText.length !== 0}
+            helperText={emailHelperText}
+            value={email}
+            onChange={onFieldInputChange}
+            fullWidth
+            InputProps={{ className: classes.input }}
+            style={{ marginBottom: "1em" }}
+          />
+          <TextField
+            label="Phone"
+            id="phone"
+            error={phoneHelperText.length !== 0}
+            helperText={phoneHelperText}
+            value={phone}
+            onChange={onFieldInputChange}
+            fullWidth
+            InputProps={{ className: classes.input }}
+            style={{ marginBottom: "1em" }}
+          />
+          <TextField
+            id="message"
+            placeholder="Tell us about your project..."
+            multiline
+            rows={6}
+            fullWidth
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            className={classes.message}
+            InputProps={{ disableUnderline: true }}
+          />
+          <Button
+            className={classes.sendMessageButton}
+            variant="contained"
+            disabled={
+              name.length === 0 ||
+              email.length === 0 ||
+              phone.length === 0 ||
+              message.length === 0 ||
+              nameHelperText ||
+              emailHelperText ||
+              phoneHelperText
+            }
+            onClick={() => setOpen(true)}
+          >
+            {sendButtonJSX("Send Message")}
+          </Button>
         </Grid>
       </Grid>
-      <Dialog
-        open={open}
-        onClose={() => setOpen(false)}
-        aria-labelledby="confirmation-modal-title"
-        fullScreen={smallest ? true : false}
-        style={{ zIndex: 1302 }}
-      >
-        <DialogTitle
-          id="confirmation-modal-title"
-          className={classes.confirmationModalHeading}
-          disableTypography
-        >
+
+      {/* Confirmation Dialog */}
+      <Dialog open={open} onClose={() => setOpen(false)} fullScreen={smallest} style={{ zIndex: 1302 }}>
+        <DialogTitle className={classes.confirmationModalHeading} disableTypography>
           <Typography variant="h4">Confirm Message</Typography>
         </DialogTitle>
         <DialogContent>
-          <Grid
-            container
-            direction="column"
-            style={{
-              padding: smallest ? 0 : "2rem",
-              width: smallest ? "auto" : "30em",
-            }}
-          >
-            <Grid item style={{ width: "100%", marginTop: "0.5em" }}>
-              <TextField
-                label="Name"
-                id="name"
-                error={nameHelperText.length !== 0}
-                helperText={nameHelperText}
-                value={name}
-                onChange={onFieldInputChange}
-                fullWidth
-              />
-            </Grid>
-            <Grid item style={{ width: "100%", marginTop: "0.5em" }}>
-              <TextField
-                label="Email"
-                id="email"
-                error={emailHelperText.length !== 0}
-                helperText={emailHelperText}
-                value={email}
-                onChange={onFieldInputChange}
-                fullWidth
-              />
-            </Grid>
-            <Grid item style={{ width: "100%", marginTop: "0.5em" }}>
-              <TextField
-                label="Phone"
-                id="phone"
-                error={phoneHelperText.length !== 0}
-                helperText={phoneHelperText}
-                value={phone}
-                onChange={onFieldInputChange}
-                fullWidth
-              />
-            </Grid>
-            <Grid item style={{ width: "100%" }}>
-              <TextField
-                InputProps={{ disableUnderline: true }}
-                id="message"
-                rows={8}
-                value={message}
-                className={classes.message}
-                style={{ marginTop: "2em" }}
-                onChange={(e) => setMessage(e.target.value)}
-                multiline
-                fullWidth
-              />
-            </Grid>
-            <Grid
-              item
-              container
-              justify="flex-end"
-              style={{ marginTop: "1em" }}
-            >
-              <Grid item style={{ marginRight: "0.5rem" }}>
-                <Button
-                  variant="text"
-                  color="primary"
-                  size="small"
-                  onClick={() => setOpen(false)}
-                >
-                  CANCEL
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="small"
-                  onClick={onConfirm}
-                  className={classes.confirmationButton}
-                  disableElevation
-                >
-                  {loading ? (
-                    <CircularProgress size={20} color="secondary" />
-                  ) : (
-                    sendButtonJSX("Send")
-                  )}
-                </Button>
-              </Grid>
+          <Grid container direction="column" style={{ padding: "2rem", width: "100%" }}>
+            <TextField
+              label="Name"
+              id="name"
+              value={name}
+              onChange={onFieldInputChange}
+              fullWidth
+              InputProps={{ className: classes.input }}
+              style={{ marginBottom: "1em" }}
+            />
+            <TextField
+              label="Email"
+              id="email"
+              value={email}
+              onChange={onFieldInputChange}
+              fullWidth
+              InputProps={{ className: classes.input }}
+              style={{ marginBottom: "1em" }}
+            />
+            <TextField
+              label="Phone"
+              id="phone"
+              value={phone}
+              onChange={onFieldInputChange}
+              fullWidth
+              InputProps={{ className: classes.input }}
+              style={{ marginBottom: "1em" }}
+            />
+            <TextField
+              id="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              fullWidth
+              multiline
+              rows={6}
+              className={classes.message}
+              InputProps={{ disableUnderline: true }}
+            />
+            <Grid item container justifyContent="flex-end" style={{ marginTop: "1em" }}>
+              <Button onClick={() => setOpen(false)} color="primary">Cancel</Button>
+              <Button onClick={onConfirm} color="primary" variant="contained" style={{ marginLeft: "1em" }}>
+                {loading ? <CircularProgress size={20} /> : sendButtonJSX("Send")}
+              </Button>
             </Grid>
           </Grid>
         </DialogContent>
       </Dialog>
+
+      {/* Snackbar */}
       <Snackbar
         open={alert.open}
         message={alert.message}
@@ -438,12 +346,10 @@ const Contact = (props) => {
         onClose={() => setAlert({ ...alert, open: false })}
         autoHideDuration={7000}
       />
+
+      {/* CTA */}
       <Grid item container direction="column" lg={8}>
-        <CallToAction
-          setValue={props.setValue}
-          setSelected={props.setSelected}
-          grid={{ size: "lg", noc: 8 }}
-        />
+        <CallToAction setValue={props.setValue} setSelected={props.setSelected} grid={{ size: "lg", noc: 8 }} />
       </Grid>
     </Grid>
   );
