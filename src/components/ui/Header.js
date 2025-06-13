@@ -1,42 +1,43 @@
+
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { Link } from "react-router-dom";
-import React, { useState, useRef,useCallback,useMemo, useEffect } from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import useScrollTrigger from "@mui/material/useScrollTrigger";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
-import ClickAwayListener from "@mui/material/ClickAwayListener";
-import Grow from "@mui/material/Grow";
-import Paper from "@mui/material/Paper";
-import Popper from "@mui/material/Popper";
-import MenuList from "@mui/material/MenuList";
-import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import {
+  AppBar,
+  Toolbar,
+  useScrollTrigger,
+  Tabs,
+  Tab,
+  Button,
+  MenuItem,
+  ClickAwayListener,
+  Grow,
+  Paper,
+  Popper,
+  MenuList,
+  useTheme,
+  useMediaQuery,
+  SwipeableDrawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "@mui/material";
+
 import MenuIcon from "@mui/icons-material/Menu";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import ExpandMore from "@mui/icons-material/ExpandMore";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { makeStyles } from "@mui/styles";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
+
 import logo from "../../assets/logo.jpg";
 
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
     marginBottom: "1.75em",
-    [theme.breakpoints.down("md")]: {
-      marginBottom: "0.2em",
-    },
-    [theme.breakpoints.down("xs")]: {
-      marginBottom: "0.2em",
-    },
+    [theme.breakpoints.down("md")]: { marginBottom: "0.2em" },
+    [theme.breakpoints.down("xs")]: { marginBottom: "0.2em" },
   },
   logoContainer: {
     padding: 0,
@@ -45,33 +46,30 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     height: "6.5em",
-    [theme.breakpoints.down("md")]: {
-      height: "4.9em",
-    },
-    [theme.breakpoints.down("xs")]: {
-      height: "4em",
-    },
+    [theme.breakpoints.down("md")]: { height: "4.9em" },
+    [theme.breakpoints.down("xs")]: { height: "4em" },
   },
-  tabContainer: {
-    marginLeft: "auto",
-  },
+  tabContainer: { marginLeft: "auto" },
   tab: {
-    ...theme.typography.tab,
     minWidth: 9,
     marginLeft: "15px",
+    color: "inherit",
+    textTransform: "none",
+    transition: "color 0.3s ease",
     [theme.breakpoints.up("lg")]: {
       fontSize: "1.25em",
       marginLeft: "30px",
     },
+    "&:hover": {
+      color: "#166ee9",
+    },
   },
   button: {
-    ...theme.typography.estimate,
-    borderRadius: "30px",
+    borderRadius: "10px",
     marginLeft: "12px",
     marginRight: "15px",
-    padding: "0.6em",
+    padding: "0.4em",
     [theme.breakpoints.up("lg")]: {
-      fontSize: "1.25em",
       marginLeft: "30px",
       marginRight: "20px",
     },
@@ -81,23 +79,19 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "7px",
   },
   menuItem: {
-    ...theme.typography.tab,
-    color: "grey",
+    color: "black",
     opacity: 0.9,
     "&:hover": {
-      opacity: 1,
+      backgroundColor: "#166ee9",
+      color: "#fff",
     },
   },
   drawerIconContainer: {
     marginLeft: "auto",
-    "&:hover": {
-      backgroundColor: "transparent",
-    },
     padding: 0,
     marginRight: "0.75em",
-    [theme.breakpoints.down("xs")]: {
-      marginRight: "0.5em",
-    },
+    "&:hover": { backgroundColor: "transparent" },
+    [theme.breakpoints.down("xs")]: { marginRight: "0.5em" },
   },
   drawerIcon: {
     height: "1.75em",
@@ -111,17 +105,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.common.orange,
   },
   drawerItem: {
-    ...theme.typography.tab,
     opacity: 0.7,
-    "&:hover": {
-      opacity: 1,
-    },
+    "&:hover": { opacity: 1 },
   },
-  drawerItemSelected: {
-    opacity: 1,
-  },
+  drawerItemSelected: { opacity: 1 },
   drawerItemEstimate: {
-    ...theme.typography.tab,
     backgroundColor: theme.palette.common.blue,
     color: "white",
     "&:hover": {
@@ -137,18 +125,13 @@ const useStyles = makeStyles((theme) => ({
   },
   appbar: {
     zIndex: theme.zIndex.modal + 1,
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // ✅ Shadow added
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
   },
   accordian: {
     backgroundColor: theme.palette.common.orange,
-    "&.Mui-expanded": {
-      margin: 0,
-      borderBottom: 0,
-    },
     borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
-    "&::before": {
-      backgroundColor: "rgba(0, 0, 0, 0)",
-    },
+    "&.Mui-expanded": { margin: 0, borderBottom: 0 },
+    "&::before": { backgroundColor: "rgba(0, 0, 0, 0)" },
   },
   accordianMenuDetail: {
     padding: 0,
@@ -159,10 +142,8 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
   },
   accordianSummary: {
-    backgroundColor: theme.palette.common.Blue,
-    "&:hover": {
-      backgroundColor: "rgba(0, 0, 0, 0.08)",
-    },
+    backgroundColor: theme.palette.common.blue,
+    "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.08)" },
   },
   accordianSummarySelected: {
     backgroundColor: "rgba(0, 0, 0, 0.08)",
@@ -171,36 +152,20 @@ const useStyles = makeStyles((theme) => ({
 
 const ElevationScroll = (props) => {
   const { children } = props;
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0,
-  });
-
-  return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0,
-  });
+  const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
+  return React.cloneElement(children, { elevation: trigger ? 4 : 0 });
 };
 
 const menuOptions = [
-  {
-    name: "Cyber Security",
-    link: "/software",
-    activeTabIndex: 1,
-    activeMenuIndex: 0,
-  },
-  {
-    name: "Web Development",
-    link: "/websites",
-    activeTabIndex: 1,
-    activeMenuIndex: 2,
-  },
+  { name: "Cyber Security", link: "/software", activeTabIndex: 1, activeMenuIndex: 0 },
+  { name: "Software Development", link: "/websites", activeTabIndex: 1, activeMenuIndex: 2 },
 ];
 
 const Header = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const smaller = useMediaQuery(theme.breakpoints.down("sm"));
-  const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const iOS = typeof navigator !== "undefined" && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(false);
@@ -214,7 +179,6 @@ const Header = (props) => {
   }, [props]);
 
   const handleClose = () => setOpenMenu(false);
-
   const handleListKeyDown = (event) => {
     if (event.key === "Tab") {
       event.preventDefault();
@@ -223,13 +187,9 @@ const Header = (props) => {
   };
 
   const handleMouseOverMenu = () => setOpenMenu(true);
-
   const handleClickMenu = (e, i) => props.setSelected(i);
-
   const handleCompanyLogo = () => props.setValue(0);
-
   const handleChange = (e, newValue) => props.setValue(newValue);
-
   const closeDrawerAll = () => {
     setOpenDrawer(false);
     setOpenDrawerMenu(false);
@@ -274,7 +234,7 @@ const Header = (props) => {
                 onChange={() => setOpenDrawerMenu(!openDrawerMenu)}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMore color="secondary" />}
+                  expandIcon={<ExpandMoreIcon color="secondary" />}
                   className={
                     props.value === 1
                       ? classes.accordianSummarySelected
@@ -320,9 +280,7 @@ const Header = (props) => {
                           props.value === route.activeTabIndex
                         }
                       >
-                        <ListItemText disableTypography>
-                          {route.name}
-                        </ListItemText>
+                        <ListItemText disableTypography>{route.name}</ListItemText>
                       </ListItem>
                     ))}
                   </List>
@@ -363,7 +321,6 @@ const Header = (props) => {
             }}
             component={Link}
             to="/estimate"
-            selected={false}
           >
             <ListItemText disableTypography>Get Estimate</ListItemText>
           </ListItem>
@@ -414,21 +371,9 @@ const Header = (props) => {
       >
         Get Estimate
       </Button>
-
-      <Popper
-        open={openMenu}
-        anchorEl={anchorEl}
-        role={undefined}
-        transition
-        disablePortal
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin: placement === "bottom" ? "center top" : "center bottom",
-            }}
-          >
+      <Popper open={openMenu} anchorEl={anchorEl} role={undefined} transition disablePortal>
+        {({ TransitionProps }) => (
+          <Grow {...TransitionProps} style={{ transformOrigin: "center top" }}>
             <Paper elevation={0} classes={{ root: classes.menu }}>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList
@@ -486,7 +431,7 @@ const Header = (props) => {
     <>
       <ElevationScroll>
         <AppBar position="fixed" color="primary" className={classes.appbar}>
-          <Toolbar disableGutters={true}>
+          <Toolbar disableGutters>
             <Button
               disableRipple
               className={classes.logoContainer}
@@ -494,7 +439,7 @@ const Header = (props) => {
               to="/"
               onClick={handleCompanyLogo}
             >
-              <img src={logo} className={classes.logo} alt="company logo" />
+              <img src={logo} alt="logo" className={classes.logo} />
             </Button>
             {smaller ? drawer : tabs}
           </Toolbar>
@@ -506,5 +451,3 @@ const Header = (props) => {
 };
 
 export default Header;
-
-
