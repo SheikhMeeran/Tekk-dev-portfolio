@@ -1,53 +1,49 @@
-import { createMuiTheme } from "@mui/material/styles";
+
+import { createTheme } from '@mui/material/styles';
 
 const blue = "#166EE9";
 const orange = "#fff";
 const hoverBlue = "#166EE9";
 const linkColor = "#000000";
 const mygrey = "#696969";
-const color ="#305694"
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     common: {
-      blue: `${blue}`,
-      orange: `${orange}`,
-      hoverBlue: `${hoverBlue}`,
+      blue,
+      orange,
+      hoverBlue,
     },
-    type: "light",
+    mode: "light",
     primary: {
-      main: `${orange}`,
+      main: orange,
     },
     secondary: {
-      main: `${blue}`,
+      main: blue,
     },
   },
   typography: {
+    fontFamily: "Raleway, Roboto, Arial, sans-serif",
     tab: {
       textTransform: "none",
       fontWeight: 700,
-      fontFamily: "Raleway",
       fontSize: "1rem",
     },
     h2: {
-      fontFamily: "Raleway",
       fontWeight: 700,
       fontSize: "2.5rem",
       lineHeight: 1.5,
     },
     h3: {
-      fontFamily: "Raleway",
       fontWeight: 700,
       fontSize: "2rem",
       lineHeight: 1.5,
     },
     h4: {
-      fontFamily: "Raleway",
       fontSize: "1.75rem",
       fontWeight: 700,
     },
     h6: {
-      fontFamily: "Raleway",
       fontSize: "1.25rem",
       fontWeight: 700,
       lineHeight: 1,
@@ -55,32 +51,25 @@ const theme = createMuiTheme({
     subtitle1: {
       fontSize: "1.25rem",
       fontWeight: 400,
-      color: `${mygrey}`
+      color: mygrey,
     },
     body1: {
       fontSize: "1.25rem",
       fontWeight: 400,
-      color: `${mygrey}`,
+      color: mygrey,
     },
     link: {
-      color: `${linkColor}`,
-      fontFamily: "Raleway",
+      color: linkColor,
       fontSize: "0.9rem",
       fontWeight: 700,
       textTransform: "none",
     },
     estimate: {
-      // textTransform: "none",
       fontSize: "1rem",
-     marginLeft: "180px",
-     
-            
-
-      
+      marginLeft: "180px",
     },
     learnButton: {
       color: "black",
-      // marginLeft: "20px",
       marginRight: "150px",
       marginTop: "0.1rem",
       textTransform: "none",
@@ -89,33 +78,37 @@ const theme = createMuiTheme({
       fontSize: "1rem",
       fontWeight: "bold",
       "&:hover": {
-        backgroundColor: `${blue}`,
-        color:`${orange}`
+        backgroundColor: blue,
+        color: orange,
       },
     },
   },
-  overrides: {
+  components: {
     MuiInputLabel: {
-      root: {
-        fontSize: "1rem"
-      }
+      styleOverrides: {
+        root: {
+          fontSize: "1rem",
+        },
+      },
     },
     MuiInput: {
-      root: {
-        color:  `${mygrey}`,
-        fontWeight: 400,
-        fontSize: "1.25rem",
+      styleOverrides: {
+        root: {
+          color: mygrey,
+          fontWeight: 400,
+          fontSize: "1.25rem",
+        },
+        underline: {
+          "&:before": {
+            borderBottom: `2px solid ${orange}`,
+          },
+          "&:hover:not(.Mui-disabled):not(.Mui-focused):not(.Mui-error):before": {
+            borderBottom: `2px solid ${orange}`,
+          },
+        },
       },
-      underline: {
-        "&:before": {
-          borderBottom: `2px solid ${orange}`
-        },
-        "&:hover:not($disabled):not($focused):not($error):before": {
-          borderBottom: `2px solid ${orange}`
-        },
-      }
-    }
-  }
+    },
+  },
 });
 
 export default theme;
