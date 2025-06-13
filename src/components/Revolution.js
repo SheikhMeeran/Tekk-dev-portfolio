@@ -1,7 +1,8 @@
+
+
 import React from "react";
 import Lottie from "react-lottie";
-import { makeStyles } from "@mui/styles"; // still OK for v5 legacy users
-import { useTheme } from "@mui/material/styles"; // CORRECT place for useTheme
+import { makeStyles, useTheme } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
