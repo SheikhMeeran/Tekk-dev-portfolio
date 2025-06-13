@@ -1,10 +1,11 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createMuiTheme } from "@mui/material/styles";
 
 const blue = "#166EE9";
 const orange = "#fff";
 const hoverBlue = "#166EE9";
 const linkColor = "#000000";
 const mygrey = "#696969";
+const color ="#305694"
 
 const theme = createMuiTheme({
   palette: {
@@ -71,7 +72,7 @@ const theme = createMuiTheme({
     estimate: {
       // textTransform: "none",
       fontSize: "1rem",
-     marginLeft: "480px",
+     marginLeft: "180px",
      
             
 
@@ -80,17 +81,16 @@ const theme = createMuiTheme({
     learnButton: {
       color: "black",
       // marginLeft: "20px",
-      marginRight: "50px",
-      marginTop: "0.5rem",
+      marginRight: "150px",
+      marginTop: "0.1rem",
       textTransform: "none",
       borderRadius: "30px",
       fontFamily: "Roboto",
       fontSize: "1rem",
       fontWeight: "bold",
       "&:hover": {
-        backgroundColor: `${orange}`,
-        color:`${linkColor}`
-        // opacity: 1,
+        backgroundColor: `${blue}`,
+        color:`${orange}`
       },
     },
   },

@@ -1,14 +1,17 @@
 import React from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Avatar from "@material-ui/core/Avatar";
+import { makeStyles, useTheme } from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Avatar from "@mui/material/Avatar";
 import CallToAction from "../components/ui/CallToAction.js";
 import history from "../assets/history.svg";
 import founder from "../assets/founder.jpg";
 import founder2 from "../assets/founder2.jpeg";
-import founder3 from "../assets/founder3.jpg"
+import founder3 from "../assets/founder3.jpg";
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   statement: {
@@ -114,6 +117,7 @@ const About = (props) => {
       />
     </Grid>
   );
+
   return (
     <Grid container direction="column">
       <Grid item className={classes.heading}>
@@ -121,14 +125,37 @@ const About = (props) => {
           About Us
         </Typography>
       </Grid>
-      <Grid item container justify="center" className={classes.rowContainer}>
-        <Typography variant="h4" align="center" className={classes.statement}>
-         TekkDev, is a software development and cybersecurity company established as part of joint venture of Computer Marketing Company (CMC) and GCS Pvt Ltd. CMC and GCS are both leading companies in the field of Information & Communication Technology (ICT) in Pakistan where GCS has expanded operations internationally in Nigeria, South Africa, Turkey, UAE in the last few years. 
 
-TekkDev, currently established operations in Pakistan, engages in designing of bespoke customized software solutions in private sector on latest technology stack. TekkDev solution design is on customers requirements to upgrade existing software through intelligent components with reduced development effort and on modular or microservices architecture. TekkDev has a range of seasoned subject matter experts  for Healthcare vertical, to design, develop implement a seamless, end to end software solution or provide a world class patient centric hospital systems. 
+      {/* Updated section: About paragraph is now left-aligned */}
+      <Grid item container className={classes.rowContainer}>
+        <Typography variant="h4" align="left" className={classes.statement}>
+          TekkDev is a software development and cybersecurity company
+          established as part of a joint venture between Computer Marketing
+          Company (CMC) and GCS Pvt Ltd. CMC and GCS are both leading companies
+          in the field of Information & Communication Technology (ICT) in
+          Pakistan, where GCS has expanded operations internationally in
+          Nigeria, South Africa, Turkey, and UAE in the last few years.
 
-TekkDev Cybersecurity professionals trained locally and internationally with years of established experience of building secure infrastructure for a large size national and multinational organizations. They excel in designing of the governance framework,  performing vulnerability assessment and penetration testing, incident reporting, performing cloud assessments to design a scalable secure cloud based architecture, help client achieve ISO27001 and scalaing up the organiztion capability through inducting of NIST framework. TekkDev Cybersecurity consultants have an established track record in helping organization’s evaluate and improve on designing and implementing of security controls and policies.
+          <br />
+          <br />
+          TekkDev currently operates in Pakistan and designs bespoke,
+          customized software solutions for the private sector using the latest
+          technology stack. Solutions are tailored to upgrade existing software
+          using intelligent components, reducing development effort, and
+          following modular or microservices architecture. TekkDev has seasoned
+          subject matter experts in the healthcare vertical to deliver end-to-end
+          solutions or world-class patient-centric hospital systems.
 
+          <br />
+          <br />
+          TekkDev cybersecurity professionals are trained locally and
+          internationally, with years of experience in building secure
+          infrastructure for national and multinational organizations. They
+          specialize in governance frameworks, vulnerability assessment,
+          penetration testing, incident response, cloud security architecture,
+          ISO27001 certification support, and scaling organizations with the
+          NIST framework. They help organizations evaluate and implement strong
+          security controls and policies.
         </Typography>
       </Grid>
       <Grid
@@ -151,35 +178,30 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
           className={classes.itemContainer}
           lg
         >
+
+
           <Grid item align={smaller ? "center" : "left"}>
             <Typography variant="h4" gutterBottom>
-           2.	Mission            </Typography>
+              Mission
+            </Typography>
           </Grid>
           <Grid item style={{ textAlign: smallest ? "center" : "justify" }}>
             <Typography variant="body1" paragraph>
-TekkDev strives delivering quality security  assessment & consulting by            </Typography>
-            <Typography variant="body1" paragraph>
-             ✔. proactive security analysis
+              TekkDev strives to deliver quality security assessment & consulting by:
             </Typography>
+            <Typography variant="body1" paragraph>✔ Proactive security analysis</Typography>
+            <Typography variant="body1" paragraph>✔ Instilling security awareness</Typography>
             <Typography variant="body1" paragraph>
-             ✔.	Instilling security awareness
+              ✔ Recommending and developing robust security architectures for resilient systems
             </Typography>
-            <Typography variant="body1" paragraph>
-            ✔. Recommending and developing robust  security architectures for resilient system  
-            </Typography>
-            
           </Grid>
-
         </Grid>
-
-        
-        
         {medium ? null : historyJSX}
-
       </Grid>
       <Grid item className={classes.heading} align="center">
         <Typography variant="h3">Team</Typography>
       </Grid>
+
       <Grid
         container
         direction="row"
@@ -187,143 +209,72 @@ TekkDev strives delivering quality security  assessment & consulting by         
         style={{ marginTop: 0 }}
         className={classes.rowContainer}
       >
-        <Grid
-          item
-          container
-          direction="column"
-          className={classes.teamCardContainer}
-          lg
-        >
-          <Grid item align="center">
-            <Avatar
-              src={founder2}
-              className={classes.avatar}
-              alt="founder's headshot"
-            />
-          </Grid>
-          <Grid item style={{ marginTop: "2rem", textAlign: "center" }}>
-            <Typography variant="h4">Umer Azhar</Typography>
-            <Typography variant="caption" gutterBottom>
-              HOD
-            </Typography>
-          </Grid>
+        {[ 
+          {
+            name: "Umer Azhar",
+            title: "HOD",
+            image: founder2,
+          },
+          {
+            name: "Waleed Ijaz",
+            title: "Full Stack Developer",
+            image: founder,
+          },
+          {
+            name: "Nofil Iqbal",
+            title: "Frontend Developer",
+            image: founder3,
+          }
+        ].map((member, index) => (
           <Grid
+            key={index}
             item
-            style={{
-              maxWidth: "100%",
-              marginTop: "1.5rem",
-              textAlign: smallest ? "center " : "justify",
-            }}
+            container
+            direction="column"
+            className={classes.teamCardContainer}
+            lg
           >
-            <Typography variant="body1" paragraph>
-              I taught myself basic coding from a library book in third grade,
-              and ever since then my passion has solely been set on learning —
-              learning about computers, learning mathematics and philosophy,
-              studying design, always just learning.
-            </Typography>
-            <Typography variant="body1" paragraph>
-              Now I’m ready to apply everything I’ve learned, and to help others
-              with the intuition I have developed.
-            </Typography>
+            <Grid item align="center">
+              <Avatar
+                src={member.image}
+                className={classes.avatar}
+                alt={`${member.name}'s headshot`}
+              />
+            </Grid>
+            <Grid item style={{ marginTop: "2rem", textAlign: "center" }}>
+              <Typography variant="h4">{member.name}</Typography>
+              <Typography variant="caption" gutterBottom>
+                {member.title}
+              </Typography>
+            </Grid>
+            <Grid
+              item
+              style={{
+                maxWidth: "100%",
+                marginTop: "1.5rem",
+                textAlign: smallest ? "center" : "justify",
+              }}
+            >
+              <Typography variant="body1" paragraph>
+                I taught myself basic coding from a library book in third grade,
+                and ever since then my passion has solely been set on learning —
+                learning about computers, learning mathematics and philosophy,
+                studying design, always just learning.
+              </Typography>
+              <Typography variant="body1" paragraph>
+                Now I’m ready to apply everything I’ve learned, and to help others
+                with the intuition I have developed.
+              </Typography>
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid
-          item
-          container
-          direction="column"
-          className={classes.teamCardContainer}
-          lg
-        >
-          <Grid item align="center">
-            <Avatar
-              src={founder}
-              className={classes.avatar}
-              alt="founder's headshot"
-            />
-          </Grid>
-          <Grid item style={{ marginTop: "2rem", textAlign: "center" }}>
-            <Typography variant="h4">Waleed Ijaz</Typography>
-            <Typography variant="caption" gutterBottom>
-              Full Stack Developer
-            </Typography>
-          </Grid>
-          <Grid
-            item
-            style={{
-              maxWidth: "100%",
-              marginTop: "1.5rem",
-              textAlign: smallest ? "center " : "justify",
-            }}
-          >
-            <Typography variant="body1" paragraph>
-              I taught myself basic coding from a library book in third grade,
-              and ever since then my passion has solely been set on learning —
-              learning about computers, learning mathematics and philosophy,
-              studying design, always just learning.
-            </Typography>
-            <Typography variant="body1" paragraph>
-              Now I’m ready to apply everything I’ve learned, and to help others
-              with the intuition I have developed.
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid
-          item
-          container
-          direction="column"
-          className={classes.teamCardContainer}
-          lg
-        >
-          <Grid item align="center">
-            <Avatar
-              src={founder3}
-              className={classes.avatar}
-              alt="founder's headshot"
-            />
-          </Grid>
-          <Grid item style={{ marginTop: "2rem", textAlign: "center" }}>
-            <Typography variant="h4">Nofil Iqbal</Typography>
-            <Typography variant="caption" gutterBottom>
-              Frontend Developer
-            </Typography>
-          </Grid>
-          <Grid
-            item
-            style={{
-              maxWidth: "100%",
-              marginTop: "1.5rem",
-              textAlign: smallest ? "center " : "justify",
-            }}
-          >
-            <Typography variant="body1" paragraph>
-              I taught myself basic coding from a library book in third grade,
-              and ever since then my passion has solely been set on learning —
-              learning about computers, learning mathematics and philosophy,
-              studying design, always just learning.
-            </Typography>
-            <Typography variant="body1" paragraph>
-              Now I’m ready to apply everything I’ve learned, and to help others
-              with the intuition I have developed.
-            </Typography>
-          </Grid>
-        </Grid>
+        ))}
       </Grid>
+
       <Grid item>
-        {/* Call to Action Block */}
-        {/* HINT: a background image can be set directly on the Grid Container
-                as className Prop and then we dont need to set the inner container with
-                absolute positioning
-            */}
-        <CallToAction
-          setValue={props.setValue}
-          setSelected={props.setSelected}
-        />
+        <CallToAction setValue={props.setValue} setSelected={props.setSelected} />
       </Grid>
     </Grid>
   );
 };
 
 export default About;
-
-
-

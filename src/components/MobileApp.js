@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Lottie from "react-lottie";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import Hidden from "@material-ui/core/Hidden";
+import { makeStyles, useTheme } from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Hidden from "@mui/material/Hidden";
 import backArrow from "../assets/backArrow.svg";
 import forwardArrow from "../assets/forwardArrow.svg";
 import CallToAction from "./ui/CallToAction";

@@ -1,49 +1,59 @@
 import React from "react";
+import EmailIcon from "@material-ui/icons/Email";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
+import PhoneIcon from "@material-ui/icons/Phone";
 
-const FooterAdornment = (props) => {
-  const svgStyles = {
-    st0: {
-      fill: "none",
-    },
-    st1: {
-      fill: "#FFFFFF",
-      fontFamily: "Raleway",
-      fontSize: "0.85rem",
-    },
+const FooterAdornment = () => {
+  const containerStyle = {
+    backgroundColor: "#305694",        
+    color: "white",
+    display: "flex",
+    flexDirection: "column",
+    gap: "1rem",
+    width: "100%",
+    height: "100%",
+    padding: "2rem 2rem",
+    fontFamily: "Raleway, sans-serif",
+    fontWeight: "bold",
+    boxSizing: "border-box",
+    alignItems: "flex-start",
+    justifyContent: "center",
   };
+
+  const itemStyle = {
+    display: "flex",
+    alignItems: "flex-start",
+    fontSize: "1rem",
+    lineHeight: "1.4",
+  };
+
+  const iconStyle = {
+    marginRight: "0.75rem",
+    color: "white",
+    fontSize: "1.4rem",
+    marginTop: "0.2rem", 
+  };
+
   return (
-    <svg
-      version="1.1"
-      id="Layer_1"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      x="0px"
-      y="0px"
-      viewBox="0 0 294.4 180"
-      //receiving svg styles as className props
-      //if no class is available then svg will fallback on viewBox;
-      className={props.className}
-      xmlSpace="preserve"
-    >
-      <path d="M294.4,0L168,227H0V0H294.4z" />
-      <g id="Full_Box">
-        <polyline points="168,227 294.4,227 294.4,-1" />
-      </g>
-      <path style={svgStyles.st0} d="M111-24v376" />
-      <text
-        id="_xA9__BeriDev.to"
-        transform="matrix(1 0 0 1 5 175)"
-        style={svgStyles.st1}
-      >
-        © beri.dev {new Date().getFullYear()}
-      </text>
-      <text
-        transform="matrix(1 0 0 1 207.1765 175)"
-        style={svgStyles.st1}
-      >
-        Calgary, AB
-      </text>
-    </svg>
+    <div style={containerStyle}>
+      <div style={itemStyle}>
+        <EmailIcon style={iconStyle} />
+        <span>Info@tekkdev.com</span>
+      </div>
+      <div style={itemStyle}>
+        <LocationOnIcon style={iconStyle} />
+        <span>
+          Plot 22, Block E2,<br />
+          Block E 2, Gulberg III,<br />
+          Lahore, Pakistan
+        </span>
+      </div>
+      <div style={itemStyle}>
+        <PhoneIcon style={iconStyle} />
+        <span>+92 (42) 3577-4258</span>
+      </div>
+
+    </div>
   );
 };
 

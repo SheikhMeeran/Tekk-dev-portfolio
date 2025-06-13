@@ -1,9 +1,10 @@
+
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
+import Hidden from "@mui/material/Hidden";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import FooterAdornment from "../../svgToReact/FooterAdornment.js";
 import MobileFooterAdornment from "../../svgToReact/MobileFooterAdornment.js";
@@ -13,7 +14,7 @@ import instagram from "../../assets/instagram.svg";
 
 const useStyles = makeStyles((theme) => ({
   footer: {
-    backgroundColor: theme.palette.common.orange,
+    backgroundColor: "#305694",
     width: "100%",
     overflowX: "hidden",
     zIndex: theme.zIndex.modal + 1,
@@ -51,18 +52,20 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   link: {
-    ...theme.typography.link,
-    opacity: 0.7,
+    color: "white",
+    fontWeight: "bold",
     textDecoration: "none",
     cursor: "pointer",
     whiteSpace: "nowrap",
+    transition: "all 0.3s ease-in-out",
     "&:hover": {
-      opacity: 1,
+      color: "white",
+      transform: "scale(1.05)",
     },
   },
   icon: {
-    width: "3.5rem",
-    height: "3.5rem",
+    width: "3rem",
+    height: "3rem",
     padding: "0.5rem",
     [theme.breakpoints.down("sm")]: {
       width: "7rem",
@@ -96,8 +99,9 @@ const Footer = (props) => {
   const theme = useTheme();
   const medium = useMediaQuery(theme.breakpoints.down("md"));
   const smaller = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
-    <Grid container className={classes.footer}>
+    <Grid container direction="column" className={classes.footer}>
       <Hidden smDown>
         <Grid
           item
@@ -153,7 +157,6 @@ const Footer = (props) => {
               >
                 Cyber Security
               </Grid>
-              
               <Grid
                 item
                 className={classes.link}
@@ -185,10 +188,6 @@ const Footer = (props) => {
               <Grid
                 item
                 className={classes.link}
-                onClick={() => {
-                  props.setValue(2);
-                  props.setSelected(null);
-                }}
                 component={Link}
                 to="/revolution"
               >
@@ -197,10 +196,6 @@ const Footer = (props) => {
               <Grid
                 item
                 className={classes.link}
-                onClick={() => {
-                  props.setValue(2);
-                  props.setSelected(null);
-                }}
                 component={Link}
                 to="/revolution"
               >
@@ -209,10 +204,6 @@ const Footer = (props) => {
               <Grid
                 item
                 className={classes.link}
-                onClick={() => {
-                  props.setValue(2);
-                  props.setSelected(null);
-                }}
                 component={Link}
                 to="/revolution"
               >
@@ -225,10 +216,6 @@ const Footer = (props) => {
               <Grid
                 item
                 className={classes.link}
-                onClick={() => {
-                  props.setValue(3);
-                  props.setSelected(null);
-                }}
                 component={Link}
                 to="/about"
               >
@@ -237,10 +224,6 @@ const Footer = (props) => {
               <Grid
                 item
                 className={classes.link}
-                onClick={() => {
-                  props.setValue(3);
-                  props.setSelected(null);
-                }}
                 component={Link}
                 to="/about"
               >
@@ -249,10 +232,6 @@ const Footer = (props) => {
               <Grid
                 item
                 className={classes.link}
-                onClick={() => {
-                  props.setValue(3);
-                  props.setSelected(null);
-                }}
                 component={Link}
                 to="/about"
               >
@@ -265,10 +244,6 @@ const Footer = (props) => {
               <Grid
                 item
                 className={classes.link}
-                onClick={() => {
-                  props.setValue(4);
-                  props.setSelected(null);
-                }}
                 component={Link}
                 to="/contact"
               >
@@ -277,10 +252,6 @@ const Footer = (props) => {
               <Grid
                 item
                 className={classes.link}
-                onClick={() => {
-                  props.setValue(5);
-                  props.setSelected(null);
-                }}
                 component={Link}
                 to="/estimate"
               >
@@ -290,11 +261,13 @@ const Footer = (props) => {
           </Grid>
         </Grid>
       </Hidden>
-      {smaller ? null : (
+
+      {!smaller && (
         <Grid item className={classes.adornment}>
           <FooterAdornment className={classes.adornment} />
         </Grid>
       )}
+
       <Grid container direction="column" alignItems="center">
         <Grid
           item
@@ -304,7 +277,7 @@ const Footer = (props) => {
         >
           <Grid
             item
-            component={"a"}
+            component="a"
             href="https://facebook.com"
             className={classes.icon}
           >
@@ -317,12 +290,12 @@ const Footer = (props) => {
           </Grid>
           <Grid
             item
-            component={"a"}
+            component="a"
             href="https://instagram.com"
             className={classes.icon}
           >
             <img
-              alt="facebook-icon"
+              alt="instagram-icon"
               src={instagram}
               rel="noopener noreferrer"
               target="_blank"
@@ -330,23 +303,31 @@ const Footer = (props) => {
           </Grid>
           <Grid
             item
-            component={"a"}
+            component="a"
             href="https://twitter.com"
             className={classes.icon}
           >
             <img
-              alt="facebook-icon"
+              alt="twitter-icon"
               src={twitter}
               rel="noopener noreferrer"
               target="_blank"
             />
           </Grid>
         </Grid>
-        {smaller ? (
+
+        {smaller && (
           <Grid item className={classes.adornment}>
             <MobileFooterAdornment />
           </Grid>
-        ) : null}
+        )}
+
+        {/* Copyright Footer Line */}
+        <Grid item style={{ backgroundColor: "gray", width: "100%", textAlign: "center", padding: "0.5rem 0" }}>
+          <span style={{ color: "#fff", fontSize: "0.875rem" }}>
+            © {new Date().getFullYear()} Copyrights by TEKKDEV
+          </span>
+        </Grid>
       </Grid>
     </Grid>
   );

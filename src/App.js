@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import theme from "./components/ui/Theme.js";
 import ScrollToTop from "./scripts/ScrollToTop.js";
 
@@ -56,6 +56,9 @@ const App = () => {
                 />
               )}
             />
+    
+
+            
             <Route
               exact
               path="/services"
@@ -89,6 +92,8 @@ const App = () => {
                 />
               )}
             />
+
+
             <Route
               exact
               path="/websites"
@@ -153,3 +158,5 @@ const App = () => {
 };
 
 export default App;
+
+

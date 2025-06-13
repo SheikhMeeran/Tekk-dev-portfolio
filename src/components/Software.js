@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Lottie from "react-lottie";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Hidden from "@material-ui/core/Hidden";
+import { makeStyles, useTheme } from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Hidden from "@mui/material/Hidden";
 import backArrow from "../assets/backArrow.svg";
 import forwardArrow from "../assets/forwardArrow.svg";
 import lightbulb from "../assets/bulb.svg";
@@ -22,6 +22,11 @@ import GRC from '../assets/GRC.jpeg'
 import VAPT from '../assets/VAPTcopy.jpeg'
 import Incident from '../assets/Incident Response .jpeg'
 import Managed from '../assets/Managed App Sec.jpeg'
+import Cloud from "../assets/Cloud Assessment.jpg";
+import Manage from "../assets/Managed App Sec.jpeg";
+
+// import TechStack from "./TechStack";
+
 
 const useStyles = makeStyles((theme) => ({
   heading: {
@@ -408,6 +413,75 @@ const Software = (props) => {
       </Typography>
     </Grid>
   </Grid>
+
+
+
+
+
+  <Grid container spacing={2} alignItems="center">
+  {/* Text Section */}
+  <Grid item xs={12} md={6} container direction="column" spacing={2} className={classes.heading}>
+    <Grid item>
+      <Typography variant="h2" align={smaller ? "center" : "left"} gutterBottom>
+        5) Cloud Assessment
+      </Typography>
+    </Grid>
+    <Grid item>
+      <Typography variant="body1" paragraph>
+        ❖ Cloud based business over the years is now the preferred modality of hosting applications these days, but as maturity is in the process to be achieved. We “Do More
+      </Typography>
+      <Typography variant="body1" paragraph>
+        ❖ Our Cloud Security Analysts perform complete, holistic mapping of your cloud architecture to prevent breaches, threats and ensure risks are mitigated.
+      </Typography>
+    </Grid>
+  </Grid>
+
+  {/* Image Section */}
+  <Grid item xs={12} md={6}>
+    <img
+      src={Cloud} // Replace with your image path
+      alt="Cloud Assessment"
+      style={{ width: '80%', height: 'auto' }}
+    />
+  </Grid>
+</Grid>
+
+<Grid container spacing={4} alignItems="center">
+  {/* Image on the left */}
+  <Grid item xs={12} md={6}>
+    <img
+      src={Manage}
+      alt="Vulnerability Assessment"
+      style={{ width: "80%", height: "auto" }}
+    />
+  </Grid>
+
+  {/* Text on the right */}
+  <Grid item xs={12} md={6} container direction="column" spacing={2}>
+    <Grid item>
+      <Typography
+        variant="h2"
+        align="left"
+        gutterBottom
+      >
+        6)	Managed AppSec 
+      </Typography>
+    </Grid>
+
+    <Grid item>
+      <Typography variant="body1" paragraph>
+        We will do it “just for you“ as your Managed Application Security Service partner in business.
+      </Typography>
+      <Typography variant="body1" paragraph>❖ To plan extended capability to do continuous monitoring</Typography>
+      <Typography variant="body1" paragraph>❖ Managing business risks </Typography>
+      <Typography variant="body1" paragraph>❖ Promptly responding with necessary action</Typography>
+      <Typography variant="body1" paragraph>❖ Security environment checks and perimeters</Typography>
+      <Typography variant="body1" paragraph>❖ Keep up-to-date with rules and compliances</Typography>
+    </Grid>
+  </Grid>
+</Grid>
+
+
 </Grid>
 
 
