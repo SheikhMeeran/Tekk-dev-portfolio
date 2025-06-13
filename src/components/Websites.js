@@ -3,7 +3,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles, useTheme } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
-import Hidden from "@mui/material/Hidden";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -60,8 +59,8 @@ const Websites = (props) => {
         className={classes.rowContainer}
         justifyContent="center"
       >
-        <Hidden smDown>
-          <Grid item className={classes.arrowContainer} style={{ marginRight: "2em" }}>
+        {!smaller && (<>
+              <Grid item className={classes.arrowContainer} style={{ marginRight: "2em" }}>
             <IconButton
               className={classes.arrowIcons}
               component={Link}
@@ -74,9 +73,9 @@ const Websites = (props) => {
               <img src={backArrow} alt="Back to Mobile App Development Page" />
             </IconButton>
           </Grid>
-        </Hidden>
+        </>)}
 
-        <Hidden smDown>
+{!smaller && (<>
           <Grid item className={classes.arrowContainer}>
             <IconButton
               className={classes.arrowIcons}
@@ -90,7 +89,8 @@ const Websites = (props) => {
               <img src={forwardArrow} alt="Forward to Services Page" />
             </IconButton>
           </Grid>
-        </Hidden>
+</>)}
+
       </Grid>
 
       {/* Digital Transformation Section */}
