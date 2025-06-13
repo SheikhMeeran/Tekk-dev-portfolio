@@ -2,7 +2,8 @@
 
 import React from "react";
 import Lottie from "react-lottie";
-import { makeStyles, useTheme } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles"; // if you still need legacy styling
+import { useTheme } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
