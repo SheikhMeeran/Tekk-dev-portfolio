@@ -1,7 +1,13 @@
 import React from "react";
-import EmailIcon from "@material-ui/icons/Email";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
-import PhoneIcon from "@material-ui/icons/Phone";
+// import EmailIcon from "@material-ui/icons/Email";
+import EmailIcon from '@mui/icons-material/Email';
+
+// import LocationOnIcon from "@material-ui/icons/LocationOn";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+
+// import PhoneIcon from "@material-ui/icons/Phone";
+import PhoneIcon from "@mui/icons-material/Phone";
+
 
 const FooterAdornment = () => {
   const containerStyle = {

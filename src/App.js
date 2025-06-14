@@ -1,162 +1,53 @@
 import React, { useState } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "./components/ui/Theme.js";
-import ScrollToTop from "./scripts/ScrollToTop.js";
 
-import Header from "./components/ui/Header.js";
-import Footer from "./components/ui/Footer.js";
-import LandingPage from "./components/LandingPage.js";
-import Services from "./components/Services.js";
-import Software from "./components/Software.js";
-import MobileApp from "./components/MobileApp.js";
-import Websites from "./components/Websites.js";
-import Revolution from "./components/Revolution.js";
-import About from "./components/About.js";
-import Contact from "./components/Contact.js";
-import Estimate from "./components/Estimate.js";
+import theme from "./components/ui/Theme";
+import ScrollToTop from "./scripts/ScrollToTop";
+
+// UI Components
+import Header from "./components/ui/Header";
+import Footer from "./components/ui/Footer";
+
+// Page Components
+import LandingPage from "./components/LandingPage";
+import Services from "./components/Services";
+import Software from "./components/Software";
+import MobileApp from "./components/MobileApp";
+import Websites from "./components/Websites";
+import Revolution from "./components/Revolution";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Estimate from "./components/Estimate";
 
 const App = () => {
   const [value, setValue] = useState(0);
   const [selected, setSelected] = useState(null);
+
+  const pageProps = { setValue, setSelected };
+
   return (
     <ThemeProvider theme={theme}>
-      <div>
-        <BrowserRouter>
-          <ScrollToTop />
-          <Header
-            value={value}
-            setValue={setValue}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Switch>
-            {/* if we need to passdown props to a component within a route tag
-                We should use render prop function to do so. See below using diff 
-                See Default Examples when setting up router the first time
-                <Route
-                  exact
-                  path="/websites"
-                  component={() => <div>Web Development</div>}
-                />
-                <Route
-                  exact
-                  path="/revolution"
-                  component={() => <div>The Revolution</div>}
-                />
-                */}
-            <Route
-              exact
-              path="/"
-              render={(props) => (
-                <LandingPage
-                  {...props}
-                  setValue={setValue}
-                  setSelected={setSelected}
-                />
-              )}
-            />
-    
+      <BrowserRouter>
+        <ScrollToTop />
+        <Header value={value} setValue={setValue} selected={selected} setSelected={setSelected} />
 
-            
-            <Route
-              exact
-              path="/services"
-              render={(props) => (
-                <Services
-                  {...props}
-                  setValue={setValue}
-                  setSelected={setSelected}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/software"
-              render={(props) => (
-                <Software
-                  {...props}
-                  setValue={setValue}
-                  setSelected={setSelected}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/mobileapps"
-              render={(props) => (
-                <MobileApp
-                  {...props}
-                  setValue={setValue}
-                  setSelected={setSelected}
-                />
-              )}
-            />
+        <Routes>
+          <Route path="/" element={<LandingPage {...pageProps} />} />
+          <Route path="/services" element={<Services {...pageProps} />} />
+          <Route path="/software" element={<Software {...pageProps} />} />
+          <Route path="/mobileapps" element={<MobileApp {...pageProps} />} />
+          <Route path="/websites" element={<Websites {...pageProps} />} />
+          <Route path="/revolution" element={<Revolution {...pageProps} />} />
+          <Route path="/about" element={<About {...pageProps} />} />
+          <Route path="/contact" element={<Contact {...pageProps} />} />
+          <Route path="/estimate" element={<Estimate {...pageProps} />} />
+        </Routes>
 
-
-            <Route
-              exact
-              path="/websites"
-              render={(props) => (
-                <Websites
-                  {...props}
-                  setValue={setValue}
-                  setSelected={setSelected}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/revolution"
-              render={(props) => (
-                <Revolution
-                  {...props}
-                  setValue={setValue}
-                  setSelected={setSelected}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/about"
-              render={(props) => (
-                <About
-                  {...props}
-                  setValue={setValue}
-                  setSelected={setSelected}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/contact"
-              render={(props) => (
-                <Contact
-                  {...props}
-                  setValue={setValue}
-                  setSelected={setSelected}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/estimate"
-              render={(props) => (
-                <Estimate
-                  {...props}
-                  setValue={setValue}
-                  setSelected={setSelected}
-                />
-              )}
-            />
-          </Switch>
-          <Footer setValue={setValue} setSelected={setSelected} />
-        </BrowserRouter>
-      </div>
+        <Footer setValue={setValue} setSelected={setSelected} />
+      </BrowserRouter>
     </ThemeProvider>
   );
 };
 
 export default App;
-
-
