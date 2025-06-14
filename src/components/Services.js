@@ -1,259 +1,173 @@
-
-
 import React from "react";
 import { Link } from "react-router-dom";
-import { makeStyles } from "@mui/styles"; // if you still need legacy styling
-import { useTheme } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import ButtonArrow from "./ui/ButtonArrow";
+
 import softwareIcon from "../assets/Custom Software Icon.svg";
 import appsIcon from "../assets/mobile.svg";
 import webIcon from "../assets/website.svg";
 
-const useStyles = makeStyles((theme) => ({
-  learnOutlineButton: {
-    ...theme.typography.learnButton,
-    borderColor: theme.palette.common.orange,
-    borderWidth: 3,
-    height: "35px",
-    opacity: 0.7,
-    marginRight: 0,
-    marginLeft: 0,
-  },
-  subtitle: {
-    marginBottom: "2.5rem",
-    [theme.breakpoints.down("sm")]: {
-      marginBottom: "1em",
-    },
-  },
-  icon: {
-    marginLeft: "2em",
-    [theme.breakpoints.down("sm")]: {
-      marginLeft: 0,
-    },
-  },
-  serviceIcon: {
-    minWidth: "15em",
-    marginLeft: "2em",
-    [theme.breakpoints.down("sm")]: {
-      marginBottom: "0.5em",
-      maxWidth: "5em",
-      marginLeft: 0,
-    },
-  },
-  webDevContainer: {
-    marginTop: "10em",
-    marginBottom: "10em",
-    [theme.breakpoints.down("lg")]: {
-      marginTop: "8em",
-      marginBottom: "8em",
-    },
-    [theme.breakpoints.down("md")]: {
-      marginTop: "6em",
-      marginBottom: "6em",
-    },
-    [theme.breakpoints.down("sm")]: {
-      marginTop: "3em",
-      marginBottom: "3em",
-      padding: "20px",
-    },
-  },
-  devContainer: {
-    marginTop: "10em",
-    [theme.breakpoints.down("lg")]: {
-      marginTop: "8em",
-    },
-    [theme.breakpoints.down("md")]: {
-      marginTop: "6em",
-    },
-    [theme.breakpoints.down("sm")]: {
-      marginTop: "3em",
-      padding: "20px",
-    },
-  },
-  appDevDescription: {
-    width: "40em",
-    [theme.breakpoints.down("lg")]: {
-        width: "32em",
-      },
-    [theme.breakpoints.down("md")]: {
-        maxWidth: "25em",
-      },
-    [theme.breakpoints.down("sm")]: {
-        width: "40em",
-        maxWidth: "40em",
-        padding: "20px",
-      },
-    [theme.breakpoints.down("xs")]: {
-        width: "auto",
-        padding: "20px",
-    },
-  },
-  serviceLabelContainer : {
-    [theme.breakpoints.down("sm")]: {
-        width: "auto",
-        padding: "20px",
-    },
-  }
+// Styled Components
+const LearnButton = styled(Button)(({ theme }) => ({
+  ...theme.typography.learnButton,
+  borderColor: theme.palette.common.orange,
+  borderWidth: 3,
+  height: "35px",
+  opacity: 0.7,
 }));
 
-const Services = (props) => {
-  const classes = useStyles();
-  const theme = useTheme();
-  const smaller = useMediaQuery(theme.breakpoints.down("sm"));
+const DevContainer = styled(Grid)(({ theme }) => ({
+  marginTop: "10em",
+  [theme.breakpoints.down("lg")]: { marginTop: "8em" },
+  [theme.breakpoints.down("md")]: { marginTop: "6em" },
+  [theme.breakpoints.down("sm")]: {
+    marginTop: "3em",
+    padding: "20px",
+  },
+}));
 
-  const softwareIconJSX = (
-    <Grid container justify={smaller ? "center" : undefined} >
-      <Grid item className={classes.serviceIcon}>
-        <img src={softwareIcon} alt="Software Icon" />
-      </Grid>
-    </Grid>
-  );
-  const websiteIconJSX = (
-    <Grid container justify={smaller ? "center" : undefined} style={{marginRight: smaller ? 0 : "5em",}}>
-      <Grid item className={classes.serviceIcon}>
-        <img src={webIcon} alt="Software Icon" />
-      </Grid>
-    </Grid>
-  );
-  const mobileIconJSX = (
-    <Grid container justify={smaller ? "center" : undefined}>
-      <Grid
-        item
-        className={classes.serviceIcon}
-        style={{ marginRight: smaller ? 0 : "5em" }}
-      >
-        <img src={appsIcon} alt="Mobile Icon" />
-      </Grid>
+const WebDevContainer = styled(DevContainer)(({ theme }) => ({
+  marginBottom: "10em",
+  [theme.breakpoints.down("lg")]: { marginBottom: "8em" },
+  [theme.breakpoints.down("md")]: { marginBottom: "6em" },
+  [theme.breakpoints.down("sm")]: { marginBottom: "3em" },
+}));
+
+const AppDescription = styled(Grid)(({ theme }) => ({
+  width: "40em",
+  [theme.breakpoints.down("lg")]: { width: "32em" },
+  [theme.breakpoints.down("md")]: { maxWidth: "25em" },
+  [theme.breakpoints.down("sm")]: {
+    width: "100%",
+    padding: "20px",
+    maxWidth: "40em",
+  },
+}));
+
+const ServiceIcon = styled(Grid)(({ theme }) => ({
+  minWidth: "15em",
+  marginLeft: "2em",
+  [theme.breakpoints.down("sm")]: {
+    marginLeft: 0,
+    marginBottom: "0.5em",
+    maxWidth: "5em",
+  },
+}));
+
+const Subtitle = styled(Typography)(({ theme }) => ({
+  marginBottom: "2.5rem",
+  [theme.breakpoints.down("sm")]: {
+    marginBottom: "1em",
+  },
+}));
+
+const Services = ({ setValue, setSelected }) => {
+  const theme = useTheme();
+  const isSm = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const iconBlock = (icon) => (
+    <Grid container justifyContent={isSm ? "center" : "flex-start"}>
+      <ServiceIcon item>
+        <img src={icon} alt="icon" />
+      </ServiceIcon>
     </Grid>
   );
 
   return (
     <Grid container direction="column">
-        <Grid item container className={classes.serviceLabelContainer} justify={smaller ? "center" : "flex-start"} style={{paddingLeft: smaller ? "20px" : "5em", marginTop: "2em"}}>
-            <Typography variant="h2">Services</Typography>
-        </Grid>
+      <Grid item container justifyContent={isSm ? "center" : "flex-start"} sx={{ pl: isSm ? 2 : 6, mt: 4 }}>
+        <Typography variant="h2">Services</Typography>
+      </Grid>
+
+      {/* Mobile App */}
       <Grid item>
-        {/* ------ App Block ------- */}
-        <Grid
-          container
-          direction="row"
-          className={classes.devContainer}
-          justify={smaller ? "center" : "flex-end"}
-        >
-          <Grid item className={classes.appDevDescription} style={{ textAlign: smaller ? "center" : undefined }}>
-            {smaller ? mobileIconJSX : ""}
+        <DevContainer container direction="row" justifyContent={isSm ? "center" : "flex-end"}>
+          <AppDescription item textAlign={isSm ? "center" : "left"}>
+            {isSm && iconBlock(appsIcon)}
             <Typography variant="h4">Mobile App Development</Typography>
-            <Typography variant="subtitle1" className={classes.subtitle}>
+            <Subtitle variant="subtitle1">
               Extend Functionality. Extend Access. Increase Engagement.
+            </Subtitle>
+            <Typography variant="subtitle1">
+              Integrate your web experience or create a standalone app with either iOS or Android platforms.
             </Typography>
-            <Typography
-              variant="subtitle1"
-            >
-              Integrate your web experience or create a standalone app with
-              either iOS or Android platforms.
-            </Typography>
-            <Button
+            <LearnButton
               component={Link}
               to="/mobileapps"
               onClick={() => {
-                props.setValue(1);
-                props.setSelected(1);
+                setValue(1);
+                setSelected(1);
               }}
               variant="outlined"
-              className={classes.learnOutlineButton}
             >
               Learn More
               <ButtonArrow width={25} height={18} fill="black" />
-            </Button>
-          </Grid>
-          <Grid item>{smaller ? "" : mobileIconJSX}</Grid>
-        </Grid>
+            </LearnButton>
+          </AppDescription>
+          {!isSm && iconBlock(appsIcon)}
+        </DevContainer>
       </Grid>
+
+      {/* Software Dev */}
       <Grid item>
-        {/* ------ Software Block ------- */}
-        <Grid
-          container
-          direction="row"
-          className={classes.devContainer}
-          justify={smaller ? "center" : undefined}
-        >
-          <Grid
-            item
-            className={classes.appDevDescription}
-            style={{
-              marginLeft: smaller ? 0 : "5em",
-              textAlign: smaller ? "center" : undefined,
-            }}
-          >
-            {smaller ? softwareIconJSX : ""}
+        <DevContainer container direction="row" justifyContent={isSm ? "center" : "flex-start"}>
+          <AppDescription item sx={{ ml: isSm ? 0 : 6 }} textAlign={isSm ? "center" : "left"}>
+            {isSm && iconBlock(softwareIcon)}
             <Typography variant="h4">Software Development</Typography>
-            <Typography variant="subtitle1" className={classes.subtitle}>
+            <Subtitle variant="subtitle1">
               Save Time. Save Energy. Save Money.
-            </Typography>
+            </Subtitle>
             <Typography variant="subtitle1">
-              Complete digital solutions, from investigation to{" "}
-              <span>celebration.</span>
+              Complete digital solutions, from investigation to <span>celebration.</span>
             </Typography>
-            <Button
+            <LearnButton
               component={Link}
               to="/software"
               onClick={() => {
-                props.setValue(1);
-                props.setSelected(0);
+                setValue(1);
+                setSelected(0);
               }}
               variant="outlined"
-              className={classes.learnOutlineButton}
             >
               Learn More
               <ButtonArrow width={25} height={18} fill="black" />
-            </Button>
-          </Grid>
-          <Grid item>{smaller ? "" : softwareIconJSX}</Grid>
-        </Grid>
+            </LearnButton>
+          </AppDescription>
+          {!isSm && iconBlock(softwareIcon)}
+        </DevContainer>
       </Grid>
+
+      {/* Web Dev */}
       <Grid item>
-        {/* ------ Website Block ------- */}
-        <Grid
-          container
-          direction="row"
-          className={classes.webDevContainer}
-          justify={smaller ? "center" : "flex-end"}
-        >
-          <Grid
-            item
-            className={classes.appDevDescription}
-            style={{
-              textAlign: smaller ? "center" : undefined,
-            }}
-          >
-            {smaller ? websiteIconJSX : ""}
+        <WebDevContainer container direction="row" justifyContent={isSm ? "center" : "flex-end"}>
+          <AppDescription item textAlign={isSm ? "center" : "left"}>
+            {isSm && iconBlock(webIcon)}
             <Typography variant="h4">Website Development</Typography>
-            <Typography variant="subtitle1" className={classes.subtitle}>
+            <Subtitle variant="subtitle1">
               Discover More. Reach More. Sell More.
-            </Typography>
+            </Subtitle>
             <Typography variant="subtitle1">
               Optimized for Search Engines, built for speed.
             </Typography>
-            <Button
+            <LearnButton
               component={Link}
               to="/websites"
               onClick={() => {
-                props.setValue(1);
-                props.setSelected(2);
+                setValue(1);
+                setSelected(2);
               }}
               variant="outlined"
-              className={classes.learnOutlineButton}
             >
               Learn More
               <ButtonArrow width={25} height={18} fill="black" />
-            </Button>
-          </Grid>
-          <Grid item>{smaller ? "" : websiteIconJSX}</Grid>
-        </Grid>
+            </LearnButton>
+          </AppDescription>
+          {!isSm && iconBlock(webIcon)}
+        </WebDevContainer>
       </Grid>
     </Grid>
   );

@@ -1,24 +1,24 @@
-import { createTheme } from '@mui/material/styles';
-
-const blue = "#166EE9";
-const orange = "#fff";
-const hoverBlue = "#166EE9";
-const linkColor = "#000000";
-const mygrey = "#696969";
+// theme.js
+import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
-    common: {
-      blue,
-      orange,
-      hoverBlue,
-    },
     mode: "light",
     primary: {
-      main: orange,
+      main: "#166EE9",        // primary = blue
+      contrastText: "#ffffff" // for buttons, etc.
     },
     secondary: {
-      main: blue,
+      main: "#FF9800",        // secondary = orange or accent
+      contrastText: "#ffffff"
+    },
+    text: {
+      primary: "#000000",
+      secondary: "#696969"     // grey text
+    },
+    background: {
+      default: "#ffffff",
+      paper: "#ffffff"
     },
   },
   typography: {
@@ -50,15 +50,15 @@ const theme = createTheme({
     subtitle1: {
       fontSize: "1.25rem",
       fontWeight: 400,
-      color: mygrey,
+      color: "#696969",
     },
     body1: {
       fontSize: "1.25rem",
       fontWeight: 400,
-      color: mygrey,
+      color: "#696969",
     },
     link: {
-      color: linkColor,
+      color: "#000000",
       fontSize: "0.9rem",
       fontWeight: 700,
       textTransform: "none",
@@ -68,7 +68,7 @@ const theme = createTheme({
       marginLeft: "180px",
     },
     learnButton: {
-      color: "black",
+      color: "#000000",
       marginRight: "150px",
       marginTop: "0.1rem",
       textTransform: "none",
@@ -77,8 +77,8 @@ const theme = createTheme({
       fontSize: "1rem",
       fontWeight: "bold",
       "&:hover": {
-        backgroundColor: blue,
-        color: orange,
+        backgroundColor: "#166EE9",
+        color: "#ffffff",
       },
     },
   },
@@ -93,21 +93,20 @@ const theme = createTheme({
     MuiInput: {
       styleOverrides: {
         root: {
-          color: mygrey,
+          color: "#696969",
           fontWeight: 400,
           fontSize: "1.25rem",
         },
         underline: {
           "&:before": {
-            borderBottom: `2px solid ${orange}`,
+            borderBottom: `2px solid #166EE9`,
           },
           "&:hover:not(.Mui-disabled):not(.Mui-focused):not(.Mui-error):before": {
-            borderBottom: `2px solid ${orange}`,
+            borderBottom: `2px solid #166EE9`,
           },
         },
       },
     },
   },
 });
-
 export default theme;
