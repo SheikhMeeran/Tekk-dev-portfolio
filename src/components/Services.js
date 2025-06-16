@@ -1,3 +1,138 @@
+// import React from "react";
+// import {
+//   Box,
+//   Container,
+//   Grid,
+//   Typography,
+//   Button,
+//   useMediaQuery,
+//   useTheme,
+// } from "@mui/material";
+// import softwareIcon from "../assets/software.svg";
+// import mobileIcon from "../assets/mobile.svg";
+// import websiteIcon from "../assets/website.svg";
+
+// // Reusable Responsive Service Section Component
+// const ServiceSection = ({
+//   title,
+//   subtitle,
+//   description,
+//   image,
+//   link,
+//   reverse = false,
+// }) => {
+//   const theme = useTheme();
+//   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+//   return (
+//     <Box sx={{ py: { xs: 4, md: 6 } }}>
+//       <Grid
+//         container
+//         spacing={4}
+//         direction={isSmallScreen ? "column-reverse" : "row"}
+//         alignItems="center"
+//       >
+//         {/* Text Section */}
+//         <Grid
+//           item
+//           xs={12}
+//           md={6}
+//           order={{ xs: 2, md: reverse ? 2 : 1 }}
+//         >
+//           <Typography
+//             variant="h5"
+//             fontWeight={700}
+//             gutterBottom
+//             sx={{ fontSize: { xs: "1.4rem", sm: "1.6rem", md: "1.8" } }}
+//           >
+//             {title}
+//           </Typography>
+//           <Typography
+//             variant="subtitle1"
+//             color="text.secondary"
+//             gutterBottom
+//             sx={{ fontSize: { xs: "1rem", sm: "16px" } }}
+//           >
+//             {subtitle}
+//           </Typography>
+//           <Typography
+//             variant="body2"
+//             color="text.secondary"
+//             sx={{ mb: 2, fontSize: { xs: "0.95rem", sm: "1rem" } }}
+//           >
+//             {description}
+//           </Typography>
+//           <Button
+//             variant="contained"
+//             color="primary"
+//             href={link}
+//             sx={{ mt: { xs: 1, sm: 2 } }}
+//           >
+//             Learn More
+//           </Button>
+//         </Grid>
+
+//         {/* Image Section */}
+//         <Grid
+//           item
+//           xs={12}
+//           md={6}
+//           order={{ xs: 1, md: reverse ? 1 : 2 }}
+//         >
+//           <Box
+//             component="img"
+//             src={image}
+//             alt={title}
+//             sx={{
+//               width: "100%",
+//               maxWidth: { xs: "90%", sm: "80%", md: 500 },
+//               display: "block",
+//               mx: "auto",
+//             }}
+//           />
+//         </Grid>
+//       </Grid>
+//     </Box>
+//   );
+// };
+
+// // Main Services Component
+// const Services = () => {
+//   return (
+//     <Container maxWidth="lg" sx={{ py: { xs: 6, md: 8 } }}>
+//       <ServiceSection
+//         title="Mobile App Development"
+//         subtitle="Extend Functionality. Extend Access. Increase Engagement."
+//         description="Integrate your web experience or create a standalone app with either mobile platform."
+//         image={mobileIcon}
+//         link="/mobileapps"
+//         reverse={false}
+//       />
+//       <ServiceSection
+//         title="Cyber Security"
+//         subtitle="Efficient Security: Time, Energy & Cost Optimization"
+//         description="Comprehensive cybersecurity solutions from threat detection to full protection"
+//         image={softwareIcon}
+//         link="/software"
+//         reverse={true}
+//       />
+//       <ServiceSection
+//         title="Website Development"
+//         subtitle="Reach More. Discover More. Sell More."
+//         description="Bring your business online with a fast and SEO-optimized website built for impact."
+//         image={websiteIcon}
+//         link="/websites"
+//         reverse={false}
+//       />
+//     </Container>
+//   );
+// };
+
+// export default Services;
+
+
+
+
 import React from "react";
 import {
   Box,
@@ -11,10 +146,8 @@ import {
 import softwareIcon from "../assets/software.svg";
 import mobileIcon from "../assets/mobile.svg";
 import websiteIcon from "../assets/website.svg";
-import { motion } from "framer-motion";
 
-
-// Reusable Service Section Component
+// Reusable Responsive Service Section Component
 const ServiceSection = ({
   title,
   subtitle,
@@ -27,47 +160,110 @@ const ServiceSection = ({
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <Box sx={{ py: 6 }}>
+    <Box sx={{ py: { xs: 4, md: 6 } }}>
       <Grid
         container
         spacing={4}
-        direction={isSmallScreen ? "column" : "row"}
+        direction={isSmallScreen ? "column-reverse" : "row"}
         alignItems="center"
       >
-        {/* Image */}
-        <Grid
-          item
-          xs={12}
-          md={6}
-          order={{ xs: 2, md: reverse ? 1 : 2 }}
-        >
+        {/* Text Section */}
+        <Grid item xs={12} md={6} order={{ xs: 2, md: reverse ? 2 : 1 }}>
           <Box
-            component="img"
-            src={image}
-            alt={title}
-            sx={{ width: "100%", maxWidth: 500, display: "block", mx: "auto" }}
-          />
+            sx={{
+              textAlign: isSmallScreen ? "center" : "left",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: isSmallScreen ? "center" : "flex-start",
+            }}
+          >
+            <Typography
+              variant="h5"
+              fontWeight={700}
+              gutterBottom
+              sx={{ fontSize: { xs: "1.4rem", sm: "1.0rem", md: "1.2rem" } }}
+            >
+              {title}
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              color="text.secondary"
+              gutterBottom
+              sx={{ fontSize: { xs: "1rem", sm: "16px" } }}
+            >
+              {subtitle}
+            </Typography>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ mb: 2, fontSize: { xs: "0.95rem", sm: "1rem" } }}
+            >
+              {description}
+            </Typography>
+
+            {/* Button for md and up */}
+            {!isSmallScreen && (
+              <Button
+                variant="contained"
+                href={link}
+                sx={{
+                  backgroundColor: "white",
+                  color: "black",
+                  textTransform: "none",
+                  fontWeight: 500,
+                  "&:hover": {
+                    backgroundColor: "primary.main",
+                    color: "white",
+                  },
+                }}
+              >
+                Learn More
+              </Button>
+            )}
+          </Box>
         </Grid>
 
-        {/* Text */}
-        <Grid
-          item
-          xs={12}
-          md={6}
-          order={{ xs: 1, md: reverse ? 2 : 1 }}
-        >
-          <Typography variant="h4" gutterBottom fontWeight="bold">
-            {title}
-          </Typography>
-          <Typography variant="h6" color="text.secondary" gutterBottom>
-            {subtitle}
-          </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
-            {description}
-          </Typography>
-          <Button variant="contained" color="primary" href={link}>
-            Learn More
-          </Button>
+        {/* Image Section + Button for small screens */}
+        <Grid item xs={12} md={6} order={{ xs: 1, md: reverse ? 1 : 2 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Box
+              component="img"
+              src={image}
+              alt={title}
+              sx={{
+                width: "100%",
+                maxWidth: { xs: "90%", sm: "80%", md: 500 },
+                display: "block",
+                mx: "auto",
+              }}
+            />
+            {/* Button for small screens */}
+            {isSmallScreen && (
+              <Button
+                variant="contained"
+                href={link}
+                sx={{
+                  mt: 2,
+                  backgroundColor: "white",
+                  color: "black",
+                  textTransform: "none",
+                  fontWeight: 600,
+                  "&:hover": {
+                    backgroundColor: "primary.main",
+                    color: "white",
+                  },
+                }}
+              >
+                Learn More
+              </Button>
+            )}
+          </Box>
         </Grid>
       </Grid>
     </Box>
@@ -77,14 +273,14 @@ const ServiceSection = ({
 // Main Services Component
 const Services = () => {
   return (
-    <Container maxWidth="lg" sx={{ py: 8 }}>
+    <Container maxWidth="lg" sx={{ py: { xs: 6, md: 8 } }}>
       <ServiceSection
         title="Mobile App Development"
         subtitle="Extend Functionality. Extend Access. Increase Engagement."
         description="Integrate your web experience or create a standalone app with either mobile platform."
         image={mobileIcon}
         link="/mobileapps"
-        reverse={false} // Text left, image right
+        reverse={false}
       />
       <ServiceSection
         title="Cyber Security"
@@ -92,15 +288,15 @@ const Services = () => {
         description="Comprehensive cybersecurity solutions from threat detection to full protection"
         image={softwareIcon}
         link="/software"
-        reverse={true} // Image left, text right
+        reverse={true}
       />
       <ServiceSection
         title="Website Development"
         subtitle="Reach More. Discover More. Sell More."
-        description="Bring your business online with a fast,and SEO-optimized website built for impact."
+        description="Bring your business online with a fast and SEO-optimized website built for impact."
         image={websiteIcon}
         link="/websites"
-        reverse={false} // Text left, image right
+        reverse={false}
       />
     </Container>
   );

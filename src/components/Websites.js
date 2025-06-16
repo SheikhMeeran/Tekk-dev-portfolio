@@ -7,6 +7,7 @@ import {
   useMediaQuery,
   Box,
   Button,
+  Container,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
@@ -25,18 +26,17 @@ const Websites = (props) => {
   };
 
   return (
-    <Box sx={{ overflowX: "hidden", width: "100%" }}>
-      <Grid container direction="column" spacing={6}>
-        {/* Navigation Arrows */}
-        <Grid
-          item
-          container
-          justifyContent="center"
-          spacing={2}
-          sx={{ px: { xs: 2, md: 10 }, mt: 4 }}
-        >
+    <Box sx={{ width: "100%", overflowX: "hidden", py: 4 }}>
+      <Container maxWidth="lg">
+        <Grid container direction="column" spacing={6}>
+          {/* Navigation Arrows */}
           {!isSmall && (
-            <Grid item>
+            <Grid
+              item
+              container
+              justifyContent="space-between"
+              alignItems="center"
+            >
               <IconButton
                 component={Link}
                 to="/mobileapps"
@@ -48,10 +48,7 @@ const Websites = (props) => {
               >
                 <img src={backArrow} alt="Back to Mobile App Development Page" />
               </IconButton>
-            </Grid>
-          )}
-          {!isSmall && (
-            <Grid item>
+
               <IconButton
                 component={Link}
                 to="/services"
@@ -65,18 +62,10 @@ const Websites = (props) => {
               </IconButton>
             </Grid>
           )}
-        </Grid>
 
-        {/* Software Development Section (Text Only) */}
-        <Grid
-          item
-          container
-          direction="column"
-          spacing={4}
-          sx={{ px: { xs: 2, md: 10 }, width: "100%" }}
-        >
+          {/* Software Development Section */}
           <Grid item>
-            <Typography variant="h3" fontWeight="bold" gutterBottom>
+            <Typography variant={isSmall ? "h4" : "h3"} fontWeight="bold" gutterBottom>
               Software Development
             </Typography>
 
@@ -90,8 +79,6 @@ const Websites = (props) => {
                 maxHeight: expanded ? "none" : 200,
                 overflow: "hidden",
                 transition: "max-height 0.5s ease",
-                pr: 1,
-                hyphens: "auto",
               }}
             >
               <Box>
@@ -135,53 +122,38 @@ const Websites = (props) => {
             <Button
               variant="text"
               onClick={handleToggleExpand}
-              sx={{ mt: 1, alignSelf: "flex-start" }}
+              sx={{ mt: 1, alignSelf: "flex-start", color: theme.palette.primary.main }}
             >
               {expanded ? "Read Less" : "Read More"}
             </Button>
           </Grid>
+
+          {/* Tech Stack Section */}
+          <Grid item>
+            <TechStack />
+            <Typography
+              variant="body1"
+              paragraph
+              sx={{ mt: 2, wordBreak: "break-word" }}
+            >
+              Our team specializes in building you the robust yet flexible architecture,
+              where application development is supported through modular architecture and
+              built on scalable microservices components. Our purpose-built,
+              client-specific architecture covers on-premise as well as deployment based
+              on cloud architecture. Our team has deployed, managed and developed a
+              large-scale multi-tenant architectures in the past.
+            </Typography>
+          </Grid>
+
+          {/* Call to Action */}
+          <Grid item>
+            <CallToAction
+              setValue={props.setValue}
+              setSelected={props.setSelected}
+            />
+          </Grid>
         </Grid>
-
-        {/* Tech Stack Section */}
-        {/* <Grid item sx={{ px: { xs: 2, md: 10 } }}>
-          <TechStack />
-          <Typography variant="body1" paragraph sx={{ mt: 2 }}>
-Our team specilaizes in building you the robust yet flexible architecture, where application development is supported though modular architecture and built on scalable microservices components.  Our purpose built, client specific architecture covers on-premise as well as deployment based on cloud architecture. Our team has deployed, managed and developed a large scale multi-tenant architectures in past.          </Typography>
-        </Grid> */}
-
-
-
-<Grid item xs={12} sx={{ px: { xs: 2, md: 10 }, width: "100%" }}>
-  <TechStack />
-  <Typography
-    variant="body1"
-    paragraph
-    sx={{
-      mt: 2,
-      width: "100%",
-      maxWidth: "100%",
-      overflowWrap: "break-word",
-      wordBreak: "break-word",
-      whiteSpace: "normal",
-    }}
-  >
-    Our team specializes in building you the robust yet flexible architecture,
-    where application development is supported through modular architecture and
-    built on scalable microservices components. Our purpose-built,
-    client-specific architecture covers on-premise as well as deployment based
-    on cloud architecture. Our team has deployed, managed and developed a
-    large-scale multi-tenant architectures in the past.
-  </Typography>
-</Grid>
-
-        {/* Call to Action */}
-        <Grid item>
-          <CallToAction
-            setValue={props.setValue}
-            setSelected={props.setSelected}
-          />
-        </Grid>
-      </Grid>
+      </Container>
     </Box>
   );
 };

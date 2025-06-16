@@ -6,7 +6,6 @@ import jquery from '../assets/jquery.png';
 import java from '../assets/java.png';
 import dotnet from '../assets/social.png';
 import sass from '../assets/sass.png';
-
 import php from '../assets/php.png';
 import python from '../assets/python.png';
 import github from '../assets/github.png';
@@ -16,10 +15,10 @@ import django from '../assets/django.png';
 import nginx from '../assets/nginx.png';
 import Cloud from '../assets/cloud.png';
 import internet from '../assets/internet.png';
-import three  from '../assets/three tier.png';
-import onpremise  from '../assets/onpremise.png';
-import nTier from '../assets/n-tier.png'
-import orchestration from '../assets/orchestration-layer.webp'
+import three from '../assets/three tier.png';
+import onpremise from '../assets/onpremise.png';
+import nTier from '../assets/n-tier.png';
+import orchestration from '../assets/orchestration-layer.webp';
 
 const techData = {
   Frontend: [
@@ -38,34 +37,27 @@ const techData = {
     { name: 'MySQL', img: mysql },
     { name: 'MongoDB', img: mongodb },
     { name: 'Django', img: django },
-    { name: 'JavaScript', img: js }, // reused
+    { name: 'JavaScript', img: js },
     { name: 'NGINX', img: nginx },
-    // { name: 'Apache', img: apache },
   ],
   Deployment: [
     { name: 'Cloud', img: Cloud },
     { name: 'onpremise', img: onpremise },
- 
-    // { name: 'Apache', img: apache },
   ],
   Architecture: [
     { name: 'internet', img: internet },
     { name: 'three tier', img: three },
-    {name:'n-tier', img:nTier},
-    {name:'orchestration',img:orchestration}
-    
- 
-    // { name: 'Apache', img: apache },
+    { name: 'n-tier', img: nTier },
+    { name: 'orchestration', img: orchestration },
   ],
 };
-
 
 const TechStack = () => {
   const [activeTab, setActiveTab] = useState('Frontend');
 
   const containerStyle = {
     minHeight: '100vh',
-    width: '100vw',
+    width: '100%',
     backgroundColor: '#ffffff',
     color: '#000000',
     padding: '30px 20px',
@@ -73,8 +65,9 @@ const TechStack = () => {
     fontFamily: 'sans-serif',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'left',
+    alignItems: 'flex-start',
     justifyContent: 'flex-start',
+    overflowX: 'hidden',
   };
 
   const titleStyle = {
@@ -82,28 +75,31 @@ const TechStack = () => {
     fontWeight: 'bold',
     textAlign: 'left',
     marginBottom: '20px',
+    paddingLeft: '0px',
+  };
+
+  const descriptionWrapper = {
+    width: '100%',
+    maxWidth: '100%',
+    marginBottom: '30px',
+    padding: '0px',
+    textAlign: 'left',
   };
 
   const descriptionStyle = {
-    maxWidth: '800px',
-    margin: '10px 0px 30px',
-    textAlign: 'left',
     fontSize: '1.4rem',
-    lineHeight: '1.8',
-    color: 'black',
-    display: '-webkit-box',
-    WebkitLineClamp: 3,
-    WebkitBoxOrient: 'vertical',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
+    lineHeight: '1.6',
+    color: '#000',
+    textAlign: 'left',
   };
 
   const tabsContainer = {
     display: 'flex',
-    justifyContent: 'left',
+    justifyContent: 'flex-start',
     flexWrap: 'wrap',
     marginBottom: '40px',
     gap: '10px',
+    paddingLeft: '0px',
   };
 
   const tabStyle = (tab) => ({
@@ -121,11 +117,12 @@ const TechStack = () => {
   const logosContainer = {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'left',
+    justifyContent: 'flex-start',
     gap: '40px 50px',
     width: '100%',
     maxWidth: '100%',
-    margin: '20 auto',
+    margin: '20px auto',
+    paddingLeft: '0px',
   };
 
   const logoCard = {
@@ -148,11 +145,16 @@ const TechStack = () => {
       <div style={titleStyle}>
         Technologies<span style={{ color: '#3b82f6' }}>.</span>
       </div>
-<div>
-  <p>One partnership delivers all the experts you need</p>
-</div>
-      <div style={descriptionStyle}>
-        <strong>Vertical-Blockchain</strong>: The world is moving to Web 3.0, and blockchain is the backbone of a successful business. We integrate blockchain into your business using wallet development, smart contracts, tokenization, and creating customized NFT marketplaces. One partnership delivers all the experts you need.
+
+      <div style={descriptionWrapper}>
+        <p style={{ fontSize: '1.2rem', marginBottom: '10px', textAlign: 'left' }}>
+          One partnership delivers all the experts you need
+        </p>
+        <p style={descriptionStyle}>
+          <strong>Vertical-Blockchain</strong>: The world is moving to Web 3.0, and blockchain is the backbone of a successful business.
+          We integrate blockchain into your business using wallet development, smart contracts, tokenization, and creating customized NFT marketplaces.
+          One partnership delivers all the experts you need.
+        </p>
       </div>
 
       <div style={tabsContainer}>
@@ -176,3 +178,4 @@ const TechStack = () => {
 };
 
 export default TechStack;
+

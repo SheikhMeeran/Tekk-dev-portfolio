@@ -70,7 +70,7 @@ const About = (props) => {
         <Typography
           variant="h2"
           gutterBottom
-          sx={{ fontWeight: 600, fontSize: { xs: "2.5rem", sm: "3rem" } }}
+          sx={{ fontWeight: 600, fontSize: { xs: "2.5rem",md:"1.5rem", sm: "1rem" } }}
         >
           About Us
         </Typography>
@@ -87,7 +87,7 @@ const About = (props) => {
             variant="h5"
             sx={{
               fontWeight: 400,
-              fontSize: "1.25rem",
+              fontSize: "1rem",
               lineHeight: 1.8,
               maxWidth: "60em",
               px: { xs: 2, sm: 6 },
@@ -139,7 +139,7 @@ const About = (props) => {
             lg
             sx={{ maxWidth: "50em" }}
           >
-            <Typography variant="h4" gutterBottom>
+            <Typography variant="h3" gutterBottom>
               Mission
             </Typography>
             <Typography variant="body1" paragraph>
@@ -163,6 +163,7 @@ const About = (props) => {
 
             </Grid>
           )}
+          
                        <Testimonials />
 
         </Grid>

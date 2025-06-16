@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-
 import {
   Grid,
   Typography,
@@ -13,74 +12,18 @@ import {
   CircularProgress,
   Snackbar,
   useMediaQuery,
+  Box,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { makeStyles } from "@mui/styles";
 import paperAirplane from "../assets/send.svg";
 import background from "../assets/background.jpg";
 import background1 from "../assets/background1.jpeg";
 
 const backgroundImages = [background, background1];
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    position: "relative",
-    width: "100%",
-    minHeight: "calc(100vh - 160px)", // Adjust for fixed header + footer
-    paddingTop: "100px", // Same as header height
-    paddingBottom: "60px", // Same as footer height
-    overflow: "hidden",
-  },
-  background: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    top: 0,
-    left: 0,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    transition: "background-image 1s ease-in-out",
-    zIndex: -1,
-  },
-  content: {
-    position: "relative",
-    background: "rgba(255, 255, 255, 0.9)",
-    padding: "3em",
-    borderRadius: "12px",
-    boxShadow: "0px 4px 20px rgba(0,0,0,0.3)",
-    maxWidth: "500px",
-    width: "90%",
-    margin: "0 auto",
-  },
-  heading: {
-    textAlign: "center",
-    marginBottom: "1em",
-  },
-  input: {
-    border: "1px solid black",
-    borderRadius: 4,
-    padding: "10px",
-  },
-  message: {
-    border: "1px solid black",
-    marginTop: "1em",
-    borderRadius: 4,
-  },
-  sendMessageButton: {
-    marginTop: "1em",
-    backgroundColor: theme.palette.primary.main,
-    color: "#fff",
-    textTransform: "none",
-    "&:hover": {
-      backgroundColor: theme.palette.primary.dark,
-    },
-  },
-}));
-
 const Contact = () => {
-  const classes = useStyles();
   const theme = useTheme();
-  const smallest = useMediaQuery(theme.breakpoints.down("xs"));
+  const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [bgIndex, setBgIndex] = useState(0);
   const [name, setName] = useState("");
@@ -88,7 +31,11 @@ const Contact = () => {
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [alert, setAlert] = useState({ open: false, message: "", backgroundColor: "" });
+  const [alert, setAlert] = useState({
+    open: false,
+    message: "",
+    backgroundColor: "",
+  });
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -132,74 +79,122 @@ const Contact = () => {
   const sendButtonJSX = (text) => (
     <>
       {text}
-      <img src={paperAirplane} alt="paper airplane icon" style={{ marginLeft: 8 }} />
+      <img src={paperAirplane} alt="send icon" style={{ marginLeft: 8 }} />
     </>
   );
 
+  // ✅ Focus style
+  const focusRedSx = {
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#CD5C5C	",
+    },
+    "& .MuiInputLabel-root.Mui-focused": {
+      color: "black",
+    },
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
+      color: "black",
+    },
+  };
+
   return (
-    <div className={classes.root}>
-      <div
-        className={classes.background}
-        style={{ backgroundImage: `url(${backgroundImages[bgIndex]})` }}
+    <Box
+      sx={{
+        position: "relative",
+        width: "100%",
+        minHeight: "calc(100vh - 160px)",
+        pt: { xs: 8, sm: 10 },
+        pb: { xs: 6, sm: 8 },
+        overflow: "hidden",
+      }}
+    >
+      <Box
+        sx={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          top: 0,
+          left: 0,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          transition: "background-image 1s ease-in-out",
+          zIndex: -1,
+          backgroundImage: `url(${backgroundImages[bgIndex]})`,
+        }}
       />
 
-      {/* Slide-in animation */}
       <motion.div
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className={classes.content}
+        style={{
+          position: "relative",
+          background: "rgba(255, 255, 255, 0.9)",
+          padding: isSmall ? "1.5em" : "3em",
+          borderRadius: "12px",
+          boxShadow: "0px 4px 20px rgba(0,0,0,0.3)",
+          maxWidth: "500px",
+          width: "90%",
+          margin: "0 auto",
+        }}
       >
-        <Typography variant="h4" className={classes.heading}>Contact Us</Typography>
-        <Typography variant="subtitle1" align="center">
+        <Typography variant={isSmall ? "h5" : "h4"} align="center" gutterBottom>
+          Contact Us
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          align="center"
+          sx={{ fontSize: isSmall ? "0.9rem" : "1rem" }}
+        >
           Thank you for contacting us. Our authorized representative will contact you shortly.
         </Typography>
 
-        <Grid container spacing={2} direction="column" style={{ marginTop: "1em" }}>
+        <Grid container spacing={2} direction="column" sx={{ mt: 2 }}>
+          {[{ label: "Name", val: name, fn: setName },
+            { label: "Email", val: email, fn: setEmail },
+            { label: "Phone", val: phone, fn: setPhone },
+          ].map((field, i) => (
+            <Grid item key={i}>
+              <TextField
+                fullWidth
+                label={field.label}
+                value={field.val}
+                required
+                onChange={handleChange(field.fn)}
+                variant="outlined"
+                size={isSmall ? "small" : "medium"}
+                sx={focusRedSx}
+              />
+            </Grid>
+          ))}
+
           <Grid item>
             <TextField
-              label="Name"
               fullWidth
-              value={name}
-              onChange={handleChange(setName)}
-              InputProps={{ className: classes.input }}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              label="Email"
-              fullWidth
-              value={email}
-              onChange={handleChange(setEmail)}
-              InputProps={{ className: classes.input }}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              label="Phone"
-              fullWidth
-              value={phone}
-              onChange={handleChange(setPhone)}
-              InputProps={{ className: classes.input }}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
               label="Message"
               multiline
+              required
               rows={5}
-              fullWidth
               value={message}
               onChange={handleChange(setMessage)}
-              className={classes.message}
-              InputProps={{ disableUnderline: true }}
+              variant="outlined"
+              size={isSmall ? "small" : "medium"}
+              sx={focusRedSx}
             />
           </Grid>
+
           <Grid item>
             <Button
               fullWidth
               variant="contained"
-              className={classes.sendMessageButton}
+              sx={{
+                mt: 1,
+                backgroundColor: theme.palette.primary.main,
+                color: "#fff",
+                textTransform: "none",
+                "&:hover": {
+                  backgroundColor: theme.palette.primary.dark,
+                },
+              }}
               onClick={() => setOpen(true)}
               disabled={!name || !email || !phone || !message}
             >
@@ -209,18 +204,39 @@ const Contact = () => {
         </Grid>
       </motion.div>
 
-      <Dialog open={open} onClose={() => setOpen(false)} fullScreen={smallest}>
+      <Dialog open={open} onClose={() => setOpen(false)} fullScreen={isSmall}>
         <DialogTitle>Confirm Message</DialogTitle>
         <DialogContent>
           <Grid container direction="column" spacing={2}>
-            <Grid item><TextField label="Name" value={name} fullWidth onChange={handleChange(setName)} /></Grid>
-            <Grid item><TextField label="Email" value={email} fullWidth onChange={handleChange(setEmail)} /></Grid>
-            <Grid item><TextField label="Phone" value={phone} fullWidth onChange={handleChange(setPhone)} /></Grid>
-            <Grid item><TextField label="Message" value={message} multiline rows={4} fullWidth onChange={handleChange(setMessage)} /></Grid>
+            {[{ label: "Name", val: name, fn: setName },
+              { label: "Email", val: email, fn: setEmail },
+              { label: "Phone", val: phone, fn: setPhone },
+              { label: "Message", val: message, fn: setMessage, multiline: true, rows: 4 },
+            ].map((field, i) => (
+              <Grid item key={i}>
+                <TextField
+                  label={field.label}
+                  fullWidth
+                  value={field.val}
+                  onChange={handleChange(field.fn)}
+                  variant="outlined"
+                  multiline={field.multiline}
+                  rows={field.rows}
+                  sx={focusRedSx}
+                />
+              </Grid>
+            ))}
+
             <Grid item container justifyContent="flex-end" spacing={2}>
-              <Grid item><Button onClick={() => setOpen(false)}>Cancel</Button></Grid>
               <Grid item>
-                <Button onClick={handleSend} variant="contained" color="primary">
+                <Button onClick={() => setOpen(false)}>Cancel</Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  onClick={handleSend}
+                  variant="contained"
+                  color="primary"
+                >
                   {loading ? <CircularProgress size={20} /> : sendButtonJSX("Send")}
                 </Button>
               </Grid>
@@ -237,7 +253,7 @@ const Contact = () => {
         onClose={() => setAlert({ ...alert, open: false })}
         autoHideDuration={7000}
       />
-    </div>
+    </Box>
   );
 };
 
