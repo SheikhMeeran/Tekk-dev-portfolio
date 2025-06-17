@@ -43,13 +43,11 @@ const Footer = ({ setValue, setSelected }) => {
       {/* Main Footer Grid */}
       <Grid container spacing={4} justifyContent="center" sx={{ px: 4, py: 6 }}>
         <Grid item xs={12} sm={6} md={3}>
-          <Typography variant="h6" gutterBottom>Need Tech Solutions?</Typography>
-          <Typography variant="body2" align="left" color="gray">
-TEKKDEV delivers cutting-edge digital services <br/>
-in web development, cybersecurity, and custom software. <br/>
- We empower businesses with technology-driven solutions <br/>
- that bring real value to every project.
-</Typography>
+       <Typography variant="h6" gutterBottom>CONTACT</Typography>
+          <Typography variant="body2" sx={{ mt: 1 }}>📍  Plot 22, Block E2 Block E 2 Gulberg III Lahore, Pakistan</Typography>
+          <Typography variant="body2" sx={{ mt: 1 }}>✉ Info@tekdev.com</Typography>
+          <Typography variant="body2" sx={{ mt: 1 }}>📞 +92 3244933313</Typography>
+          <Typography variant="body2" sx={{ mt: 1 }}>☎ +92 (42) 3577-4258</Typography> 
 
         </Grid>
 
@@ -68,11 +66,19 @@ in web development, cybersecurity, and custom software. <br/>
         </Grid>
 
         <Grid item xs={12} sm={6} md={3}>
-          <Typography variant="h6" gutterBottom>CONTACT</Typography>
+          {/* <Typography variant="h6" gutterBottom>CONTACT</Typography>
           <Typography variant="body2" sx={{ mt: 1 }}>📍  Plot 22, Block E2 Block E 2 Gulberg III Lahore, Pakistan</Typography>
           <Typography variant="body2" sx={{ mt: 1 }}>✉ Info@tekdev.com</Typography>
           <Typography variant="body2" sx={{ mt: 1 }}>📞 +92 3244933313</Typography>
-          <Typography variant="body2" sx={{ mt: 1 }}>☎ +92 (42) 3577-4258</Typography>
+          <Typography variant="body2" sx={{ mt: 1 }}>☎ +92 (42) 3577-4258</Typography> */}
+
+             <Typography variant="h6" gutterBottom>Need Tech Solutions?</Typography>
+          <Typography variant="body2" align="left" color="gray">
+TEKKDEV delivers cutting-edge digital services <br/>
+in web development, cybersecurity, and custom software. <br/>
+ We empower businesses with technology-driven solutions <br/>
+ that bring real value to every project.
+</Typography>
         </Grid>
       </Grid>
 
