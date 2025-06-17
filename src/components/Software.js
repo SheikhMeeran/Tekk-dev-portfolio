@@ -264,7 +264,7 @@ a)	Governance, Risk and Compliance (GRC)      </Typography>
     <img
       src={GRC}
       alt="GRC"
-      style={{ width: '100%', height: 'auto', marginLeft:'60px',}}
+      style={{ width: '100%', height: 'auto', marginLeft:'60px',marginBottom:'390px'}}
     />
   </Grid>
 </Grid>
@@ -306,7 +306,7 @@ b)	Cloud Assessment       </Typography>
     <img
       src={Cloud}
       alt="Incident Response"
-      style={{ width: '350px', height: 'auto' ,marginLeft:'50px' }}
+      style={{ width: '370px', height: 'auto' ,marginLeft:'90px' }}
     />
   </Grid>
   
@@ -354,7 +354,7 @@ b)	Cloud Assessment       </Typography>
     <img
       src={VAPT}
       alt="Incident Response"
-      style={{ width: '350px', height: 'auto',  marginLeft:'50px' }}
+      style={{ width: '370px', height: 'auto',  marginLeft:'90px' }}
     />
   </Grid>
 </Grid>
@@ -392,7 +392,7 @@ d)	Incident Response       </Typography>
     <img
       src={Incident}
       alt="Incident Response"
-      style={{ width: '90%', height: 'auto', marginLeft:'3em' }}
+      style={{ width: '90%', height: 'auto', marginLeft:'5.5em' }}
     />
   </Grid>
 </Grid>
@@ -442,7 +442,7 @@ e)	Managed AppSec       </Typography>
     <img
       src={Managed}
       alt="Incident Response"
-      style={{ width: '350px', height: 'auto', marginLeft:'150px',}}
+      style={{ width: '380px', height: 'auto', marginLeft:'13em',}}
     />
   </Grid>
 </Grid>
@@ -491,7 +491,7 @@ f)	Consultancy & Advisory      </Typography>
     <img
       src={Consultancy}
       alt="Incident Response"
-      style={{ width: '350px', height: 'auto', marginLeft:'55px', marginBottom:'50px  '}}
+      style={{ width: '380px', height: 'auto', marginLeft:'10em'}}
     />
   </Grid>
 </Grid>
@@ -546,7 +546,7 @@ g)	Digital Transformation     </Typography>
     <img
       src={Digital}
       alt="Incident Response"
-      style={{ width: '350px', height: 'auto', marginLeft:'200'}}
+      style={{ width: '380px', height: 'auto', marginLeft:'6em'}}
     />
   </Grid>
 </Grid>
