@@ -26,8 +26,12 @@ const Websites = (props) => {
   };
 
   return (
-    <Box sx={{ width: "100%", overflowX: "hidden", py: 4 }}>
-      <Container maxWidth="lg">
+    <Box sx={{ width: "100%", overflowX: "hidden", py: 0 }}>
+      <Container
+        maxWidth="lg"
+        disableGutters
+        sx={{ px: { xs: 2, sm: 4 }, py: 0 }}
+      >
         <Grid container direction="column" spacing={6}>
           {/* Navigation Arrows */}
           {!isSmall && (
@@ -46,7 +50,10 @@ const Websites = (props) => {
                 }}
                 sx={{ "&:hover": { backgroundColor: "transparent" } }}
               >
-                <img src={backArrow} alt="Back to Mobile App Development Page" />
+                <img
+                  src={backArrow}
+                  alt="Back to Mobile App Development Page"
+                />
               </IconButton>
 
               <IconButton
@@ -129,12 +136,12 @@ const Websites = (props) => {
           </Grid>
 
           {/* Tech Stack Section */}
-          <Grid item>
+          <Grid item sx={{ mb: 0 }}>
             <TechStack />
             <Typography
               variant="body1"
               paragraph
-              sx={{ mt: 2, wordBreak: "break-word" }}
+              sx={{ mt: 2, mb: 0, wordBreak: "break-word" }}
             >
               Our team specializes in building you the robust yet flexible architecture,
               where application development is supported through modular architecture and
@@ -144,16 +151,16 @@ const Websites = (props) => {
               large-scale multi-tenant architectures in the past.
             </Typography>
           </Grid>
-
-          {/* Call to Action */}
-          <Grid item>
-            <CallToAction
-              setValue={props.setValue}
-              setSelected={props.setSelected}
-            />
-          </Grid>
         </Grid>
       </Container>
+
+      {/* Call to Action */}
+      <Box sx={{ width: "100%", mt: { xs: 2, md: 3 } }}>
+        <CallToAction
+          setValue={props.setValue}
+          setSelected={props.setSelected}
+        />
+      </Box>
     </Box>
   );
 };

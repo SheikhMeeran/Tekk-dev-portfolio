@@ -18,7 +18,6 @@ import mobileBackground from "../../assets/mobileBackground.jpg";
 const CallToAction = ({ setValue, setSelected }) => {
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
-
   const [bgIndex, setBgIndex] = useState(0);
 
   useEffect(() => {
@@ -34,15 +33,11 @@ const CallToAction = ({ setValue, setSelected }) => {
     ? background
     : background2;
 
-
-    
-
   return (
     <Box
       sx={{
-        height: { xs: "85em", sm: "60em" },
         width: "100%",
-        position: "relative",
+        minHeight: "100vh",
         backgroundImage: `url(${currentBackground})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -51,11 +46,13 @@ const CallToAction = ({ setValue, setSelected }) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        marginBottom: 0,
-        paddingBottom: 0,
+        py: { xs: 10, sm: 12 },
+        mt: 0,
+        mb: 0,
+        position: "relative",
       }}
     >
-      {/* Dark Overlay */}
+      {/* Overlay */}
       <Box
         sx={{
           position: "absolute",
@@ -68,15 +65,14 @@ const CallToAction = ({ setValue, setSelected }) => {
         }}
       />
 
-      {/* Centered Content */}
+      {/* Content */}
       <Grid
         container
         direction="column"
         justifyContent="center"
         alignItems="center"
         sx={{
-          position: "absolute",
-          top: { xs: "35%", sm: "40%" },
+          position: "relative",
           zIndex: 2,
           textAlign: "center",
           px: 2,
@@ -108,7 +104,6 @@ const CallToAction = ({ setValue, setSelected }) => {
           Take advantage of the 21st Century.
         </Typography>
 
-        {/* Action Buttons */}
         <Stack
           direction="row"
           spacing={2}
@@ -117,42 +112,34 @@ const CallToAction = ({ setValue, setSelected }) => {
           sx={{ mt: 3 }}
           flexWrap="wrap"
         >
-         <Button
-  component={Link}
-  to="/revolution"
-  onClick={() => {
-    setValue(2);
-    setSelected(null);
-  }}
-  variant="outlined"
-  sx={{
-    borderColor: theme.palette.primary.main,
-    backgroundColor: "white",
-    color: "black",
-    borderWidth: 2,
-    height: "40px",
-    borderRadius: "25px",
-    px: 2,
-    "&:hover": {
-      backgroundColor: theme.palette.primary.main,
-      color: "white",
-      "& svg": {
-        fill: "white", // Change arrow color on hover
-      },
-    },
-    "& svg": {
-      fill: "black", // Default arrow color
-      marginLeft: "0.5rem",
-    },
-  }}
->
-  Learn More
-  <ButtonArrow width={25} height={18} />
-
-
-
-</Button>
-
+          <Button
+            component={Link}
+            to="/revolution"
+            onClick={() => {
+              setValue(2);
+              setSelected(null);
+            }}
+            variant="outlined"
+            sx={{
+              borderColor: "#fff",
+              backgroundColor: "rgba(255,255,255,0.1)",
+              color: "#fff",
+              borderWidth: 2,
+              height: "40px",
+              borderRadius: "25px",
+              px: 2,
+              "&:hover": {
+                backgroundColor: theme.palette.primary.main,
+                color: "#fff",
+                borderColor: theme.palette.primary.main,
+                "& svg": { fill: "#fff" },
+              },
+              "& svg": { fill: "#fff", ml: 1 },
+            }}
+          >
+            Learn More
+            <ButtonArrow width={25} height={18} />
+          </Button>
 
           <Button
             component={Link}
@@ -163,26 +150,25 @@ const CallToAction = ({ setValue, setSelected }) => {
             }}
             variant="outlined"
             sx={{
-              borderColor: theme.palette.primary.main,
-              backgroundColor: "white",
-              color: "black",
+              borderColor: "#fff",
+              backgroundColor: "rgba(255,255,255,0.1)",
+              color: "#fff",
               borderWidth: 2,
               height: "40px",
               borderRadius: "25px",
               px: 2,
               "&:hover": {
                 backgroundColor: theme.palette.primary.main,
-                color: "white",
+                color: "#fff",
+                borderColor: theme.palette.primary.main,
+                "& svg": { fill: "#fff" },
               },
+              "& svg": { fill: "#fff", ml: 1 },
             }}
           >
             Get Estimate
-            <ButtonArrow width={25} height={18} fill="black" />
+            <ButtonArrow width={25} height={18} />
           </Button>
-
-
-
-          
         </Stack>
       </Grid>
     </Box>

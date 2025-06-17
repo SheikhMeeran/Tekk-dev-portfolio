@@ -21,13 +21,13 @@ import {
 const testimonialsData = [
   {
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat aut consequatur illo animi optio exercitationem doloribus eligendi iusto atque repudiandae. Distinctio.",
-    name: "DR Amir",
+    name: "Ahmed",
     role: "CEO ",
     image: "/images/testimonials/client-1.jpg",
   },
   {
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat aut consequatur illo animi optio exercitationem doloribus eligendi iusto atque repudiandae. Distinctio.",
-    name: "Faisal RAO",
+    name: "Faisal",
     role: "Founder",
     image: "/images/testimonials/client-2.jpg",
   },
