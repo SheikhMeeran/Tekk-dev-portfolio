@@ -1,172 +1,189 @@
-
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { makeStyles } from "@mui/styles"; // if you still need legacy styling
+import {
+  Grid,
+  Typography,
+  IconButton,
+  useMediaQuery,
+  Box,
+  Button,
+} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import Grid from "@mui/material/Grid";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 
 import backArrow from "../assets/backArrow.svg";
 import forwardArrow from "../assets/forwardArrow.svg";
 import CallToAction from "./ui/CallToAction";
-import digitalImage from "../assets/Digital Transformation .jpg";
 import TechStack from "./TechStack";
 
-const useStyles = makeStyles((theme) => ({
-  heading: {
-    maxWidth: "100em",
-  },
-  arrowContainer: {
-    marginTop: "0.5em",
-  },
-  arrowIcons: {
-    "&:hover": {
-      backgroundColor: "transparent",
-    },
-  },
-  rowContainer: {
-    paddingLeft: "5em",
-    paddingRight: "5em",
-    marginBottom: "5em",
-    [theme.breakpoints.down("sm")]: {
-      paddingLeft: "1.5em",
-      paddingRight: "1.5em",
-    },
-  },
-  image: {
-    width: "75%",
-    height: "45%",
-    [theme.breakpoints.down("sm")]: {
-      maxWidth: "20em",
-      marginTop: "2em",
-    },
-  },
-}));
-
 const Websites = (props) => {
-  const classes = useStyles();
   const theme = useTheme();
-  const smaller = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
+  const [expanded, setExpanded] = useState(false);
+
+  const handleToggleExpand = () => {
+    setExpanded((prev) => !prev);
+  };
 
   return (
-    <Grid container direction="column">
-      {/* Navigation Arrows */}
-      <Grid
-        item
-        container
-        direction="row"
-        className={classes.rowContainer}
-        justifyContent="center"
-      >
-        {!smaller && (<>
-              <Grid item className={classes.arrowContainer} style={{ marginRight: "2em" }}>
-            <IconButton
-              className={classes.arrowIcons}
-              component={Link}
-              to="/mobileapps"
-              onClick={() => {
-                props.setValue(1);
-                props.setSelected(1);
-              }}
-            >
-              <img src={backArrow} alt="Back to Mobile App Development Page" />
-            </IconButton>
-          </Grid>
-        </>)}
-
-{!smaller && (<>
-          <Grid item className={classes.arrowContainer}>
-            <IconButton
-              className={classes.arrowIcons}
-              component={Link}
-              to="/services"
-              onClick={() => {
-                props.setValue(1);
-                props.setSelected(null);
-              }}
-            >
-              <img src={forwardArrow} alt="Forward to Services Page" />
-            </IconButton>
-          </Grid>
-</>)}
-
-      </Grid>
-
-      {/* Digital Transformation Section */}
-      <Grid
-        item
-        container
-        direction={smaller ? "column" : "row"}
-        alignItems="center"
-        justifyContent="space-between"
-        className={classes.rowContainer}
-      >
-        <Grid item xs={12} md={12} className={classes.heading}>
-          <Typography
-            variant="h2"
-            align={smaller ? "center" : "left"}
-            gutterBottom
-          >
-            2. Software Development
-          </Typography>
-          <Typography variant="body1" paragraph>
-            “Blend of Technology Diversity, Product Scalability, Innovative Design, Agile Development”
-          </Typography>
-          <Typography variant="body1" paragraph>
-            At TekkDev, we offer in-house development services for businesses, startups, enterprises with a strong emphasis on business analysis, application design, robust database architecture ensured through complete end to end quality of the software.
-          </Typography>
-          <Typography variant="body1" paragraph>
-            Our Software Development Methodology operates on flexible, cost-effective engagement options, our cross-functional professionals can function as short- or long-term solutions for your development needs. Our development focus is to ensure the requirements are gathered, complete analysis is performed, scope is outlined, design is discussed and agreed with the client before development phase commences and all development is completed with unit testing, modular and integration testing before software development is marked completed and ready to be deployed on client site. All code is version controlled and secured.
-          </Typography>
-          <Typography variant="body1" paragraph>
-            Our experienced team with years of expertise on various verticals (Healthcare, NFT, Blockchain, CRM) with successful track record of completing large to mid-size software development projects as web application, healthcare enterprise applications, mobile app & digital footprint management.
-          </Typography>
-          <Typography variant="body1" paragraph>
-            <strong>Vertical - Healthcare</strong>
-          </Typography>
-          <Typography variant="body1" paragraph>
-            We have in-house subject matter expert who has completed specialized projects with experience to have developed, deployed, implemented healthcare applications in .Net, .NET MVC, Java, J2EE, for clients in USA, UAE, KSA, and Pakistan. The product included scalability for a wide variety of projects in Hospital information system, Dental Solutions, Practice Management Solutions, Ambulance Systems. All applications developed were HIPAA compliant, modular, paperless, interoperable and incorporated with data standards (CPT, ICD-10, SNOWMED, LOINC, CDSS) using IHE protocols, interfaced with PACS, 3rd party LIMS, and directly with lab machines using HL7, FHIR standards.
-          </Typography>
-          <Typography variant="body1" paragraph>
-            <strong>Vertical - NFT</strong>
-          </Typography>
-          <Typography variant="body1" paragraph>
-            We create customized NFT marketplaces — decentralized platforms where you can create, buy, sell, and store NFTs. We build marketplaces with unique selling points that enable rapid growth and crypto-community engagement.
-          </Typography>
+    <Box sx={{ overflowX: "hidden", width: "100%" }}>
+      <Grid container direction="column" spacing={6}>
+        {/* Navigation Arrows */}
+        <Grid
+          item
+          container
+          justifyContent="center"
+          spacing={2}
+          sx={{ px: { xs: 2, md: 10 }, mt: 4 }}
+        >
+          {!isSmall && (
+            <Grid item>
+              <IconButton
+                component={Link}
+                to="/mobileapps"
+                onClick={() => {
+                  props.setValue(1);
+                  props.setSelected(1);
+                }}
+                sx={{ "&:hover": { backgroundColor: "transparent" } }}
+              >
+                <img src={backArrow} alt="Back to Mobile App Development Page" />
+              </IconButton>
+            </Grid>
+          )}
+          {!isSmall && (
+            <Grid item>
+              <IconButton
+                component={Link}
+                to="/services"
+                onClick={() => {
+                  props.setValue(1);
+                  props.setSelected(null);
+                }}
+                sx={{ "&:hover": { backgroundColor: "transparent" } }}
+              >
+                <img src={forwardArrow} alt="Forward to Services Page" />
+              </IconButton>
+            </Grid>
+          )}
         </Grid>
 
-        {/* Image Section */}
-        <Grid item xs={12} md={6} container justifyContent={smaller ? "center" : "flex-end"}>
-          <img
-            src={digitalImage}
-            alt="Digital Transformation Illustration"
-            className={classes.image}
-          />
+        {/* Software Development Section (Text Only) */}
+        <Grid
+          item
+          container
+          direction="column"
+          spacing={4}
+          sx={{ px: { xs: 2, md: 10 }, width: "100%" }}
+        >
+          <Grid item>
+            <Typography variant="h3" fontWeight="bold" gutterBottom>
+              Software Development
+            </Typography>
+
+            <Typography variant="body1" paragraph>
+              “Blend of Technology Diversity, Product Scalability, Innovative Design, Agile Development”
+            </Typography>
+
+            <Box
+              sx={{
+                position: "relative",
+                maxHeight: expanded ? "none" : 200,
+                overflow: "hidden",
+                transition: "max-height 0.5s ease",
+                pr: 1,
+                hyphens: "auto",
+              }}
+            >
+              <Box>
+                <Typography variant="body1" paragraph>
+                  At TekkDev, we offer in-house development services for businesses, startups, enterprises with a strong emphasis on business analysis, application design, robust database architecture ensured through complete end to end quality of the software.
+                </Typography>
+
+                <Typography variant="body1" paragraph>
+                  Our Software Development Methodology operates on flexible, cost-effective engagement options, our cross-functional professionals can function as short- or long-term solutions for your development needs. Our development focus is to ensure the requirements are gathered, complete analysis is performed, scope is outlined, design is discussed and agreed with the client before development phase commences and all development is completed with unit testing, modular and integration testing before software development is marked completed and ready to be deployed on client site. All code is version controlled and secured.
+                </Typography>
+
+                <Typography variant="h6" sx={{ mt: 3 }}>
+                  <strong>Vertical - Healthcare</strong>
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  We have in-house subject matter expert who has completed specialized projects with experience to have developed, deployed, implemented healthcare applications in .Net, .NET MVC, Java, J2EE, for clients in USA, UAE, KSA, and Pakistan. The product included scalability for a wide variety of projects in Hospital information system, Dental Solutions, Practice Management Solutions, Ambulance Systems which were conceptualized, designed, developed and deployed successfully. All applications developed were HIPAA compliant, built on best healthcare practices, paperless, modular, interoperable and incorporated with data standards (CPT, ICD-10, SNOWMED, LOINC, CDSS) using IHE protocols. All applications seamlessly interfaced with PACS, 3rd party LIMS as well as connecting directly with lab machines using HL7, FHIR standards.
+                </Typography>
+
+                <Typography variant="h6">
+                  <strong>Vertical - NFT</strong>
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  We create customized NFT marketplaces, which are basically decentralized platforms. We create such platforms according to your business requirements, where you can create, buy, sell and store these NFTs. We focus on developing a marketplace that has a unique selling point, which can grow very quickly to form a crypto-community.
+                </Typography>
+              </Box>
+
+              {!expanded && (
+                <Box
+                  sx={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: 60,
+                    background: `linear-gradient(to top, ${theme.palette.background.default}, transparent)`,
+                  }}
+                />
+              )}
+            </Box>
+
+            <Button
+              variant="text"
+              onClick={handleToggleExpand}
+              sx={{ mt: 1, alignSelf: "flex-start" }}
+            >
+              {expanded ? "Read Less" : "Read More"}
+            </Button>
+          </Grid>
+        </Grid>
+
+        {/* Tech Stack Section */}
+        {/* <Grid item sx={{ px: { xs: 2, md: 10 } }}>
+          <TechStack />
+          <Typography variant="body1" paragraph sx={{ mt: 2 }}>
+Our team specilaizes in building you the robust yet flexible architecture, where application development is supported though modular architecture and built on scalable microservices components.  Our purpose built, client specific architecture covers on-premise as well as deployment based on cloud architecture. Our team has deployed, managed and developed a large scale multi-tenant architectures in past.          </Typography>
         </Grid> */}
-        <TechStack/>
-<Typography>Our team specilaizes in building you the robust yet flexible architecture, where application development is supported though modular architecture and built on scalable microservices components.  Our purpose built, client specific architecture covers on-premise as well as deployment based on cloud architecture. Our team has deployed, managed and developed a large scale multi-tenant architectures in past.</Typography>
 
-      </Grid>
 
-      {/* Tech Stack & Architecture */}
-      <Grid item className={classes.rowContainer}>
-        <TechStack />
-        <Typography variant="body1" paragraph>
-          Our team specializes in building robust yet flexible architectures, where application development is supported through modular architecture and scalable microservices. We offer both on-premise and cloud deployment options, and our experience includes large-scale multi-tenant systems.
-        </Typography>
-      </Grid>
 
-      {/* Call to Action */}
-      <Grid item>
-        <CallToAction setValue={props.setValue} setSelected={props.setSelected} />
+<Grid item xs={12} sx={{ px: { xs: 2, md: 10 }, width: "100%" }}>
+  <TechStack />
+  <Typography
+    variant="body1"
+    paragraph
+    sx={{
+      mt: 2,
+      width: "100%",
+      maxWidth: "100%",
+      overflowWrap: "break-word",
+      wordBreak: "break-word",
+      whiteSpace: "normal",
+    }}
+  >
+    Our team specializes in building you the robust yet flexible architecture,
+    where application development is supported through modular architecture and
+    built on scalable microservices components. Our purpose-built,
+    client-specific architecture covers on-premise as well as deployment based
+    on cloud architecture. Our team has deployed, managed and developed a
+    large-scale multi-tenant architectures in the past.
+  </Typography>
+</Grid>
+
+        {/* Call to Action */}
+        <Grid item>
+          <CallToAction
+            setValue={props.setValue}
+            setSelected={props.setSelected}
+          />
+        </Grid>
       </Grid>
-    </Grid>
+    </Box>
   );
 };
 
 export default Websites;
-
-
-

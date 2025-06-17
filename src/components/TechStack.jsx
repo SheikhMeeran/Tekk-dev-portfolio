@@ -18,6 +18,8 @@ import Cloud from '../assets/cloud.png';
 import internet from '../assets/internet.png';
 import three  from '../assets/three tier.png';
 import onpremise  from '../assets/onpremise.png';
+import nTier from '../assets/n-tier.png'
+import orchestration from '../assets/orchestration-layer.webp'
 
 const techData = {
   Frontend: [
@@ -49,8 +51,9 @@ const techData = {
   Architecture: [
     { name: 'internet', img: internet },
     { name: 'three tier', img: three },
-    { name: 'Cloud', img: Cloud },
-    { name: 'Python', img: python },
+    {name:'n-tier', img:nTier},
+    {name:'orchestration',img:orchestration}
+    
  
     // { name: 'Apache', img: apache },
   ],
@@ -87,7 +90,7 @@ const TechStack = () => {
     textAlign: 'left',
     fontSize: '1.4rem',
     lineHeight: '1.8',
-    color: '#333',
+    color: 'black',
     display: '-webkit-box',
     WebkitLineClamp: 3,
     WebkitBoxOrient: 'vertical',
@@ -135,9 +138,9 @@ const TechStack = () => {
   };
 
   const logoImage = {
-    maxWidth: '80px',
-    maxHeight: '80px',
-    marginBottom: '8px',
+    maxWidth: '120px',
+    maxHeight: '120px',
+    marginBottom: '12px',
   };
 
   return (

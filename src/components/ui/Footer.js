@@ -1,115 +1,89 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Grid, useMediaQuery, useTheme, Typography } from "@mui/material";
-import FooterAdornment from "../../svgToReact/FooterAdornment";
-import MobileFooterAdornment from "../../svgToReact/MobileFooterAdornment";
-import facebook from "../../assets/facebook.svg";
-import twitter from "../../assets/twitter.svg";
-import instagram from "../../assets/instagram.svg";
-
-import {
-  FooterContainer,
-  MainContainer,
-  FooterLink,
-  Adornment,
-  MediaIcon,
-  SocialContainer,
-} from "./Footer.styles"; // <-- Path to styles
+import { Grid, Typography, useMediaQuery, useTheme, Box, IconButton } from "@mui/material";
+import { Facebook, Twitter, Instagram, LinkedIn, Google } from "@mui/icons-material";
 
 const Footer = ({ setValue, setSelected }) => {
   const theme = useTheme();
-  const medium = useMediaQuery(theme.breakpoints.down("md"));
-  const smaller = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleNavClick = (value, selected) => {
     setValue?.(value);
     setSelected?.(selected);
   };
 
-  const nav = [
-    {
-      label: "Home",
-      to: "/",
-      value: 0,
-      hiddenBelow: 1450,
-    },
-    {
-      label: "Services",
-      to: "/services",
-      value: 1,
-    },
-    {
-      label: "Cyber Security",
-      to: "/software",
-      value: 1,
-      selected: 0,
-    },
-    {
-      label: "Web Development",
-      to: "/websites",
-      value: 1,
-      selected: 2,
-    },
-  ];
-
   return (
-    <FooterContainer container>
-      {!smaller && (
-        <MainContainer container justifyContent="center" spacing={medium ? 5 : 10}>
-          {nav.map((item, idx) => {
-            const shouldHide = item.hiddenBelow && window.innerWidth < item.hiddenBelow;
-            return (
-              !shouldHide && (
-                <Grid item key={idx}>
-                  <FooterLink
-                    component={Link}
-                    to={item.to}
-                    onClick={() => handleNavClick(item.value, item.selected)}
-                  >
-                    {item.label}
-                  </FooterLink>
-                </Grid>
-              )
-            );
-          })}
-          {/* Repeat for Revolution, About Us, Contact Us etc. as needed */}
-        </MainContainer>
-      )}
+    <Box sx={{ backgroundColor: "#1c2331", color: "white", mt: 8 }}>
+      {/* Social Bar */}
+      <Box
+        sx={{
+          backgroundColor: "#fff",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          py: 2,
+        }}
+      >
+        <Typography sx={{ mr: 2,color:"black" }}>Get connected with us on social networks!</Typography>
+       <Box>
+  {[Facebook, Twitter, Google, LinkedIn, Instagram].map((Icon, i) => (
+    <IconButton
+      key={i}
+      href="https://example.com"
+      target="_blank"
+      sx={{ color: 'black' }}
+    >
+      <Icon />
+    </IconButton>
+  ))}
+</Box>
 
-      {!smaller ? (
-        <Adornment>
-          <FooterAdornment />
-        </Adornment>
-      ) : (
-        <Adornment>
-          <MobileFooterAdornment />
-        </Adornment>
-      )}
+      </Box>
 
-      <Grid container direction="column" alignItems="center">
-        <SocialContainer item container justifyContent={smaller ? "center" : "flex-end"}>
-          {[facebook, instagram, twitter].map((icon, i) => (
-            <Grid item key={i} component="a" href="https://example.com" target="_blank" rel="noopener noreferrer">
-              <MediaIcon src={icon} alt={`${icon}-icon`} />
-            </Grid>
+      {/* Main Footer Grid */}
+      <Grid container spacing={4} justifyContent="center" sx={{ px: 4, py: 6 }}>
+        <Grid item xs={12} sm={6} md={3}>
+          <Typography variant="h6" gutterBottom>Need Tech Solutions?</Typography>
+          <Typography variant="body2" align="left" color="gray">
+TEKKDEV delivers cutting-edge digital services <br/>
+in web development, cybersecurity, and custom software. <br/>
+ We empower businesses with technology-driven solutions <br/>
+ that bring real value to every project.
+</Typography>
+
+        </Grid>
+
+        <Grid item xs={12} sm={6} md={3}>
+          <Typography variant="h6" gutterBottom>SERVICES</Typography>
+          {["Cyber Security", "Web development", "Software development", "Mobile app development"].map((item, i) => (
+            <Typography key={i} variant="body2" sx={{ mt: 1 }}>{item}</Typography>
           ))}
-        </SocialContainer>
+        </Grid>
 
-        <Grid
-          item
-          sx={{
-            backgroundColor: "gray",
-            width: "100%",
-            textAlign: "center",
-            py: 1,
-          }}
-        >
-          <Typography variant="body2" color="#fff">
-            © {new Date().getFullYear()} Copyrights by TEKKDEV
-          </Typography>
+        <Grid item xs={12} sm={6} md={3}>
+          <Typography variant="h6" gutterBottom>USEFUL LINKS</Typography>
+          {["Your Account", "Become an Affiliate", "Shipping Rates", "Help"].map((item, i) => (
+            <Typography key={i} variant="body2" sx={{ mt: 1 }}>{item}</Typography>
+          ))}
+        </Grid>
+
+        <Grid item xs={12} sm={6} md={3}>
+          <Typography variant="h6" gutterBottom>CONTACT</Typography>
+          <Typography variant="body2" sx={{ mt: 1 }}>📍  Plot 22, Block E2 Block E 2 Gulberg III Lahore, Pakistan</Typography>
+          <Typography variant="body2" sx={{ mt: 1 }}>✉ Info@tekdev.com</Typography>
+          <Typography variant="body2" sx={{ mt: 1 }}>📞 +92 3244933313</Typography>
+          <Typography variant="body2" sx={{ mt: 1 }}>☎ +92 (42) 3577-4258</Typography>
         </Grid>
       </Grid>
-    </FooterContainer>
+
+      {/* Copyright */}
+      <Box sx={{ backgroundColor: "#0d1117", textAlign: "center", py: 2 }}>
+        <Typography variant="body2" color="gray">
+          © {new Date().getFullYear()} Copyright:{" "}
+          <Box component="span" sx={{ color: "#fff", }}>TEKKDEV</Box>
+        </Typography>
+      </Box>
+    </Box>
   );
 };
 

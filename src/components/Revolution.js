@@ -18,6 +18,8 @@ import build from "../assets/buildIcon.svg";
 import launch from "../assets/launchIcon.svg";
 import maintain from "../assets/maintainIcon.svg";
 import iterate from "../assets/iterateIcon.svg";
+import { motion } from "framer-motion";
+
 
 const useStyles = makeStyles((theme) => ({
   heading: {
@@ -147,57 +149,56 @@ const Revolution = (props) => {
           The Revolution
         </Typography>
       </Grid>
-      <Grid
-        container
-        direction="row"
-        alignItems="center"
-        justify="center"
-        className={classes.rowContainer}
-      >
-        <Grid
-          item
-          align="center"
-          style={{ maxWidth: smallest ? "80%" : "30em" }}
-          lg
-        >
-          <img
-            style={{ maxWidth: smallest ? "80%" : "30em" }}
-            src={vision}
-            alt="Alberta Vision background"
-          />
-        </Grid>
-        <Grid
-          item
-          container
-          direction="column"
-          alignItems={smaller ? "center" : "flex-start"}
-          className={classes.itemContainer}
-          lg
-        >
-          <Grid item align={smaller ? "center" : "left"}>
-            <Typography variant="h4" gutterBottom>
-              Vision
-            </Typography>
-          </Grid>
-          <Grid item style={{ textAlign: smallest ? "center" : "justify" }}>
-            <Typography variant="body1" paragraph>
-             We will always deliver services that are professional and proactive. We will continuously  look for ways to improve IT and Data security. We review and plan to deliver our services based upon the needs of an ever-expanding  customer base. Our Vision is to be recognized as your Cybersecurity partner who is 
-            </Typography>
-            <Typography variant="body1" paragraph>
-              ❖ Reliable 
-            </Typography>
-            <Typography variant="body1" paragraph>
-              ❖ Knowledgeable
-            </Typography>
-            <Typography variant="body1" paragraph>
-             ❖ Pragmatic
-            </Typography>
-            <Typography variant="body1" paragraph>
-            ❖ Trusted 
-            </Typography>
-          </Grid>
-        </Grid>
+     <motion.div
+  initial={{ opacity: 0, y: 100 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+>
+  <Grid
+    container
+    direction="row"
+    alignItems="center"
+    justify="center"
+    className={classes.rowContainer}
+  >
+    <Grid
+      item
+      align="center"
+      style={{ maxWidth: smallest ? "80%" : "30em" }}
+      lg
+    >
+      <img
+        style={{ maxWidth: smallest ? "80%" : "30em" }}
+        src={vision}
+        alt="Alberta Vision background"
+      />
+    </Grid>
+
+    <Grid
+      item
+      container
+      direction="column"
+      alignItems={smaller ? "center" : "flex-start"}
+      className={classes.itemContainer}
+      lg
+    >
+      <Grid item align={smaller ? "center" : "left"}>
+        <Typography variant="h4" gutterBottom>
+          Vision
+        </Typography>
       </Grid>
+      <Grid item style={{ textAlign: smallest ? "center" : "justify" }}>
+        <Typography variant="body1" paragraph>
+          We will always deliver services that are professional and proactive...
+        </Typography>
+        <Typography variant="body1" paragraph>❖ Reliable</Typography>
+        <Typography variant="body1" paragraph>❖ Knowledgeable</Typography>
+        <Typography variant="body1" paragraph>❖ Pragmatic</Typography>
+        <Typography variant="body1" paragraph>❖ Trusted</Typography>
+      </Grid>
+    </Grid>
+  </Grid>
+</motion.div>
       <Grid
         container
         direction="row"
@@ -265,6 +266,7 @@ const Revolution = (props) => {
               more affordable than ever before.
             </Typography>
           </Grid>
+          
         </Grid>
         {medium ? null : technologyAnimationJSX}
       </Grid>

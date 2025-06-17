@@ -1,280 +1,235 @@
 import React from "react";
-import { makeStyles } from "@mui/styles"; // still OK for v5 legacy users
-import { useTheme } from "@mui/material/styles"; // CORRECT place for useTheme
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import Avatar from "@mui/material/Avatar";
-import CallToAction from "../components/ui/CallToAction.js";
+import {
+  Box,
+  Grid,
+  Typography,
+  useMediaQuery,
+  Avatar,
+  Container,
+  Stack,
+} from "@mui/material";
+import { useTheme, styled } from "@mui/material/styles";
+import CallToAction from "../components/ui/CallToAction";
+import { motion } from "framer-motion";
+
 import history from "../assets/history.svg";
 import founder from "../assets/founder.jpg";
 import founder2 from "../assets/founder2.jpeg";
 import founder3 from "../assets/founder3.jpg";
+import Testimonials from "./Testimonials";
 
 
-
-
-const useStyles = makeStyles((theme) => ({
-  statement: {
-    fontStyle: "bold",
-    fontWeight: 400,
-    fontSize: "1.5rem",
-    maxWidth: "50em",
-    lineHeight: 1.5,
-  },
-  heading: {
-    paddingLeft: "5em",
-    paddingRight: "5em",
-    marginBottom: "3em",
-    marginTop: "2em",
-    [theme.breakpoints.down("sm")]: {
-      paddingLeft: "1.5em",
-      paddingRight: "1.5em",
-      marginTop: "1em",
-      marginBottom: "1em",
-      textAlign: "center",
-    },
-    [theme.breakpoints.down("md")]: {
-      marginBottom: "1.5em",
-    },
-  },
-  rowContainer: {
-    paddingLeft: "5em",
-    paddingRight: "5em",
-    marginBottom: "10em",
-    [theme.breakpoints.down("sm")]: {
-      paddingLeft: "1.5em",
-      paddingRight: "1.5em",
-    },
-  },
-  itemContainer: {
-    maxWidth: "50em",
-    marginLeft: "5em",
-    [theme.breakpoints.down("lg")]: {
-      maxWidth: "50%",
-      marginLeft: "4em",
-    },
-    [theme.breakpoints.down("md")]: {
-      maxWidth: "80%",
-      marginLeft: 0,
-      marginTop: "2.5em",
-    },
-    [theme.breakpoints.down("sm")]: {
-      maxWidth: "40rem",
-      marginTop: "2.5rem",
-      marginLeft: 0,
-    },
-  },
-  teamCardContainer: {
-    maxWidth: "30em",
-    marginLeft: "2.5em",
-    marginRight: "2.5em",
-    [theme.breakpoints.down("lg")]: {
-      maxWidth: "30%",
-      marginLeft: "2em",
-      marginRight: "2em",
-    },
-    [theme.breakpoints.down("md")]: {
-      maxWidth: "60%",
-      marginLeft: 0,
-      marginRight: 0,
-      marginTop: "2.5em",
-    },
-    [theme.breakpoints.down("sm")]: {
-      maxWidth: "30rem",
-      marginTop: "2.5rem",
-      marginLeft: 0,
-    },
-  },
-  avatar: {
-    height: 250,
-    width: 250,
-    [theme.breakpoints.down("xs")]: {
-      height: "15rem",
-      width: "15rem",
-    },
+const StyledAvatar = styled(Avatar)(({ theme }) => ({
+  width: 250,
+  height: 250,
+  [theme.breakpoints.down("xs")]: {
+    width: 200,
+    height: 200,
   },
 }));
 
 const About = (props) => {
-  const classes = useStyles();
   const theme = useTheme();
-  const smaller = useMediaQuery(theme.breakpoints.down("sm"));
-  const smallest = useMediaQuery(theme.breakpoints.down("xs"));
-  const larger = useMediaQuery(theme.breakpoints.down("lg"));
-  const medium = useMediaQuery(theme.breakpoints.down("md"));
+  const isSm = useMediaQuery(theme.breakpoints.down("sm"));
+  const isXs = useMediaQuery(theme.breakpoints.down("xs"));
+  const isMd = useMediaQuery(theme.breakpoints.down("md"));
 
-  const historyJSX = (
-    <Grid
-      item
-      align="center"
-      style={{ maxWidth: smallest ? "80%" : "30em" }}
-      lg
-    >
-      <img
-        src={history}
-        alt="an open book with a feather pen"
-        style={{ maxWidth: smallest ? "80%" : "30em" }}
-      />
-    </Grid>
-  );
+  const teamMembers = [
+    {
+      name: "Umer Azhar",
+      title: "HOD",
+      image: founder2,
+      bio: `Umer is a strategic leader who helps bridge technology with cybersecurity operations.
+        His experience includes managing high-risk security assessments and guiding enterprise-level compliance.`,
+    },
+    {
+      name: "Waleed Ijaz",
+      title: "Full Stack Developer",
+      image: founder,
+      bio: `Waleed specializes in scalable backend services and robust frontend frameworks. His development philosophy emphasizes modularity and performance.`,
+    },
+    {
+      name: "Nofil Iqbal",
+      title: "Frontend Developer",
+      image: founder3,
+      bio: `Nofil is passionate about crafting intuitive UI/UX interfaces with React and MUI. His designs focus on accessibility and responsiveness.`,
+    },
+  ];
 
   return (
-    <Grid container direction="column">
-      <Grid item className={classes.heading}>
-        <Typography variant="h2" gutterBottom>
+    <Container maxWidth="xl" sx={{ pb: 10 }}>
+      {/* Heading */}
+      <Box
+        sx={{
+          px: { xs: 3, sm: 6 },
+          mt: { xs: 3, sm: 6 },
+          mb: { xs: 2, sm: 4 },
+          textAlign: { xs: "center", sm: "left" },
+        }}
+      >
+        <Typography
+          variant="h2"
+          gutterBottom
+          sx={{ fontWeight: 600, fontSize: { xs: "2.5rem", sm: "3rem" } }}
+        >
           About Us
         </Typography>
-      </Grid>
+      </Box>
 
-      {/* Updated section: About paragraph is now left-aligned */}
-      <Grid item container className={classes.rowContainer}>
-        <Typography variant="h4" align="left" className={classes.statement}>
-          TekkDev is a software development and cybersecurity company
-          established as part of a joint venture between Computer Marketing
-          Company (CMC) and GCS Pvt Ltd. CMC and GCS are both leading companies
-          in the field of Information & Communication Technology (ICT) in
-          Pakistan, where GCS has expanded operations internationally in
-          Nigeria, South Africa, Turkey, and UAE in the last few years.
-
-          <br />
-          <br />
-          TekkDev currently operates in Pakistan and designs bespoke,
-          customized software solutions for the private sector using the latest
-          technology stack. Solutions are tailored to upgrade existing software
-          using intelligent components, reducing development effort, and
-          following modular or microservices architecture. TekkDev has seasoned
-          subject matter experts in the healthcare vertical to deliver end-to-end
-          solutions or world-class patient-centric hospital systems.
-
-          <br />
-          <br />
-          TekkDev cybersecurity professionals are trained locally and
-          internationally, with years of experience in building secure
-          infrastructure for national and multinational organizations. They
-          specialize in governance frameworks, vulnerability assessment,
-          penetration testing, incident response, cloud security architecture,
-          ISO27001 certification support, and scaling organizations with the
-          NIST framework. They help organizations evaluate and implement strong
-          security controls and policies.
-        </Typography>
-      </Grid>
-      <Grid
-        container
-        direction="row"
-        alignItems="center"
-        justify="center"
-        className={classes.rowContainer}
+      {/* About Statement */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
       >
-        {medium ? historyJSX : null}
+        <Grid container>
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: 400,
+              fontSize: "1.25rem",
+              lineHeight: 1.8,
+              maxWidth: "60em",
+              px: { xs: 2, sm: 6 },
+              mb: 8,
+              textAlign: "left",
+            }}
+          >
+           TekkDev, is a software development and cybersecurity company established as part of joint venture of Computer Marketing Company (CMC) and GCS Pvt Ltd. CMC and GCS are both leading companies in the field of Information & Communication Technology (ICT) in Pakistan where GCS has expanded operations internationally in Nigeria, South Africa, Turkey, UAE in the last few years. 
+            <br />
+            <br />
+            TekkDev, currently established operations in Pakistan, engages in designing of bespoke customized software solutions in private sector on latest technology stack. TekkDev solution design is on customers requirements to upgrade existing software through intelligent components with reduced development effort and on modular or microservices architecture. TekkDev has a range of seasoned subject matter experts  for Healthcare vertical, to design, develop implement a seamless, end to end software solution or provide a world class patient centric hospital systems. 
+            <br />
+            <br />
+           TekkDev Cybersecurity professionals trained locally and internationally with years of established experience of building secure infrastructure for a large size national and multinational organizations. They excel in designing of the governance framework,  performing vulnerability assessment and penetration testing, incident reporting, performing cloud assessments to design a scalable secure cloud based architecture, help client achieve ISO27001 and scalaing up the organiztion capability through inducting of NIST framework. TekkDev Cybersecurity consultants have an established track record in helping organization’s evaluate and improve on designing and implementing of security controls and policies.
+          </Typography>
+        </Grid>
+      </motion.div>
+
+      {/* Mission Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+      >
         <Grid
-          item
           container
-          direction="column"
-          alignItems={smaller ? "center" : "flex-start"}
-          style={{
-            marginLeft: 0,
-            marginRight: medium ? 0 : larger ? "2.5em" : "5em",
-          }}
-          className={classes.itemContainer}
-          lg
+          direction="row"
+          alignItems="center"
+          justifyContent="center"
+          spacing={4}
+          sx={{ px: { xs: 2, sm: 6 }, mb: 10 }}
         >
+          {isMd && (
+            <Grid item lg sx={{ textAlign: "center", maxWidth: isXs ? "80%" : "30em" }}>
+              <Box
+                component="img"
+                src={history}
+                alt="Company history infographic"
+                sx={{ maxWidth: "100%" }}
+              />
+            </Grid>
+          )}
 
-
-          <Grid item align={smaller ? "center" : "left"}>
+          <Grid
+            item
+            container
+            direction="column"
+            alignItems={isSm ? "center" : "flex-start"}
+            lg
+            sx={{ maxWidth: "50em" }}
+          >
             <Typography variant="h4" gutterBottom>
               Mission
             </Typography>
-          </Grid>
-          <Grid item style={{ textAlign: smallest ? "center" : "justify" }}>
             <Typography variant="body1" paragraph>
               TekkDev strives to deliver quality security assessment & consulting by:
             </Typography>
             <Typography variant="body1" paragraph>✔ Proactive security analysis</Typography>
             <Typography variant="body1" paragraph>✔ Instilling security awareness</Typography>
             <Typography variant="body1" paragraph>
-              ✔ Recommending and developing robust security architectures for resilient systems
+              ✔ Developing robust security architectures for resilient systems
             </Typography>
           </Grid>
-        </Grid>
-        {medium ? null : historyJSX}
-      </Grid>
-      <Grid item className={classes.heading} align="center">
-        <Typography variant="h3">Team</Typography>
-      </Grid>
 
-      <Grid
-        container
-        direction="row"
-        justify="space-around"
-        style={{ marginTop: 0 }}
-        className={classes.rowContainer}
-      >
-        {[ 
-          {
-            name: "Umer Azhar",
-            title: "HOD",
-            image: founder2,
-          },
-          {
-            name: "Waleed Ijaz",
-            title: "Full Stack Developer",
-            image: founder,
-          },
-          {
-            name: "Nofil Iqbal",
-            title: "Frontend Developer",
-            image: founder3,
-          }
-        ].map((member, index) => (
-          <Grid
-            key={index}
-            item
-            container
-            direction="column"
-            className={classes.teamCardContainer}
-            lg
-          >
-            <Grid item align="center">
-              <Avatar
-                src={member.image}
-                className={classes.avatar}
-                alt={`${member.name}'s headshot`}
+          {!isMd && (
+            <Grid item lg sx={{ textAlign: "center", maxWidth: "30em" }}>
+              <Box
+                component="img"
+                src={history}
+                alt="Company history infographic"
+                sx={{ maxWidth: "100%" }}
               />
+
             </Grid>
-            <Grid item style={{ marginTop: "2rem", textAlign: "center" }}>
-              <Typography variant="h4">{member.name}</Typography>
-              <Typography variant="caption" gutterBottom>
-                {member.title}
-              </Typography>
-            </Grid>
+          )}
+                       <Testimonials />
+
+        </Grid>
+      </motion.div>
+
+      {/* Team Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <Box sx={{ textAlign: "center", mb: 4 }}>
+          <Typography variant="h3" sx={{ fontWeight: 600 }}>
+            Team
+          </Typography>
+        </Box>
+
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          spacing={4}
+          sx={{ px: { xs: 2, sm: 6 }, flexWrap: "wrap", mb: 12 }}
+        >
+          {teamMembers.map((member, index) => (
             <Grid
               item
-              style={{
-                maxWidth: "100%",
-                marginTop: "1.5rem",
-                textAlign: smallest ? "center" : "justify",
+              key={index}
+              sx={{
+                maxWidth: "22em",
+                textAlign: "center",
+                mx: "auto",
               }}
             >
-              <Typography variant="body1" paragraph>
-                I taught myself basic coding from a library book in third grade,
-                and ever since then my passion has solely been set on learning —
-                learning about computers, learning mathematics and philosophy,
-                studying design, always just learning.
+              <StyledAvatar
+                src={member.image}
+                alt={`${member.name}'s profile`}
+                sx={{ mx: "auto" }}
+              />
+              <Typography variant="h5" sx={{ mt: 2, fontWeight: 600 }}>
+                {member.name}
               </Typography>
-              <Typography variant="body1" paragraph>
-                Now I’m ready to apply everything I’ve learned, and to help others
-                with the intuition I have developed.
+              <Typography variant="caption" display="block" gutterBottom>
+                {member.title}
               </Typography>
-            </Grid>
-          </Grid>
-        ))}
-      </Grid>
+              <Typography variant="body2" paragraph sx={{ mt: 2, textAlign: "justify" }}>
+                {member.bio}
+              </Typography>
 
-      <Grid item>
-        <CallToAction setValue={props.setValue} setSelected={props.setSelected} />
-      </Grid>
-    </Grid>
+            </Grid>
+
+          ))}
+        </Grid>
+      </motion.div>
+
+      {/* CTA Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <Box sx={{ mt: 10 }}>
+          <CallToAction setValue={props.setValue} setSelected={props.setSelected} />
+        </Box>
+      </motion.div>
+      
+    </Container>
   );
 };
 

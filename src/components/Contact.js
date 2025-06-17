@@ -1,152 +1,110 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { makeStyles } from "@mui/styles"; // if you still need legacy styling
+import { motion } from "framer-motion";
+
+import {
+  Grid,
+  Typography,
+  Button,
+  TextField,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  CircularProgress,
+  Snackbar,
+  useMediaQuery,
+} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import CircularProgress from "@mui/material/CircularProgress";
-import Snackbar from "@mui/material/Snackbar";
-import CallToAction from "../components/ui/CallToAction.js";
-import phoneIcon from "../assets/phone.svg";
-import emailIcon from "../assets/email.svg";
+import { makeStyles } from "@mui/styles";
 import paperAirplane from "../assets/send.svg";
+import background from "../assets/background.jpg";
+import background1 from "../assets/background1.jpeg";
+
+const backgroundImages = [background, background1];
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    position: "relative",
+    width: "100%",
+    minHeight: "calc(100vh - 160px)", // Adjust for fixed header + footer
+    paddingTop: "100px", // Same as header height
+    paddingBottom: "60px", // Same as footer height
+    overflow: "hidden",
+  },
+  background: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    top: 0,
+    left: 0,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    transition: "background-image 1s ease-in-out",
+    zIndex: -1,
+  },
+  content: {
+    position: "relative",
+    background: "rgba(255, 255, 255, 0.9)",
+    padding: "3em",
+    borderRadius: "12px",
+    boxShadow: "0px 4px 20px rgba(0,0,0,0.3)",
+    maxWidth: "500px",
+    width: "90%",
+    margin: "0 auto",
+  },
   heading: {
-    paddingLeft: "2em",
-    paddingRight: "2em",
-    marginBottom: "2em",
-    marginTop: "2em",
     textAlign: "center",
-    [theme.breakpoints.down("sm")]: {
-      paddingLeft: "1.5em",
-      paddingRight: "1.5em",
-    },
-  },
-  confirmationModalHeading: {
-    paddingLeft: "2em",
-    paddingRight: "2em",
-    marginTop: "2em",
-    paddingTop: 0,
-    paddingBottom: 0,
-    textAlign: "center",
-    [theme.breakpoints.down("sm")]: {
-      width: "80%",
-      marginLeft: "2em",
-      marginRight: "2em",
-    },
-    [theme.breakpoints.down("xs")]: {
-      width: "100%",
-      marginLeft: 0,
-      marginRight: 0,
-      paddingLeft: 0,
-      paddingRight: 0,
-    },
-  },
-  sendMessageButton: {
-    ...theme.typography.learnButton,
-    backgroundColor: theme.palette.common.orange,
-    height: "45px",
-    borderRadius: "5px",
-    marginTop: "1em",
-  },
-  message: {
-    border: "1px solid black",
-    marginTop: "2em",
-    borderRadius: "5px",
-  },
-  confirmationButton: {
-    verticalAlign: "bottom",
+    marginBottom: "1em",
   },
   input: {
     border: "1px solid black",
     borderRadius: 4,
     padding: "10px",
   },
+  message: {
+    border: "1px solid black",
+    marginTop: "1em",
+    borderRadius: 4,
+  },
+  sendMessageButton: {
+    marginTop: "1em",
+    backgroundColor: theme.palette.primary.main,
+    color: "#fff",
+    textTransform: "none",
+    "&:hover": {
+      backgroundColor: theme.palette.primary.dark,
+    },
+  },
 }));
 
-const Contact = (props) => {
+const Contact = () => {
   const classes = useStyles();
   const theme = useTheme();
   const smallest = useMediaQuery(theme.breakpoints.down("xs"));
 
+  const [bgIndex, setBgIndex] = useState(0);
   const [name, setName] = useState("");
-  const [nameHelperText, setNameHelperText] = useState("");
   const [email, setEmail] = useState("");
-  const [emailHelperText, setEmailHelperText] = useState("");
   const [phone, setPhone] = useState("");
-  const [phoneHelperText, setPhoneHelperText] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [alert, setAlert] = useState({
-    open: false,
-    message: "",
-    backgroundColor: "",
-  });
+  const [alert, setAlert] = useState({ open: false, message: "", backgroundColor: "" });
   const [open, setOpen] = useState(false);
 
-  const onFieldInputChange = (event) => {
-    let valid;
-    switch (event.target.id) {
-      case "name":
-        setName(event.target.value);
-        if (event.target.value !== "") {
-          valid = /^[a-z ,.'-]+$/i.test(event.target.value);
-          setNameHelperText(valid ? "" : "Cannot include numbers or symbols");
-        } else {
-          setNameHelperText("");
-        }
-        break;
-      case "email":
-        setEmail(event.target.value);
-        if (event.target.value !== "") {
-          valid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(event.target.value);
-          setEmailHelperText(valid ? "" : "Invalid email.");
-        } else {
-          setEmailHelperText("");
-        }
-        break;
-      case "phone":
-        setPhone(event.target.value);
-        if (event.target.value !== "") {
-          valid = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(event.target.value);
-          setPhoneHelperText(valid ? "" : "Invalid phone number");
-        } else {
-          setPhoneHelperText("");
-        }
-        break;
-      default:
-        break;
-    }
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBgIndex((prev) => (prev + 1) % backgroundImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
-  const sendButtonJSX = (text) => (
-    <>
-      {text}
-      <img
-        style={{ marginLeft: 7.5 }}
-        src={paperAirplane}
-        alt="paper airplane icon"
-      />
-    </>
-  );
+  const handleChange = (setter) => (e) => setter(e.target.value);
 
-  const onConfirm = () => {
+  const handleSend = () => {
     setLoading(true);
     axios
       .get("https://us-central1-beri-tech.cloudfunctions.net/sendMail", {
-        params: {
-          name: name,
-          email: email,
-          phone: phone,
-          message: message,
-        },
+        params: { name, email, phone, message },
       })
       .then(() => {
         setLoading(false);
@@ -165,180 +123,112 @@ const Contact = (props) => {
         setLoading(false);
         setAlert({
           open: true,
-          message: "Something went wrong! Please try again.",
+          message: "Something went wrong!",
           backgroundColor: "#FF3232",
         });
       });
   };
 
+  const sendButtonJSX = (text) => (
+    <>
+      {text}
+      <img src={paperAirplane} alt="paper airplane icon" style={{ marginLeft: 8 }} />
+    </>
+  );
+
   return (
-    <Grid container direction="row">
-      <Grid item container direction="column" alignItems="center" lg={4}>
-        <Grid item className={classes.heading}>
-          <Typography variant="h2" style={{ lineHeight: 1 }}>
-            Contact Us
-          </Typography>
-          <Typography variant="subtitle1">
-            Thank you for contacting us. We’ll reach out shortly.
-          </Typography>
-        </Grid>
+    <div className={classes.root}>
+      <div
+        className={classes.background}
+        style={{ backgroundImage: `url(${backgroundImages[bgIndex]})` }}
+      />
 
-        {/* Phone and Email Centered */}
-        <Grid
-          item
-          container
-          direction="column"
-          alignItems="center"
-          style={{ marginTop: "1em", gap: "1em" }}
-        >
-          <Grid item container justifyContent="center" alignItems="center" style={{ width: "auto" }}>
-            <img src={phoneIcon} alt="phone" style={{ marginRight: "0.5em" }} />
-            <Typography variant="body1">
-              <a
-                href="tel:+924235774258"
-                style={{ color: "inherit", textDecoration: "none" }}
-                onMouseOver={(e) => (e.target.style.color = "#1976d2")}
-                onMouseOut={(e) => (e.target.style.color = "inherit")}
-              >
-                +92 (42) 3577-4258
-              </a>
-            </Typography>
-          </Grid>
-          <Grid item container justifyContent="center" alignItems="center" style={{ width: "auto" }}>
-            <img src={emailIcon} alt="email" style={{ marginRight: "0.5em" }} />
-            <Typography variant="body1">
-              <a
-                href="mailto:Info@tekkdev.com"
-                style={{ color: "inherit", textDecoration: "none" }}
-                onMouseOver={(e) => (e.target.style.color = "#1976d2")}
-                onMouseOut={(e) => (e.target.style.color = "inherit")}
-              >
-                Info@tekkdev.com
-              </a>
-            </Typography>
-          </Grid>
-        </Grid>
+      {/* Slide-in animation */}
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className={classes.content}
+      >
+        <Typography variant="h4" className={classes.heading}>Contact Us</Typography>
+        <Typography variant="subtitle1" align="center">
+          Thank you for contacting us. Our authorized representative will contact you shortly.
+        </Typography>
 
-        {/* Contact Form */}
-        <Grid item container direction="column" alignItems="center" style={{ maxWidth: "25em", marginTop: "2em" }}>
-          <TextField
-            label="Name"
-            id="name"
-            error={nameHelperText.length !== 0}
-            helperText={nameHelperText}
-            value={name}
-            onChange={onFieldInputChange}
-            fullWidth
-            InputProps={{ className: classes.input }}
-            style={{ marginBottom: "1em" }}
-          />
-          <TextField
-            label="Email"
-            id="email"
-            error={emailHelperText.length !== 0}
-            helperText={emailHelperText}
-            value={email}
-            onChange={onFieldInputChange}
-            fullWidth
-            InputProps={{ className: classes.input }}
-            style={{ marginBottom: "1em" }}
-          />
-          <TextField
-            label="Phone"
-            id="phone"
-            error={phoneHelperText.length !== 0}
-            helperText={phoneHelperText}
-            value={phone}
-            onChange={onFieldInputChange}
-            fullWidth
-            InputProps={{ className: classes.input }}
-            style={{ marginBottom: "1em" }}
-          />
-          <TextField
-            id="message"
-            placeholder="Tell us about your project..."
-            multiline
-            rows={6}
-            fullWidth
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            className={classes.message}
-            InputProps={{ disableUnderline: true }}
-          />
-          <Button
-            className={classes.sendMessageButton}
-            variant="contained"
-            disabled={
-              name.length === 0 ||
-              email.length === 0 ||
-              phone.length === 0 ||
-              message.length === 0 ||
-              nameHelperText ||
-              emailHelperText ||
-              phoneHelperText
-            }
-            onClick={() => setOpen(true)}
-          >
-            {sendButtonJSX("Send Message")}
-          </Button>
-        </Grid>
-      </Grid>
-
-      {/* Confirmation Dialog */}
-      <Dialog open={open} onClose={() => setOpen(false)} fullScreen={smallest} style={{ zIndex: 1302 }}>
-        <DialogTitle className={classes.confirmationModalHeading} disableTypography>
-          <Typography variant="h4">Confirm Message</Typography>
-        </DialogTitle>
-        <DialogContent>
-          <Grid container direction="column" style={{ padding: "2rem", width: "100%" }}>
+        <Grid container spacing={2} direction="column" style={{ marginTop: "1em" }}>
+          <Grid item>
             <TextField
               label="Name"
-              id="name"
-              value={name}
-              onChange={onFieldInputChange}
               fullWidth
+              value={name}
+              onChange={handleChange(setName)}
               InputProps={{ className: classes.input }}
-              style={{ marginBottom: "1em" }}
             />
+          </Grid>
+          <Grid item>
             <TextField
               label="Email"
-              id="email"
-              value={email}
-              onChange={onFieldInputChange}
               fullWidth
+              value={email}
+              onChange={handleChange(setEmail)}
               InputProps={{ className: classes.input }}
-              style={{ marginBottom: "1em" }}
             />
+          </Grid>
+          <Grid item>
             <TextField
               label="Phone"
-              id="phone"
+              fullWidth
               value={phone}
-              onChange={onFieldInputChange}
-              fullWidth
+              onChange={handleChange(setPhone)}
               InputProps={{ className: classes.input }}
-              style={{ marginBottom: "1em" }}
             />
+          </Grid>
+          <Grid item>
             <TextField
-              id="message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              fullWidth
+              label="Message"
               multiline
-              rows={6}
+              rows={5}
+              fullWidth
+              value={message}
+              onChange={handleChange(setMessage)}
               className={classes.message}
               InputProps={{ disableUnderline: true }}
             />
-            <Grid item container justifyContent="flex-end" style={{ marginTop: "1em" }}>
-              <Button onClick={() => setOpen(false)} color="primary">Cancel</Button>
-              <Button onClick={onConfirm} color="primary" variant="contained" style={{ marginLeft: "1em" }}>
-                {loading ? <CircularProgress size={20} /> : sendButtonJSX("Send")}
-              </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              fullWidth
+              variant="contained"
+              className={classes.sendMessageButton}
+              onClick={() => setOpen(true)}
+              disabled={!name || !email || !phone || !message}
+            >
+              {sendButtonJSX("Send Message")}
+            </Button>
+          </Grid>
+        </Grid>
+      </motion.div>
+
+      <Dialog open={open} onClose={() => setOpen(false)} fullScreen={smallest}>
+        <DialogTitle>Confirm Message</DialogTitle>
+        <DialogContent>
+          <Grid container direction="column" spacing={2}>
+            <Grid item><TextField label="Name" value={name} fullWidth onChange={handleChange(setName)} /></Grid>
+            <Grid item><TextField label="Email" value={email} fullWidth onChange={handleChange(setEmail)} /></Grid>
+            <Grid item><TextField label="Phone" value={phone} fullWidth onChange={handleChange(setPhone)} /></Grid>
+            <Grid item><TextField label="Message" value={message} multiline rows={4} fullWidth onChange={handleChange(setMessage)} /></Grid>
+            <Grid item container justifyContent="flex-end" spacing={2}>
+              <Grid item><Button onClick={() => setOpen(false)}>Cancel</Button></Grid>
+              <Grid item>
+                <Button onClick={handleSend} variant="contained" color="primary">
+                  {loading ? <CircularProgress size={20} /> : sendButtonJSX("Send")}
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
         </DialogContent>
       </Dialog>
 
-      {/* Snackbar */}
       <Snackbar
         open={alert.open}
         message={alert.message}
@@ -347,12 +237,7 @@ const Contact = (props) => {
         onClose={() => setAlert({ ...alert, open: false })}
         autoHideDuration={7000}
       />
-
-      {/* CTA */}
-      <Grid item container direction="column" lg={8}>
-        <CallToAction setValue={props.setValue} setSelected={props.setSelected} grid={{ size: "lg", noc: 8 }} />
-      </Grid>
-    </Grid>
+    </div>
   );
 };
 
