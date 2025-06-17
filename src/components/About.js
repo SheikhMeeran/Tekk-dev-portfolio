@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 
 import CallToAction from "../components/ui/CallToAction";
 import history from "../assets/history.svg";
-import founder from "../assets/founder.jpg";
+import founder from "../assets/waleed-portrait.webp";
 import founder2 from "../assets/founder2.jpeg";
 import founder3 from "../assets/founder3.jpg";
 import Testimonials from "./Testimonials";

@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import Lottie from "react-lottie";
 import { makeStyles } from "@mui/styles"; // if you still need legacy styling
@@ -149,52 +147,59 @@ const Revolution = (props) => {
           The Revolution
         </Typography>
       </Grid>
-     <motion.div
+    <motion.div
   initial={{ opacity: 0, y: 100 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.8, ease: "easeOut" }}
 >
-  <Grid
-    container
-    direction="row"
-    alignItems="center"
-    justify="center"
-    className={classes.rowContainer}
-  >
+  <Grid container justifyContent="center" style={{ padding: "2rem" }}>
     <Grid
-      item
-      align="center"
-      style={{ maxWidth: smallest ? "80%" : "30em" }}
-      lg
-    >
-      <img
-        style={{ maxWidth: smallest ? "80%" : "30em" }}
-        src={vision}
-        alt="Alberta Vision background"
-      />
-    </Grid>
-
-    <Grid
-      item
       container
-      direction="column"
-      alignItems={smaller ? "center" : "flex-start"}
-      className={classes.itemContainer}
-      lg
+      item
+      xs={12}
+      md={10}
+      direction="row"
+      alignItems="center"
+      justifyContent="space-between"
+      spacing={4}
     >
-      <Grid item align={smaller ? "center" : "left"}>
-        <Typography variant="h4" gutterBottom>
-          Vision
-        </Typography>
+      {/* Text Section */}
+      <Grid
+        item
+        xs={12}
+        md={6}
+        container
+        direction="column"
+        alignItems="flex-start"
+      >
+        <div style={{ maxWidth: "28em", width: "100%" }}>
+          <Typography variant="h4" gutterBottom>
+            Vision
+          </Typography>
+          <Typography variant="body1" paragraph style={{ textAlign: "justify" }}>
+            We will always deliver services that are professional and proactive,
+            ensuring our clients receive solutions that are:
+          </Typography>
+          <Typography variant="body1" paragraph>❖ Reliable</Typography>
+          <Typography variant="body1" paragraph>❖ Knowledgeable</Typography>
+          <Typography variant="body1" paragraph>❖ Pragmatic</Typography>
+          <Typography variant="body1" paragraph>❖ Trusted</Typography>
+        </div>
       </Grid>
-      <Grid item style={{ textAlign: smallest ? "center" : "justify" }}>
-        <Typography variant="body1" paragraph>
-          We will always deliver services that are professional and proactive...
-        </Typography>
-        <Typography variant="body1" paragraph>❖ Reliable</Typography>
-        <Typography variant="body1" paragraph>❖ Knowledgeable</Typography>
-        <Typography variant="body1" paragraph>❖ Pragmatic</Typography>
-        <Typography variant="body1" paragraph>❖ Trusted</Typography>
+
+      {/* Image Section */}
+      <Grid
+        item
+        xs={12}
+        md={6}
+        container
+        justifyContent="center"
+      >
+        <img
+          src={vision}
+          alt="Alberta Vision background"
+          style={{ width: "100%", maxWidth: "25em" }}
+        />
       </Grid>
     </Grid>
   </Grid>
@@ -286,7 +291,7 @@ const Revolution = (props) => {
       justifyContent="center"
       className={classes.processRowContainer}
       sx={{
-        backgroundColor: "#B3B3B3",
+        backgroundColor: "#fff",
         py: 6,
         px: 2,
         flexDirection: { xs: "column", sm: "column", md: "row" },
@@ -314,7 +319,7 @@ const Revolution = (props) => {
         <Grid item sx={{ textAlign: smallest ? "center" : "justify" }}>
           <Typography
             variant="body1"
-            sx={{ color: "#f8f8f3", lineHeight: 1.4, mb: 1.2 }}
+            sx={{ color: "black", lineHeight: 1.4, mb: 1.2 }}
             paragraph
           >
             Our process begins the moment you realize you need a piece of
@@ -376,7 +381,7 @@ const Revolution = (props) => {
       justifyContent="center"
       className={classes.processRowContainer}
       sx={{
-        backgroundColor: "gray",
+        backgroundColor: "",
         py: 6,
         px: 2,
         flexDirection: { xs: "column", sm: "column", md: "row" },
@@ -393,10 +398,12 @@ const Revolution = (props) => {
         sx={{
           px: 2,
           ml: { md: -4, lg: -6 },
+
+          
         }}
         className={classes.itemContainer}
       >
-        <Grid item sx={{ textAlign: { xs: "center", md: "left" } }}>
+        <Grid item sx={{ textAlign: { xs: "center", md: "left" ,} }}>
           <Typography variant="h4" gutterBottom>
             Mockup
           </Typography>
@@ -404,21 +411,21 @@ const Revolution = (props) => {
         <Grid item sx={{ textAlign: smallest ? "center" : "justify" }}>
           <Typography
             variant="body1"
-            sx={{ color: "#f8f8f3", lineHeight: 1.4, mb: 1.2 }}
+            sx={{ color: "#fff", lineHeight: 1.4, mb: 1.2 }}
             paragraph
           >
             After we settle on the best path forward and decide on a solution to pursue, details like the cost and timeline will be finalized.
           </Typography>
           <Typography
             variant="body1"
-            sx={{ color: "#fff", lineHeight: 1.4, mb: 1.2 }}
+            sx={{ color: "black", lineHeight: 1.4, mb: 1.2 }}
             paragraph
           >
             Then it’s time for us to start on your minimum viable product. That’s just a fancy term for a mockup, which doesn’t include colors, images, or any other polished design elements, but captures the essential layout structure and functionality.
           </Typography>
           <Typography
             variant="body1"
-            sx={{ color: "#fff", lineHeight: 1.4, mb: 1.2 }}
+            sx={{ color: "black", lineHeight: 1.4, mb: 1.2 }}
             paragraph
           >
             This helps us understand and refine the solution itself before getting distracted by specifics and looks.
@@ -458,7 +465,7 @@ const Revolution = (props) => {
       justifyContent="center"
       className={classes.processRowContainer}
       sx={{
-        backgroundColor: "#A67C52",
+        backgroundColor: "#fff",
         py: 6,
         px: 2,
         flexDirection: { xs: "column", sm: "column", md: "row" },
@@ -486,7 +493,7 @@ const Revolution = (props) => {
         <Grid item sx={{ textAlign: smallest ? "center" : "justify" }}>
           <Typography
             variant="body1"
-            sx={{ color: "#f8f8f3", lineHeight: 1.4, mb: 1.2 }}
+            sx={{ color: "black", lineHeight: 1.4, mb: 1.2 }}
             paragraph
           >
             Using the mockups and notes taken during the consultation as guides,
@@ -536,7 +543,7 @@ const Revolution = (props) => {
       justifyContent="center"
       className={classes.processRowContainer}
       sx={{
-        backgroundColor: "#39B54A",
+        backgroundColor: "#166EE9",
         py: 6,
         px: 2,
         flexDirection: { xs: "column", sm: "column", md: "row" },
@@ -613,7 +620,8 @@ const Revolution = (props) => {
       justifyContent="center"
       className={classes.processRowContainer}
       sx={{
-        backgroundColor: "#FBB03B",
+        backgroundColor: "#fff",
+        color:"black",
         py: 6,
         px: 2,
         flexDirection: { xs: "column", sm: "column", md: "row" },
@@ -651,7 +659,7 @@ const Revolution = (props) => {
               key={i}
               variant="body1"
               sx={{
-                color: "#fff",
+                color: "black",
                 lineHeight: 1.4, // Reduced line height
                 mb: 1.2, // Tight margin between paragraphs
               }}
@@ -694,7 +702,7 @@ const Revolution = (props) => {
       justifyContent="center"
       className={classes.processRowContainer}
       sx={{
-        backgroundColor: "#C1272D",
+        backgroundColor: "#166EE9",
         py: 6,
         px: 2,
         flexDirection: { xs: "column", sm: "column", md: "row" },
@@ -781,7 +789,7 @@ const Revolution = (props) => {
       justifyContent="center"
       className={classes.processRowContainer}
       sx={{
-        backgroundColor: "#8E45CE",
+        backgroundColor: "#fff",
         py: 6,
         px: 2,
         flexDirection: { xs: "column", sm: "column", md: "row" },
@@ -809,14 +817,14 @@ const Revolution = (props) => {
         <Grid item sx={{ textAlign: smallest ? "center" : "justify" }}>
           <Typography
             variant="body1"
-            sx={{ color: "#f8f8f3", lineHeight: 1.4, mb: 1.2 }}
+            sx={{ color: "black", lineHeight: 1.4, mb: 1.2 }}
             paragraph
           >
             Our work doesn’t end there.
           </Typography>
           <Typography
             variant="body1"
-            sx={{ color: "#fff", lineHeight: 1.4, mb: 1.2 }}
+            sx={{ color: "black", lineHeight: 1.4, mb: 1.2 }}
             paragraph
           >
             After a successful launch we keep in close contact to listen to
@@ -824,7 +832,7 @@ const Revolution = (props) => {
           </Typography>
           <Typography
             variant="body1"
-            sx={{ color: "#fff", lineHeight: 1.4, mb: 1.2 }}
+            sx={{ color: "black", lineHeight: 1.4, mb: 1.2 }}
             paragraph
           >
             From there on out we make sure your application is kept up to date
@@ -861,14 +869,14 @@ const Revolution = (props) => {
         />
       </Grid>
     </Grid>
-       (
+       
     <Grid
       container
       alignItems="center"
       justifyContent="center"
       className={classes.processRowContainer}
       sx={{
-        backgroundColor: "#29ABE2",
+        backgroundColor: "#166EE9",
         py: 4,
         px: 2,
         flexDirection: { xs: "column", sm: "column", md: "row" },

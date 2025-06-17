@@ -42,7 +42,7 @@ const Logo = styled("img")(({ theme }) => ({
 const TabStyled = styled(Tab)(({ theme }) => ({
   minWidth: 10,
   textTransform: "none",
-  fontSize: "0.8rem",
+  fontSize: "0.7rem",
   fontWeight: 500,
   color: "#000",
   padding: theme.spacing(1.5, 2),
