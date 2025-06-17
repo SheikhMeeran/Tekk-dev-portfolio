@@ -22,11 +22,11 @@ import Banner05 from "../assets/Banner05.jpg";
 
 const imagePaths = [Banner01, Banner02, Banner03, Banner04, Banner05];
 const textLines = [
-  "We Automate, We Create, We Transform to Secure your business through Continuous Monitoring",
-  "We Innovate, We Secure Standard settings are more amenable to breach - Studies reveal",
+  "We Automate, We Create, We Transform to Secure your business",
+  "We Innovate, We Secure. Default settings increase breach risks.",
   "Digital Solutions that Drive Growth and Security",
-  "Are you a Victim of Breach - What Happens Next?",
-  "Hold your business hostage” or “Ransom Demands",
+  "Breach Victim? Know What Happens Next.",
+  "Don't let Ransom Demands hold your business hostage",
 ];
 
 const slideVariants = {
@@ -109,6 +109,7 @@ const LandingPage = (props) => {
         <Container
           maxWidth="lg"
           sx={{
+            mt: { xs: -2, sm: -3 }, // Slightly below banner
             py: { xs: 4, sm: 6 },
             textAlign: "center",
             display: "flex",
@@ -116,14 +117,13 @@ const LandingPage = (props) => {
             alignItems: "center",
           }}
         >
-          <Box sx={{ maxWidth: "900px" }}>
+          <Box sx={{ maxWidth: "900px", mb: 4 }}>
             <Typography
               variant="h2"
               gutterBottom
               sx={{
-                fontSize: { xs: "1.2rem", sm: "1.6rem", md: "2rem" },
+                fontSize: { xs: "1rem", sm: "1.3rem", md: "1.6rem" },
                 fontWeight: 600,
-                mb: 4,
               }}
             >
               {textLines[currentIndex]}
@@ -139,7 +139,7 @@ const LandingPage = (props) => {
               flexWrap: "wrap",
               position: "relative",
               zIndex: 2,
-              mt: 2,
+              minHeight: "60px", // Maintain fixed height so buttons stay in place
             }}
           >
             <Button
@@ -191,16 +191,18 @@ const LandingPage = (props) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                gap: 1,
                 "&:hover": {
                   backgroundColor: "#166EE9",
                   color: "#fff",
+                  "& svg": {
+                    fill: "#fff",
+                  },
                 },
               }}
             >
               Learn More
-              <Box sx={{ ml: 1 }}>
-                <ButtonArrow width={25} height={18} fill="black" />
-              </Box>
+              <ButtonArrow width={25} height={18} fill="black" />
             </Button>
           </Box>
         </Container>

@@ -91,76 +91,70 @@ const ElevationScroll = ({ children }) => {
   return React.cloneElement(children, { elevation: trigger ? 4 : 0 });
 };
 
-const menuOptions = [
-  {
-    name: "Cyber Security",
-    link: "/software",
-    activeTabIndex: 1,
-    activeMenuIndex: 0,
-  },
-  {
-    name: "Software Development",
-    link: "/websites",
-    activeTabIndex: 1,
-    activeMenuIndex: 1,
-  },
-];
-
-const Header = ({ value, setValue, selected, setSelected }) => {
+const Header = ({ value, setValue }) => {
   const theme = useTheme();
-  const smaller = useMediaQuery(theme.breakpoints.down("md"));
-  const iOS = typeof navigator !== "undefined" && /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const iOS =
+    typeof navigator !== "undefined" && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [openMenu, setOpenMenu] = useState(false);
+  const [homeAnchor, setHomeAnchor] = useState(null);
+  const [openHomeMenu, setOpenHomeMenu] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
 
-  const handleMouseOver = useCallback(
-    (e) => {
-      setAnchorEl(e.currentTarget);
-      setOpenMenu(true);
-      if (window.location.pathname === "/services") setSelected(null);
-    },
-    [setSelected]
-  );
+  const handleHomeHover = useCallback((e) => {
+    setHomeAnchor(e.currentTarget);
+    setOpenHomeMenu(true);
+  }, []);
 
-  const handleClose = () => setOpenMenu(false);
+  const handleMenuClose = () => {
+    setOpenHomeMenu(false);
+  };
 
   const routes = useMemo(
     () => [
-      { label: "Home", link: "/", activeTabIndex: 0 },
+      {
+        label: "Home",
+        link: "/",
+        activeTabIndex: 0,
+        mouseover: handleHomeHover,
+      },
       {
         label: "Services",
         link: "/services",
         activeTabIndex: 1,
-        mouseover: handleMouseOver,
       },
-      { label: "Revolution", link: "/revolution", activeTabIndex: 2 },
-      { label: "About Us", link: "/about", activeTabIndex: 3 },
-      { label: "Contact Us", link: "/contact", activeTabIndex: 4 },
+      {
+        label: "Cyber Security",
+        link: "/software",
+        activeTabIndex: 2,
+      },
+      {
+        label: "Software Development",
+        link: "/websites",
+        activeTabIndex: 3,
+      },
+      {
+        label: "Contact Us",
+        link: "/contact",
+        activeTabIndex: 4,
+      },
     ],
-    [handleMouseOver]
+    [handleHomeHover]
   );
 
   useEffect(() => {
-    [...menuOptions, ...routes].forEach((route) => {
-      if (
-        window.location.pathname === route.link &&
-        value !== route.activeTabIndex
-      ) {
+    routes.forEach((route) => {
+      if (window.location.pathname === route.link && value !== route.activeTabIndex) {
         setValue(route.activeTabIndex);
-        if (typeof route.activeMenuIndex === "number") {
-          setSelected(route.activeMenuIndex);
-        } else {
-          setSelected(null);
-        }
       }
     });
-    if (window.location.pathname === "/estimate") setValue(5);
-  }, [value, selected, routes, setValue, setSelected]);
+    if (window.location.pathname === "/estimate") setValue(6);
+    if (window.location.pathname === "/revolution") setValue(0); // Handle as Home submenu
+  }, [value, setValue, routes]);
 
-  const handleCompanyLogo = () => setValue(0);
-  const handleChange = (e, newValue) => setValue(newValue);
+  const handleChange = (e, newValue) => {
+    setValue(newValue);
+  };
 
   const DrawerMenu = (
     <>
@@ -184,7 +178,6 @@ const Header = ({ value, setValue, selected, setSelected }) => {
               onClick={() => {
                 setOpenDrawer(false);
                 setValue(route.activeTabIndex);
-                setSelected(null);
               }}
             >
               <ListItemText primary={route.label} />
@@ -193,19 +186,28 @@ const Header = ({ value, setValue, selected, setSelected }) => {
           <ListItem
             button
             component={Link}
-            to="/estimate"
-            selected={value === 5}
+            to="/revolution"
             onClick={() => {
               setOpenDrawer(false);
-              setSelected(null);
-              setValue(5);
+              setValue(0);
+            }}
+          >
+            <ListItemText primary="Revolution" />
+          </ListItem>
+          <ListItem
+            button
+            component={Link}
+            to="/estimate"
+            selected={value === 6}
+            onClick={() => {
+              setOpenDrawer(false);
+              setValue(6);
             }}
           >
             <ListItemText primary="Get Estimate" />
           </ListItem>
         </List>
       </SwipeableDrawer>
-
       <Box sx={{ ml: "auto", display: { xs: "block", md: "none" } }}>
         <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
           <MenuIcon />
@@ -233,9 +235,8 @@ const Header = ({ value, setValue, selected, setSelected }) => {
           />
         ))}
       </Tabs>
-
       <EstimateButton
-        onClick={() => setValue(5)}
+        onClick={() => setValue(6)}
         component={Link}
         to="/estimate"
         variant="contained"
@@ -243,57 +244,62 @@ const Header = ({ value, setValue, selected, setSelected }) => {
         Get Estimate
       </EstimateButton>
 
-      <Popper open={openMenu} anchorEl={anchorEl} transition disablePortal>
+      {/* Home Submenu: About & Revolution */}
+      <Popper open={openHomeMenu} anchorEl={homeAnchor} transition disablePortal>
         {({ TransitionProps }) => (
           <Grow {...TransitionProps} style={{ transformOrigin: "center top" }}>
             <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
+              <ClickAwayListener onClickAway={handleMenuClose}>
                 <MenuList
-                  onMouseOver={() => setOpenMenu(true)}
-                  onMouseLeave={handleClose}
+                  onMouseOver={() => setOpenHomeMenu(true)}
+                  onMouseLeave={handleMenuClose}
                 >
-                  {menuOptions.map((option, i) => {
-                    const isSelected =
-                      selected === i && value === option.activeTabIndex;
-                    return (
-                      <MenuItem
-                        key={i}
-                        component={Link}
-                        to={option.link}
-                        selected={isSelected}
-                        onClick={() => {
-                          setSelected(i);
-                          setValue(option.activeTabIndex);
-                          handleClose();
-                        }}
-                        sx={{
-                          fontWeight: 400,
-                          fontSize: {
-                            xs: "0.85rem",
-                            md: "0.9rem",
-                            xl: "1rem",
-                          },
-                          px: {
-                            xs: 2,
-                            xl: 3,
-                          },
-                          backgroundColor: isSelected
-                            ? theme.palette.primary.main
-                            : "inherit",
-                          color: isSelected
-                            ? "#ffffff"
-                            : theme.palette.text.primary,
-                          "&:hover": {
-                            backgroundColor: theme.palette.primary.dark,
-                            color: "#ffffff",
-                            fontWeight: 500,
-                          },
-                        }}
-                      >
-                        {option.name}
-                      </MenuItem>
-                    );
-                  })}
+                  <MenuItem
+                    component={Link}
+                    to="/about"
+                    onClick={handleMenuClose}
+                    sx={{
+                      fontSize: {
+                        xs: "0.75rem",
+                        md: "0.8rem",
+                        xl: "0.9rem",
+                      },
+                      px: {
+                        xs: 2,
+                        xl: 3,
+                      },
+                      "&:hover": {
+                        backgroundColor: theme.palette.primary.main,
+                        color: "#fff",
+                        fontWeight: 500,
+                      },
+                    }}
+                  >
+                    About
+                  </MenuItem>
+                  <MenuItem
+                    component={Link}
+                    to="/revolution"
+                    onClick={handleMenuClose}
+                    sx={{
+                      fontSize: {
+                        xs: "0.75rem",
+                        md: "0.8rem",
+                        xl: "0.9rem",
+                      },
+                      px: {
+                        xs: 2,
+                        xl: 3,
+                      },
+                      "&:hover": {
+                        backgroundColor: theme.palette.primary.main,
+                        color: "#fff",
+                        fontWeight: 500,
+                      },
+                    }}
+                  >
+                    Revolution
+                  </MenuItem>
                 </MenuList>
               </ClickAwayListener>
             </Paper>
@@ -308,10 +314,10 @@ const Header = ({ value, setValue, selected, setSelected }) => {
       <ElevationScroll>
         <AppBarStyled position="fixed" elevation={0}>
           <Toolbar disableGutters sx={{ px: { xs: 1, sm: 2, md: 4, xl: 10 } }}>
-            <Button onClick={handleCompanyLogo} component={Link} to="/">
+            <Button onClick={() => setValue(0)} component={Link} to="/">
               <Logo src={logo} alt="logo" />
             </Button>
-            {smaller ? DrawerMenu : TabsMenu}
+            {isMobile ? DrawerMenu : TabsMenu}
           </Toolbar>
         </AppBarStyled>
       </ElevationScroll>

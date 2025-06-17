@@ -123,7 +123,7 @@ const Footer = ({ setValue, setSelected }) => {
               <Typography variant="h6" gutterBottom sx={{ fontSize: "0.7rem" }}>
                 USEFUL LINKS
               </Typography>
-              {["Your Account", "Become an Affiliate", "Shipping Rates", "Help"].map(
+              {["Your Account", "Help"].map(
                 (item, i) => (
                   <Typography
                     key={i}
@@ -239,3 +239,5 @@ const Footer = ({ setValue, setSelected }) => {
 };
 
 export default Footer;
+
+
