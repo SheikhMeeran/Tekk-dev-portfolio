@@ -99,9 +99,8 @@ const Footer = ({ setValue, setSelected }) => {
               </Typography>
               {[
                 "Cyber Security",
-                "Web development",
-                "Software development",
-                "Mobile app development",
+                "Full Stack Development",
+                
               ].map((item, i) => (
                 <Typography key={i} variant="body2" sx={{ mt: 1, fontSize: "0.7rem" }}>
                   {item}

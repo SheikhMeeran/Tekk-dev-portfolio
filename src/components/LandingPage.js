@@ -43,7 +43,7 @@ const LandingPage = (props) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setCurrentIndex((prev) => (prev + 1) % imagePaths.length);
-    }, 3000); // 3 seconds delay
+    }, 10000); // 10 seconds
     return () => clearTimeout(timer);
   }, [currentIndex]);
 
@@ -105,27 +105,41 @@ const LandingPage = (props) => {
           )}
         </Box>
 
-        {/* Hero Text */}
-        <Container maxWidth="lg" sx={{ py: { xs: 6, sm: 8 }, textAlign: "center" }}>
-          <Typography
-            variant="h2"
-            gutterBottom
-            sx={{
-              fontSize: { xs: "1.4rem", sm: "2.2rem", md: "3rem" },
-              fontWeight: 600,
-            }}
-          >
-            {textLines[currentIndex]}
-          </Typography>
+        {/* Hero Text + Buttons */}
+        <Container
+          maxWidth="lg"
+          sx={{
+            py: { xs: 4, sm: 6 },
+            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Box sx={{ maxWidth: "900px" }}>
+            <Typography
+              variant="h2"
+              gutterBottom
+              sx={{
+                fontSize: { xs: "1.2rem", sm: "1.6rem", md: "2rem" },
+                fontWeight: 600,
+                mb: 4,
+              }}
+            >
+              {textLines[currentIndex]}
+            </Typography>
+          </Box>
 
           <Box
             sx={{
-              mt: 4,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               gap: 2,
               flexWrap: "wrap",
+              position: "relative",
+              zIndex: 2,
+              mt: 2,
             }}
           >
             <Button
@@ -174,6 +188,9 @@ const LandingPage = (props) => {
                 fontSize: "1rem",
                 fontFamily: "Roboto",
                 textTransform: "none",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 "&:hover": {
                   backgroundColor: "#166EE9",
                   color: "#fff",
@@ -181,7 +198,9 @@ const LandingPage = (props) => {
               }}
             >
               Learn More
-              <ButtonArrow width={25} height={18} fill="black" />
+              <Box sx={{ ml: 1 }}>
+                <ButtonArrow width={25} height={18} fill="black" />
+              </Box>
             </Button>
           </Box>
         </Container>

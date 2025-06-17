@@ -32,23 +32,30 @@ const ToolbarMargin = styled("div")(({ theme }) => ({
 }));
 
 const Logo = styled("img")(({ theme }) => ({
-  height: "6.5em",
-  [theme.breakpoints.down("md")]: { height: "4.9em" },
-  [theme.breakpoints.down("sm")]: { height: "4em" },
+  height: "3.5em",
+  width: "auto",
+  [theme.breakpoints.down("md")]: { height: "3.5em" },
+  [theme.breakpoints.down("sm")]: { height: "3em" },
+  [theme.breakpoints.up("xl")]: { height: "5.5em" },
 }));
 
 const TabStyled = styled(Tab)(({ theme }) => ({
-  minWidth: 9,
+  minWidth: 10,
   textTransform: "none",
-  fontWeight: 600,
-  fontSize: "1rem",
+  fontSize: "0.8rem",
+  fontWeight: 500,
   color: "#000",
+  padding: theme.spacing(1.5, 2),
+  [theme.breakpoints.up("xl")]: {
+    fontSize: "1.1rem",
+    padding: theme.spacing(2, 3),
+  },
   "&:hover": {
     color: theme.palette.primary.main,
   },
   "&.Mui-selected": {
     color: theme.palette.primary.main,
-    fontWeight: 700,
+    fontWeight: 500,
   },
 }));
 
@@ -57,8 +64,13 @@ const EstimateButton = styled(Button)(({ theme }) => ({
   padding: "0.4em 1em",
   textTransform: "none",
   fontWeight: 600,
+  fontSize: "0.9rem",
   backgroundColor: theme.palette.primary.main,
   color: "#fff",
+  [theme.breakpoints.up("xl")]: {
+    fontSize: "1rem",
+    padding: "0.6em 1.5em",
+  },
   "&:hover": {
     backgroundColor: theme.palette.primary.dark,
   },
@@ -68,6 +80,10 @@ const AppBarStyled = styled(AppBar)(({ theme }) => ({
   zIndex: theme.zIndex.modal + 1,
   backgroundColor: theme.palette.common.white,
   boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+  padding: theme.spacing(0, 1),
+  [theme.breakpoints.up("xl")]: {
+    padding: theme.spacing(0, 6),
+  },
 }));
 
 const ElevationScroll = ({ children }) => {
@@ -251,8 +267,16 @@ const Header = ({ value, setValue, selected, setSelected }) => {
                           handleClose();
                         }}
                         sx={{
-                          fontWeight: 600,
-                          fontSize: "0.9rem",
+                          fontWeight: 400,
+                          fontSize: {
+                            xs: "0.85rem",
+                            md: "0.9rem",
+                            xl: "1rem",
+                          },
+                          px: {
+                            xs: 2,
+                            xl: 3,
+                          },
                           backgroundColor: isSelected
                             ? theme.palette.primary.main
                             : "inherit",
@@ -262,7 +286,7 @@ const Header = ({ value, setValue, selected, setSelected }) => {
                           "&:hover": {
                             backgroundColor: theme.palette.primary.dark,
                             color: "#ffffff",
-                            fontWeight: 600,
+                            fontWeight: 500,
                           },
                         }}
                       >
@@ -283,7 +307,7 @@ const Header = ({ value, setValue, selected, setSelected }) => {
     <>
       <ElevationScroll>
         <AppBarStyled position="fixed" elevation={0}>
-          <Toolbar disableGutters sx={{ px: { xs: 1, sm: 2, md: 4 } }}>
+          <Toolbar disableGutters sx={{ px: { xs: 1, sm: 2, md: 4, xl: 10 } }}>
             <Button onClick={handleCompanyLogo} component={Link} to="/">
               <Logo src={logo} alt="logo" />
             </Button>

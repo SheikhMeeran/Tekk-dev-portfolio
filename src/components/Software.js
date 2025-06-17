@@ -29,6 +29,8 @@ import Cloud from "../assets/Cloud Assessment.jpg";
 import Manage from "../assets/Managed App Sec.jpeg";
 import Digital from "../assets/Digital Transformation .jpg";
 import Consultancy from "../assets/Consultancy .jpg";
+import { Container } from "@mui/material";
+
 
 // import TechStack from "./TechStack";
 
@@ -215,56 +217,63 @@ const Software = (props) => {
   {/* LEFT SIDE - TEXT */}
 
 
-  <Grid item xs={12} md={6} container direction="column" spacing={0} className={classes.heading}>
-    <Grid item>
-      <Typography
-        variant="h2"
-        align={smaller ? "center" : "left"}
-        gutterBottom
-      >
-a)	Governance, Risk and Compliance (GRC)      </Typography>
-    </Grid>
+ <Container maxWidth="xl">
+  <Box
+    sx={{
+      width: { xs: '100%', md: '60%' },
+      marginLeft: { xs: 0, md: '0' }, // left aligned
+      marginRight: 'auto',           // keep it aligned to left
+    }}
+  >
 
-    <Grid item>
-      <Typography variant="body1" paragraph>
-       Governance, Risk and Compliance (GRC) is the strategic and secure approach to manage the security risks, to help strategize and enable their business objectives to be compliant with regulatory requirements. The key components of GRC are
-      </Typography>
-      <Typography variant="body1" paragraph>
-        ❖ Governance: Includes establishing a framework for organization technology infrastructure, covering policies, procedures, roles and responsibilities 
-      </Typography>
-      <Typography variant="body1" paragraph>
-        ❖ Risk Management: Identify assess, manage vulnerabilities and threats that can compromise 
-      </Typography>
-      <Typography variant="body1" paragraph>
-        ❖ Compliance: Adhere to industry identified mandatory regulations, applicable laws and internal policies
-      </Typography>
-       <Typography
-        variant="h2"
-        align={smaller ? "center" : "left"}
-        gutterBottom
-      >
-       The benefits of GRC      </Typography>
-       <Typography variant="body1" paragraph>
-        •	Reduced Risk
-      </Typography>
-       <Typography variant="body1" paragraph>
-      •	Improved Compliance 
-      </Typography>
-       <Typography variant="body1" paragraph>
-        •	Security Robustness
-      </Typography>
-       <Typography variant="body1" paragraph>
-        •	Strategically aligning with business goals 
-      </Typography>
+    
+    <Grid container direction="column" spacing={2}>
+      <Grid item>
+        <Typography
+          variant="h5"
+          align={smaller ? "center" : "left"}
+          gutterBottom
+        >
+          a) Governance, Risk and Compliance (GRC):
+        </Typography>
+      </Grid>
+
+      <Grid item>
+        <Typography variant="body1" paragraph>
+          Governance, Risk and Compliance (GRC) is the strategic and secure approach to manage the security risks, to help strategize and enable their business objectives to be compliant with regulatory requirements. The key components of GRC are
+        </Typography>
+        <Typography variant="body1" paragraph>
+          ❖ <strong>Governance:</strong> Includes establishing a framework for organization technology infrastructure, covering policies, procedures, roles and responsibilities 
+        </Typography>
+        <Typography variant="body1" paragraph>
+          ❖ <strong>Risk Management:</strong> Identify, assess, manage vulnerabilities and threats that can compromise
+        </Typography>
+        <Typography variant="body1" paragraph>
+          ❖ <strong>Compliance:</strong> Adhere to industry-identified mandatory regulations, applicable laws, and internal policies
+        </Typography>
+
+        <Typography
+          variant="h5"
+          align={smaller ? "center" : "left"}
+          gutterBottom
+        >
+          The benefits of GRC
+        </Typography>
+        <Typography variant="body1" >• Reduced Risk</Typography>
+        <Typography variant="body1" >• Improved Compliance</Typography>
+        <Typography variant="body1" >• Security Robustness</Typography>
+        <Typography variant="body1" >• Strategically aligning with business goals</Typography>
+      </Grid>
     </Grid>
-  </Grid>
+  </Box>
+</Container>
 
   {/* RIGHT SIDE - IMAGE */}
   <Grid item xs={12} md={6}>
     <img
       src={GRC}
       alt="GRC"
-      style={{ width: '100%', height: 'auto', marginLeft:'60px',marginBottom:'390px'}}
+      style={{ width: '100%', height: 'auto'}}
     />
   </Grid>
 </Grid>
@@ -280,33 +289,53 @@ a)	Governance, Risk and Compliance (GRC)      </Typography>
 {/* part 2 */}
 <Grid container spacing={4} alignItems="center">
   {/* LEFT SIDE - TEXT */}
-  <Grid item xs={12} md={6} container direction="column" spacing={1} className={classes.heading}>
+  
+<Box
+  sx={{
+    width: '60%',
+    mx: 'auto', // center horizontally
+  }}
+>
+  <Grid
+    item
+    xs={12}
+    md={6}
+    container
+    direction="column"
+    spacing={1}
+    className={classes.heading}
+  >
     <Grid item>
       <Typography
-        variant="h2"
-        align={smaller ? "center" : "left"}
+        variant="h5"
+        align={smaller ? 'center' : 'left'}
         gutterBottom
       >
-b)	Cloud Assessment       </Typography>
+        b) Cloud Assessment
+      </Typography>
     </Grid>
 
     <Grid item>
-      
       <Typography variant="body1" paragraph>
-        ❖ Cloud based business over the years is now the preferred modality of hosting applications these days, but as maturity is in the process to be achieved. We “Do More”.
+        ❖ Cloud based business over the years is now the preferred modality of
+        hosting applications these days, but as maturity is in the process to
+        be achieved. We “Do More”.
       </Typography>
       <Typography variant="body1" paragraph>
-        ❖ Our Cloud Security Analysts perform complete, holistic mapping of your cloud architecture to prevent breaches, threats and ensure risks are mitigated.
+        ❖ Our Cloud Security Analysts perform complete, holistic mapping of
+        your cloud architecture to prevent breaches, threats and ensure risks
+        are mitigated.
       </Typography>
     </Grid>
   </Grid>
+</Box>
 
   {/* RIGHT SIDE - IMAGE */}
   <Grid item xs={12} md={6}>
     <img
       src={Cloud}
       alt="Incident Response"
-      style={{ width: '370px', height: 'auto' ,marginLeft:'90px' }}
+      style={{ width: '100%', height: 'auto' }}
     />
   </Grid>
   
@@ -322,39 +351,53 @@ b)	Cloud Assessment       </Typography>
 {/* part 3 */}
 <Grid container spacing={4} alignItems="center">
   {/* LEFT SIDE - TEXT */}
-  <Grid item xs={12} md={6} container direction="column" spacing={1} className={classes.heading}>
+ <Box
+  sx={{
+    width: { xs: '100%', md: '60%' }, // full width on small screens, 60% on medium and up
+    mx: 'auto', // center horizontally
+  }}
+>
+  <Grid
+    item
+    xs={12}
+    md={6}
+    container
+    direction="column"
+    spacing={1}
+    className={classes.heading}
+  >
     <Grid item>
       <Typography
-        variant="h2"
-        align={smaller ? "center" : "left"}
+        variant="h5"
+        align={smaller ? 'center' : 'left'}
         gutterBottom
       >
-        c)	Vulnerability Assessment & Penetration Testing
+        c) Vulnerability Assessment & Penetration Testing
       </Typography>
     </Grid>
 
     <Grid item>
       <Typography variant="body1" paragraph>
-        Vulnerability assessment is not just identifying weaknesses within the system but for us to lay down the understanding on the way to strengthen the entire business ecosystem. Penetration Testing a critical part of cybersecurity, commonly referred as “Pen Test” is the simulated authorized challenge performed on a computer system to evaluate the security of the system and is a separate activity.  Our Experienced ‘PenTest” engineers are skilled to perform;
+        Vulnerability assessment is not just identifying weaknesses within the system but for us to lay down the understanding on the way to strengthen the entire business ecosystem. Penetration Testing a critical part of cybersecurity, commonly referred as “Pen Test” is the simulated authorized challenge performed on a computer system to evaluate the security of the system and is a separate activity. Our Experienced ‘PenTest” engineers are skilled to perform;
       </Typography>
       <Typography variant="body1" paragraph>
-        ❖ “Blackbox Pen Test” 
+        ❖ “Blackbox Pen Test”
       </Typography>
       <Typography variant="body1" paragraph>
-        ❖ “GreyBox Pen Test” 
+        ❖ “GreyBox Pen Test”
       </Typography>
       <Typography variant="body1" paragraph>
         ❖ “WhiteBox Pen Test”.
       </Typography>
     </Grid>
   </Grid>
-
+</Box>
   {/* RIGHT SIDE - IMAGE */}
   <Grid item xs={12} md={6}>
     <img
       src={VAPT}
       alt="Incident Response"
-      style={{ width: '370px', height: 'auto',  marginLeft:'90px' }}
+      style={{ width: '100%', height: 'auto'}}
     />
   </Grid>
 </Grid>
@@ -363,36 +406,51 @@ b)	Cloud Assessment       </Typography>
 
 <Grid container spacing={4} alignItems="center">
   {/* LEFT SIDE - TEXT */}
-  <Grid item xs={12} md={6} container direction="column" spacing={1} className={classes.heading}>
+  <Box
+  sx={{
+    width: { xs: '100%', md: '60%' },
+    mx: 'auto',
+    px: 2,
+    py: 3,
+    textAlign: 'left', // ensures all text is left-aligned
+  }}
+>
+  <Grid
+    container
+    direction="column"
+    spacing={1}
+    className={classes.heading}
+  >
     <Grid item>
       <Typography
-        variant="h2"
-        align={smaller ? "center" : "left"}
+        variant="h5"
+        align="left" // force heading alignment to left
         gutterBottom
       >
-d)	Incident Response       </Typography>
+        d) Incident Response
+      </Typography>
     </Grid>
 
     <Grid item>
       <Typography variant="body1" paragraph>
-       Unfortunately, incidents do occur. When the incident occurs our preferred way to handle in such a way that minimal interruptions to work occur and recovery times are negligible.  Our Incident Response team;
+        Unfortunately, incidents do occur. When the incident occurs our preferred way to handle in such a way that minimal interruptions to work occur and recovery times are negligible. Our Incident Response team;
       </Typography>
       <Typography variant="body1" paragraph>
-        ❖ Works closely with C-suite, Security, Technology and Legal and as needed HR teams. 
+        ❖ Works closely with C-suite, Security, Technology and Legal and as needed HR teams.
       </Typography>
       <Typography variant="body1" paragraph>
         ❖ Provide simplified written instructions, guidelines and maintain checklists to help build proactiveness to respond to a repeat incident.
       </Typography>
-      
     </Grid>
   </Grid>
+</Box>
 
   {/* RIGHT SIDE - IMAGE */}
   <Grid item xs={12} md={6}>
     <img
       src={Incident}
       alt="Incident Response"
-      style={{ width: '90%', height: 'auto', marginLeft:'5.5em' }}
+      style={{ width: '100%', height: 'auto' }}
     />
   </Grid>
 </Grid>
@@ -404,19 +462,34 @@ d)	Incident Response       </Typography>
 
 <Grid container spacing={4} alignItems="center">
   {/* LEFT SIDE - TEXT */}
-  <Grid item xs={12} md={6} container direction="column" spacing={1} className={classes.heading}>
+  <Box
+  sx={{
+    width: { xs: '100%', md: '60%' }, // responsive width
+    mx: 'auto', // center horizontally
+    px: 2,
+    py: 3,
+    textAlign: 'left', // force all inner text to align left
+  }}
+>
+  <Grid
+    container
+    direction="column"
+    spacing={1}
+    className={classes.heading}
+  >
     <Grid item>
       <Typography
-        variant="h2"
-        align={smaller ? "center" : "left"}
+        variant="h5"
+        align="left"
         gutterBottom
       >
-e)	Managed AppSec       </Typography>
+        e) Managed AppSec
+      </Typography>
     </Grid>
 
     <Grid item>
       <Typography variant="body1" paragraph>
-     We will do it “just for you“ as your Managed Application Security Service partner in business.
+        We will do it “just for you“ as your Managed Application Security Service partner in business.
       </Typography>
       <Typography variant="body1" paragraph>
         ❖ To plan extended capability to do continuous monitoring
@@ -433,16 +506,16 @@ e)	Managed AppSec       </Typography>
       <Typography variant="body1" paragraph>
         ❖ Keep up-to-date with rules and compliances
       </Typography>
-      
     </Grid>
   </Grid>
+</Box>
 
   {/* RIGHT SIDE - IMAGE */}
   <Grid item xs={12} md={6}>
     <img
       src={Managed}
       alt="Incident Response"
-      style={{ width: '380px', height: 'auto', marginLeft:'13em',}}
+      style={{ width: '100%', height: 'auto'}}
     />
   </Grid>
 </Grid>
@@ -456,19 +529,34 @@ e)	Managed AppSec       </Typography>
 
 <Grid container spacing={4} alignItems="center">
   {/* LEFT SIDE - TEXT */}
-  <Grid item xs={12} md={6} container direction="column" spacing={1} className={classes.heading}>
+  <Box
+  sx={{
+    width: { xs: '100%', md: '60%' }, // full width on small screens, 60% on medium and up
+    mx: 'auto', // horizontal centering
+    px: 2,
+    py: 3,
+    textAlign: 'left', // force text alignment
+  }}
+>
+  <Grid
+    container
+    direction="column"
+    spacing={1}
+    className={classes.heading}
+  >
     <Grid item>
       <Typography
-        variant="h2"
-        align={smaller ? "center" : "left"}
+        variant="h5"
+        align="left"
         gutterBottom
       >
-f)	Consultancy & Advisory      </Typography>
+        f) Consultancy & Advisory
+      </Typography>
     </Grid>
 
     <Grid item>
       <Typography variant="body1" paragraph>
-      As your consultant and advisor partner to help secure your business
+        As your consultant and advisor partner to help secure your business
       </Typography>
       <Typography variant="body1" paragraph>
         ❖ Test true capability of the system while working as the attacker and defender.
@@ -482,16 +570,16 @@ f)	Consultancy & Advisory      </Typography>
       <Typography variant="body1" paragraph>
         ❖ List down potential security weakness to help develop security policies, rules and procedures.
       </Typography>
-      
     </Grid>
   </Grid>
+</Box>
 
   {/* RIGHT SIDE - IMAGE */}
   <Grid item xs={12} md={6}>
     <img
       src={Consultancy}
       alt="Incident Response"
-      style={{ width: '380px', height: 'auto', marginLeft:'10em'}}
+      style={{ width: '100%', height: 'auto'}}
     />
   </Grid>
 </Grid>
@@ -505,19 +593,34 @@ f)	Consultancy & Advisory      </Typography>
 
 <Grid container spacing={4} alignItems="center">
   {/* LEFT SIDE - TEXT */}
-  <Grid item xs={12} md={6} container direction="column" spacing={1} className={classes.heading}>
+ <Box
+  sx={{
+    width: { xs: '100%', md: '60%' },
+    mx: 'auto',
+    px: 2,
+    py: 3,
+    textAlign: 'left',
+  }}
+>
+  <Grid
+    container
+    direction="column"
+    spacing={1}
+    className={classes.heading}
+  >
     <Grid item>
       <Typography
-        variant="h2"
-        align={smaller ? "center" : "left"}
+        variant="h5"
+        align="left"
         gutterBottom
       >
-g)	Digital Transformation     </Typography>
+        g) Digital Transformation
+      </Typography>
     </Grid>
 
     <Grid item>
       <Typography variant="body1" paragraph>
-     New technologies, new CS languages, new requirements all lead to constant   need for applications to be updated so risks and threats are outsmarted.
+        New technologies, new CS languages, new requirements all lead to constant need for applications to be updated so risks and threats are outsmarted.
       </Typography>
       <Typography variant="body1" paragraph>
         ❖ Our Approach is practical and Case Centric
@@ -537,16 +640,15 @@ g)	Digital Transformation     </Typography>
       <Typography variant="body1" paragraph>
         ❖ Scalable implementation methodologies 
       </Typography>
-      
     </Grid>
   </Grid>
-
+</Box>
   {/* RIGHT SIDE - IMAGE */}
   <Grid item xs={12} md={6}>
     <img
       src={Digital}
       alt="Incident Response"
-      style={{ width: '380px', height: 'auto', marginLeft:'6em'}}
+      style={{ width: '100%', height: 'auto'}}
     />
   </Grid>
 </Grid>
@@ -658,14 +760,12 @@ and help the Earth.         </Typography>
       >
         <Grid item xs={12} md={6}>
           <Typography variant="h4" gutterBottom>
-            Scale
-          </Typography>
+     Right way forward           </Typography>
           <Typography variant="body1" paragraph>
-  Whether you’re a large brand, just getting started, or taking off right now, our application architecture ensures       </Typography>
+  Whether you’re a large brand, just gettWhether you're a growing startup, an established enterprise, or scaling fast, our tailored software architecture adapts to your unique needs—ensuring seamless growth, high performance, and long-term reliability.  
+      </Typography>
           
-          <Typography variant="body1" paragraph>
-          pain-free growth and reliability.
-          </Typography>
+        
         </Grid>
         <Grid item xs={12} md={6} display="flex" justifyContent={medium ? "center" : "flex-end"}>
           {/* {automationAnimationJSX} */}
