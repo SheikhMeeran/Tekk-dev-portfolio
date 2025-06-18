@@ -135,11 +135,14 @@ const Websites = (props) => {
                         paragraph
                         sx={{ fontSize: "0.95rem", lineHeight: 1.6 }}
                       >
-                        Our Software Development Methodology operates on
-                        flexible, cost-effective engagement options, our
-                        cross-functional professionals can function as short- or
-                        long-term solutions for your development needs...
+                       Our Software Development Methodology operates on flexible, cost-effective engagement options, our cross-functional professionals can function as short- or long-term solutions for your development needs. Our development focus is to ensure the requirements are gathered, complete analysis is performed, scope is outlined, design is discussed and agreed with the client before development phase commences and all development is completed with unit testing, modular and integration testing before software development is marked completed and ready to be deployed on client site. All code is version controlled and secured.
                       </Typography>
+                      <Typography
+                        variant="body1"
+                        paragraph
+                        sx={{ fontSize: "0.95rem", lineHeight: 1.6 }}
+                      >
+Our experienced team with years of expertise on various verticals (Healthcare, NFT, Blockchain, CRM) with successful track record of completing large to mid-size software development projects as web application, healthcare enterprise applications, mobile app & digital footprint management. We are experts and specialize in                       </Typography>
 
                       <Typography
                         variant="h6"
@@ -157,9 +160,7 @@ const Websites = (props) => {
                         paragraph
                         sx={{ fontSize: "0.95rem", lineHeight: 1.6 }}
                       >
-                        We have in-house subject matter expert who has completed
-                        specialized projects... built on best healthcare
-                        practices, paperless, modular, interoperable...
+                    We have in-house subject matter expert who has completed specialized projects  with experience to have developed, deployed, implemented healthcare applications in .Net, .NET MVC, Java, J2EE, for clients in USA, UAE, KSA, and Pakistan. The product included scalability for a wide variety of projects in Hospital information system, Dental Solutions, Practice Management Solutions, Ambulance Systems which were conceptulaized, designed, developed and deployed successfully. All applications developed were HIPAA compliant, built on best healthcare practices, paperless, modular, interoperable and incorporated with data standards (CPT, ICD-10, SNOWMED, LOINC, CDSS) using IHE protocols. All applications seamlessly interfaced with PACS, 3rd party LIMS as well as connecting directly with lab machines using HL7, FHIR standards.
                       </Typography>
 
                       <Typography
@@ -178,9 +179,7 @@ const Websites = (props) => {
                         paragraph
                         sx={{ fontSize: "0.95rem", lineHeight: 1.6 }}
                       >
-                        We create customized NFT marketplaces... platforms
-                        according to your business requirements... where you can
-                        create, buy, sell and store these NFTs...
+                        We create customized NFT marketplaces, which are basically decentralized platforms. We create such platforms according to your business requirements, where you can create, buy, sell and store these NFTs. We focus on developing a marketplace that has a unique selling point, which can grow very quickly to form a crypto-community.
                       </Typography>
                     </Box>
 

@@ -92,8 +92,8 @@ const Footer = ({ setValue, setSelected }) => {
                 SERVICES
               </Typography>
               {[
-                { label: "Cyber Security", to: "/cyber" },
-                { label: "Software Development", to: "/software" },
+                { label: "Cyber Security", to: "/software" },
+                { label: "Software Development", to: "/website" },
               ].map((item, i) => (
                 <Typography
                   key={i}
@@ -189,7 +189,7 @@ const Footer = ({ setValue, setSelected }) => {
           <Typography sx={{ color: "gray", fontSize: "0.7rem", mr: 1 }}>
             Get connected with us on social networks!
           </Typography>
-          {[LinkedIn, Instagram].map((Icon, i) => {
+          {[ LinkedIn, Instagram].map((Icon, i) => {
             const links = [
               
               
