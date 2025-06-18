@@ -41,7 +41,7 @@ const Logo = styled("img")(() => ({
 const TabStyled = styled(Tab)(() => ({
   minWidth: 10,
   textTransform: "none",
-  fontSize: "0.6rem",
+  fontSize: "0.7rem",
   fontWeight: 500,
   color: "#000",
   padding: "0.5rem 1rem",
