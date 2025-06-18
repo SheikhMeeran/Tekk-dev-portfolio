@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Grid,
@@ -6,6 +6,7 @@ import {
   useMediaQuery,
   Avatar,
   Container,
+  Button,
 } from "@mui/material";
 import { useTheme, styled } from "@mui/material/styles";
 import { motion } from "framer-motion";
@@ -29,8 +30,19 @@ const StyledAvatar = styled(Avatar)(({ theme }) => ({
 const About = (props) => {
   const theme = useTheme();
   const isSm = useMediaQuery(theme.breakpoints.down("sm"));
-  const isXs = useMediaQuery(theme.breakpoints.down("xs"));
-  const isMd = useMediaQuery(theme.breakpoints.down("md"));
+  const [expanded, setExpanded] = useState(false);
+
+  const handleToggle = () => {
+    setExpanded(!expanded);
+  };
+
+  const aboutText = `
+TekkDev, is a software development and cybersecurity company established as part of joint venture of Computer Marketing Company (CMC) and GCS Pvt Ltd. CMC and GCS are both leading companies in the field of Information & Communication Technology (ICT) in Pakistan where GCS has expanded operations internationally in Nigeria, South Africa, Turkey, UAE in the last few years.
+
+TekkDev, currently established operations in Pakistan, engages in designing of bespoke customized software solutions in private sector on latest technology stack. TekkDev solution design is on customers requirements to upgrade existing software through intelligent components with reduced development effort and on modular or microservices architecture. TekkDev has a range of seasoned subject matter experts for Healthcare vertical, to design, develop implement a seamless, end to end software solution or provide a world class patient centric hospital systems.
+
+TekkDev Cybersecurity professionals trained locally and internationally with years of established experience of building secure infrastructure for a large size national and multinational organizations. They excel in designing of the governance framework, performing vulnerability assessment and penetration testing, incident reporting, performing cloud assessments to design a scalable secure cloud based architecture, help client achieve ISO27001 and scaling up the organization capability through inducting of NIST framework. TekkDev Cybersecurity consultants have an established track record in helping organization’s evaluate and improve on designing and implementing of security controls and policies.
+`;
 
   const teamMembers = [
     {
@@ -63,70 +75,55 @@ const About = (props) => {
             px: { xs: 3, sm: 6 },
             mt: { xs: 3, sm: 6 },
             mb: { xs: 2, sm: 4 },
-            textAlign: { xs: "center", sm: "left" },
+            textAlign: "left",
           }}
         >
           <Typography
-            variant="h2"
+            variant="h5"
             gutterBottom
-            sx={{ fontWeight: 600, fontSize: { xs: "2.5rem", md: "1.5rem", sm: "1rem" } }}
+            sx={{ fontWeight: 600, fontSize: "0.95rem" }}
           >
             About Us
           </Typography>
         </Box>
 
-        {/* About Statement */}
+        {/* About Text */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <Grid container>
-            <Typography
-              variant="h5"
+          <Typography
+            variant="body2"
+            sx={{
+              fontWeight: 400,
+              fontSize: "0.95rem",
+              lineHeight: 1.8,
+              px: { xs: 2, sm: 6 },
+              textAlign: "left",
+              whiteSpace: "pre-line",
+              display: "-webkit-box",
+              WebkitLineClamp: expanded ? "none" : 8,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+              transition: "all 0.3s ease-in-out",
+            }}
+          >
+            {aboutText}
+          </Typography>
+
+          <Box sx={{ px: { xs: 2, sm: 6 }, mt: 2 }}>
+            <Button
+              onClick={handleToggle}
               sx={{
-                fontWeight: 400,
-                fontSize: "1rem",
-                lineHeight: 1.8,
-                maxWidth: "60em",
-                px: { xs: 2, sm: 6 },
-                mb: 8,
-                textAlign: "left",
+                fontSize: "0.85rem",
+                textTransform: "none",
+                px: 0,
               }}
             >
-              TekkDev, is a software development and cybersecurity company
-              established as part of joint venture of Computer Marketing
-              Company (CMC) and GCS Pvt Ltd. CMC and GCS are both leading
-              companies in the field of Information & Communication Technology
-              (ICT) in Pakistan where GCS has expanded operations internationally
-              in Nigeria, South Africa, Turkey, UAE in the last few years.
-              <br />
-              <br />
-              TekkDev, currently established operations in Pakistan, engages in
-              designing of bespoke customized software solutions in private
-              sector on latest technology stack. TekkDev solution design is on
-              customers requirements to upgrade existing software through
-              intelligent components with reduced development effort and on
-              modular or microservices architecture. TekkDev has a range of
-              seasoned subject matter experts for Healthcare vertical, to
-              design, develop implement a seamless, end to end software solution
-              or provide a world class patient centric hospital systems.
-              <br />
-              <br />
-              TekkDev Cybersecurity professionals trained locally and
-              internationally with years of established experience of building
-              secure infrastructure for a large size national and multinational
-              organizations. They excel in designing of the governance framework,
-              performing vulnerability assessment and penetration testing,
-              incident reporting, performing cloud assessments to design a
-              scalable secure cloud based architecture, help client achieve
-              ISO27001 and scaling up the organization capability through
-              inducting of NIST framework. TekkDev Cybersecurity consultants
-              have an established track record in helping organization’s evaluate
-              and improve on designing and implementing of security controls and
-              policies.
-            </Typography>
-          </Grid>
+              {expanded ? "Read Less" : "Read More"}
+            </Button>
+          </Box>
         </motion.div>
 
         {/* Mission Section */}
@@ -137,58 +134,77 @@ const About = (props) => {
         >
           <Grid
             container
-            direction="row"
-            alignItems="center"
-            justifyContent="center"
             spacing={4}
-            sx={{ px: { xs: 2, sm: 6 }, mb: 10 }}
+            sx={{
+              px: { xs: 2, sm: 6 },
+              my: 6,
+              alignItems: "center",
+              flexDirection: { xs: "column", md: "row" },
+            }}
           >
-            {isMd && (
-              <Grid item lg sx={{ textAlign: "center", maxWidth: isXs ? "80%" : "30em" }}>
-                <Box
-                  component="img"
-                  src={history}
-                  alt="Company history infographic"
-                  sx={{ maxWidth: "100%" }}
-                />
-              </Grid>
-            )}
-
+            {/* Text Left */}
             <Grid
               item
-              container
-              direction="column"
-              alignItems={isSm ? "center" : "flex-start"}
-              lg
-              sx={{ maxWidth: "50em" }}
+              xs={12}
+              md={7}
+              sx={{
+                order: { xs: 1, md: 1 },
+                textAlign: "left",
+              }}
             >
-              <Typography variant="h3" gutterBottom>
+              <Typography
+                variant="h5"
+                gutterBottom
+                sx={{ fontWeight: 600, fontSize: "0.95rem" }}
+              >
                 Mission
               </Typography>
-              <Typography variant="body1" paragraph>
+              <Typography
+                variant="body2"
+                paragraph
+                sx={{ fontSize: "0.95rem" }}
+              >
                 TekkDev strives to deliver quality security assessment & consulting by:
               </Typography>
-              <Typography variant="body1" paragraph>✔ Proactive security analysis</Typography>
-              <Typography variant="body1" paragraph>✔ Instilling security awareness</Typography>
-              <Typography variant="body1" paragraph>
+              <Typography variant="body2" paragraph sx={{ fontSize: "0.95rem" }}>
+                ✔ Proactive security analysis
+              </Typography>
+              <Typography variant="body2" paragraph sx={{ fontSize: "0.95rem" }}>
+                ✔ Instilling security awareness
+              </Typography>
+              <Typography variant="body2" paragraph sx={{ fontSize: "0.95rem" }}>
                 ✔ Developing robust security architectures for resilient systems
               </Typography>
             </Grid>
 
-            {!isMd && (
-              <Grid item lg sx={{ textAlign: "center", maxWidth: "30em" }}>
-                <Box
-                  component="img"
-                  src={history}
-                  alt="Company history infographic"
-                  sx={{ maxWidth: "100%" }}
-                />
-              </Grid>
-            )}
-
-            <Testimonials />
+            {/* Image Right - Adjusted */}
+            <Grid
+              item
+              xs={12}
+              md={5}
+              sx={{
+                textAlign: "center",
+                order: { xs: 2, md: 2 },
+              }}
+            >
+              <Box
+                component="img"
+                src={history}
+                alt="Mission Illustration"
+                sx={{
+                  maxWidth: 300,
+                  width: "100%",
+                  borderRadius: 2,
+                  ml: { md: 8 },
+                  mr: { md: -4 },
+                }}
+              />
+            </Grid>
           </Grid>
         </motion.div>
+
+        {/* Testimonials */}
+        <Testimonials />
 
         {/* Team Section */}
         <motion.div
@@ -197,17 +213,19 @@ const About = (props) => {
           transition={{ duration: 0.6 }}
         >
           <Box sx={{ textAlign: "center", mb: 4 }}>
-            <Typography variant="h3" sx={{ fontWeight: 600 }}>
+            <Typography
+              variant="h5"
+              sx={{ fontWeight: 600, fontSize: "0.95rem" }}
+            >
               Team
             </Typography>
           </Box>
 
           <Grid
             container
-            direction="row"
             justifyContent="center"
             spacing={4}
-            sx={{ px: { xs: 2, sm: 6 }, flexWrap: "wrap", mb: 12 }}
+            sx={{ px: { xs: 2, sm: 6 }, mb: 12 }}
           >
             {teamMembers.map((member, index) => (
               <Grid
@@ -224,13 +242,20 @@ const About = (props) => {
                   alt={`${member.name}'s profile`}
                   sx={{ mx: "auto" }}
                 />
-                <Typography variant="h5" sx={{ mt: 2, fontWeight: 600 }}>
+                <Typography
+                  variant="h5"
+                  sx={{ mt: 2, fontWeight: 600, fontSize: "0.95rem" }}
+                >
                   {member.name}
                 </Typography>
                 <Typography variant="caption" display="block" gutterBottom>
                   {member.title}
                 </Typography>
-                <Typography variant="body2" paragraph sx={{ mt: 2, textAlign: "justify" }}>
+                <Typography
+                  variant="body2"
+                  paragraph
+                  sx={{ mt: 2, textAlign: "justify", fontSize: "0.95rem" }}
+                >
                   {member.bio}
                 </Typography>
               </Grid>
@@ -239,14 +264,17 @@ const About = (props) => {
         </motion.div>
       </Container>
 
-      {/* Call To Action Full Width Section */}
+      {/* Call to Action */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
         <Box sx={{ width: "100%", mt: 10 }}>
-          <CallToAction setValue={props.setValue} setSelected={props.setSelected} />
+          <CallToAction
+            setValue={props.setValue}
+            setSelected={props.setSelected}
+          />
         </Box>
       </motion.div>
     </>

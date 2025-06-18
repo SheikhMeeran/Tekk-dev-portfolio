@@ -86,14 +86,19 @@ export default function Testimonials() {
         textAlign: 'center',
         color: 'black',
         position: 'relative',
-        background: 'linear-gradient(to right, rgba(255, 255, 255, 0.95)',
+        background: 'linear-gradient(to right, rgba(255, 255, 255, 0.95))',
+        width: '100%',
       }}
     >
-      
-      {/* Main Content */}
-      <Container sx={{ py: 10 }}>
-        <Typography variant="h3" fontWeight={800} color='black' sx={{ fontSize: { xs: 32, sm: 48, lg: 64 } }}>
-       Partners        </Typography>
+      <Container maxWidth="xl" sx={{ py: 10 }}>
+        <Typography
+          variant="h5"
+          fontWeight={600}
+          color="black"
+          sx={{ fontSize: '0.95rem' }}
+        >
+          Partners
+        </Typography>
         <Box
           sx={{
             height: 4,
@@ -104,9 +109,8 @@ export default function Testimonials() {
             borderRadius: 2,
           }}
         />
-        <Typography variant="subtitle1" sx={{ opacity: 0.8, mb: 6 }}>
-"Partners Who Believe in Our Vision"
-
+        <Typography variant="subtitle1" sx={{ opacity: 0.8, mb: 6, fontSize: '0.95rem' }}>
+          "Partners Who Believe in Our Vision"
         </Typography>
 
         {/* Testimonial Card */}
@@ -126,9 +130,10 @@ export default function Testimonials() {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
+              fontSize: '0.95rem',
             }}
           >
-            <Typography variant="body1" sx={{ lineHeight: 1.7 }}>
+            <Typography variant="body1" sx={{ lineHeight: 1.7, fontSize: '0.95rem' }}>
               <FaQuoteLeft style={{ marginRight: 8, color: 'black', fontSize: 24 }} />
               {text}
               <FaQuoteRight style={{ marginLeft: 8, color: 'black', fontSize: 24 }} />
@@ -156,7 +161,7 @@ export default function Testimonials() {
                 sx={{
                   width: isSm ? 64 : 80,
                   height: isSm ? 64 : 80,
-                  border: '4px solid #black',
+                  border: '4px solid black',
                   boxShadow: 3,
                 }}
               />
@@ -179,14 +184,12 @@ export default function Testimonials() {
           </IconButton>
         </Stack>
       </Container>
-
-      
     </Box>
   );
 }
 
 const arrowButtonStyles = {
-  color: 'Black',
+  color: 'black',
   border: '1px solid #ccc',
   width: 44,
   height: 44,

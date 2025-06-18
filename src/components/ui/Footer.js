@@ -28,88 +28,93 @@ const Footer = ({ setValue, setSelected }) => {
         justifyContent="space-between"
         sx={{ px: { xs: 2, md: 6 }, py: 6 }}
       >
-        {/* CONTACT & SERVICES together on small screens */}
         {isSmall ? (
-          <>
-            <Grid container spacing={2}>
-              <Grid item xs={6} sx={{ textAlign: "center" }}>
-                <Typography variant="h6" gutterBottom sx={{ fontSize: "0.7rem" }}>
-                  CONTACT
-                </Typography>
-                <Typography sx={{ fontSize: "0.7rem" }}>📍 Plot 22, Block E2 Block E 2, Gulberg III Lahore, Pakistan</Typography>
-                <Typography sx={{ fontSize: "0.7rem", mt: 1 }}>✉ Info@tekkdev.com</Typography>
-                <Typography sx={{ fontSize: "0.7rem", mt: 1 }}>📞 +92 3244933313</Typography>
-                <Typography sx={{ fontSize: "0.7rem", mt: 1 }}>☎ +92 (42) 3577-4258</Typography>
-              </Grid>
-
-              <Grid item xs={6} sx={{ textAlign: "center" }}>
-                <Typography variant="h6" gutterBottom sx={{ fontSize: "0.7rem" }}>
-                  SERVICES
-                </Typography>
-                {[
-                  "Cyber Security",
-                  "Web development",
-                  "Software development",
-                  "Mobile app development",
-                ].map((item, i) => (
-                  <Typography key={i} variant="body2" sx={{ mt: 1, fontSize: "0.7rem" }}>
-                    {item}
-                  </Typography>
-                ))}
-              </Grid>
+          <Grid container spacing={2}>
+            <Grid item xs={6} sx={{ textAlign: "center" }}>
+              <Typography variant="h6" gutterBottom sx={{ fontSize: "0.7rem" }}>
+                CONTACT
+              </Typography>
+              <Typography sx={{ fontSize: "0.7rem" }}>📍 Plot 22, Block E2 Block E 2, Gulberg III Lahore, Pakistan</Typography>
+              <Typography sx={{ fontSize: "0.7rem", mt: 1 }}>✉ Info@tekkdev.com</Typography>
+              <Typography sx={{ fontSize: "0.7rem", mt: 1 }}>📞 +92 3244933313</Typography>
+              <Typography sx={{ fontSize: "0.7rem", mt: 1 }}>☎ +92 (42) 3577-4258</Typography>
             </Grid>
-          </>
+
+            <Grid item xs={6} sx={{ textAlign: "center" }}>
+              <Typography variant="h6" gutterBottom sx={{ fontSize: "0.7rem" }}>
+                SERVICES
+              </Typography>
+              {[
+                { label: "Cyber Security", to: "/Software" },
+                { label: "Full stack Development", to: "/sercices" },
+                { label: "Software Development", to: "/Websites" },
+              ].map((item, i) => (
+                <Typography
+                  key={i}
+                  component={Link}
+                  to={item.to}
+                  sx={{
+                    mt: 1,
+                    fontSize: "0.7rem",
+                    display: "block",
+                    color: "inherit",
+                    textDecoration: "none",
+                    "&:hover": { textDecoration: "underline" },
+                  }}
+                >
+                  {item.label}
+                </Typography>
+              ))}
+            </Grid>
+          </Grid>
         ) : (
           <>
-            {/* CONTACT */}
             <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "left" }}>
               <Typography variant="h6" gutterBottom sx={{ fontSize: "0.7rem" }}>
                 CONTACT
               </Typography>
-              <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-                <Typography sx={{ fontSize: "0.7rem", mr: 1 }}>📍</Typography>
-                <Typography variant="body2" sx={{ fontSize: "0.7rem" }}>
-                  Plot 22, Block E2 Block E 2, Gulberg III Lahore, Pakistan
-                </Typography>
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-                <Typography sx={{ fontSize: "0.7rem", mr: 1 }}>✉</Typography>
-                <Typography variant="body2" sx={{ fontSize: "0.7rem" }}>
-                  Info@tekkdev.com
-                </Typography>
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-                <Typography sx={{ fontSize: "0.7rem", mr: 1 }}>📞</Typography>
-                <Typography variant="body2" sx={{ fontSize: "0.7rem" }}>
-                  +92 3244933313
-                </Typography>
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-                <Typography sx={{ fontSize: "0.7rem", mr: 1 }}>☎</Typography>
-                <Typography variant="body2" sx={{ fontSize: "0.7rem" }}>
-                  +92 (42) 3577-4258
-                </Typography>
-              </Box>
+              {[
+                ["📍", "Plot 22, Block E2 Block E 2, Gulberg III Lahore, Pakistan"],
+                ["✉", "Info@tekkdev.com"],
+                ["📞", "+92 3244933313"],
+                ["☎", "+92 (42) 3577-4258"],
+              ].map(([icon, text], i) => (
+                <Box key={i} sx={{ display: "flex", alignItems: "center", mt: 1 }}>
+                  <Typography sx={{ fontSize: "0.7rem", mr: 1 }}>{icon}</Typography>
+                  <Typography variant="body2" sx={{ fontSize: "0.7rem" }}>
+                    {text}
+                  </Typography>
+                </Box>
+              ))}
             </Grid>
 
-            {/* SERVICES */}
             <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "left" }}>
               <Typography variant="h6" gutterBottom sx={{ fontSize: "0.7rem" }}>
                 SERVICES
               </Typography>
               {[
-                "Cyber Security",
-                "Full Stack Development",
-                "Software Development",
-                
+                { label: "Cyber Security", to: "/cyber" },
+                { label: "Full Stack Development", to: "/fullstack" },
+                { label: "Software Development", to: "/software" },
               ].map((item, i) => (
-                <Typography key={i} variant="body2" sx={{ mt: 1, fontSize: "0.7rem" }}>
-                  {item}
+                <Typography
+                  key={i}
+                  component={Link}
+                  to={item.to}
+                  sx={{
+                    mt: 1,
+                    fontSize: "0.7rem",
+                    display: "block",
+                    color: "inherit",
+                    textDecoration: "none",
+                    "&:hover": { textDecoration: "underline" },
+                  }}
+                >
+                  {item.label}
                 </Typography>
               ))}
             </Grid>
 
-            {/* USEFUL LINKS */}
             <Grid
               item
               xs={12}
@@ -123,20 +128,28 @@ const Footer = ({ setValue, setSelected }) => {
               <Typography variant="h6" gutterBottom sx={{ fontSize: "0.7rem" }}>
                 USEFUL LINKS
               </Typography>
-              {["Your Account", "Help"].map(
-                (item, i) => (
-                  <Typography
-                    key={i}
-                    variant="body2"
-                    sx={{ mt: 1, fontSize: "0.7rem" }}
-                  >
-                    {item}
-                  </Typography>
-                )
-              )}
+              {[
+                { label: "Your Account", to: "/account" },
+                { label: "Help", to: "/Contact" },
+              ].map((item, i) => (
+                <Typography
+                  key={i}
+                  component={Link}
+                  to={item.to}
+                  sx={{
+                    mt: 1,
+                    fontSize: "0.7rem",
+                    display: "block",
+                    color: "inherit",
+                    textDecoration: "none",
+                    "&:hover": { textDecoration: "underline" },
+                  }}
+                >
+                  {item.label}
+                </Typography>
+              ))}
             </Grid>
 
-            {/* COMPANY INFO */}
             <Grid
               item
               xs={12}
@@ -166,7 +179,6 @@ const Footer = ({ setValue, setSelected }) => {
         )}
       </Grid>
 
-      {/* Bottom Bar */}
       <Box
         sx={{
           backgroundColor: "#0d1117",
