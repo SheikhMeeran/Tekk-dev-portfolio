@@ -183,8 +183,13 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
         </motion.div>
       </Container>
 
-      <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-        <Box sx={{ width: "100%", mt: 4 }}>
+      {/* Partners Section (Call to Action) - moved up from the bottom with mb */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <Box sx={{ width: "100%", mt: 4, mb: 8 }}>
           <CallToAction setValue={props.setValue} setSelected={props.setSelected} />
         </Box>
       </motion.div>
@@ -193,6 +198,3 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
 };
 
 export default About;
-
-
-
