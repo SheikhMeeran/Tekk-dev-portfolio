@@ -167,9 +167,9 @@ const Services = () => {
         variants={sectionVariant}
       >
         <Typography
-          variant="h5"
+          variant="h4"
           fontWeight={600}
-          align="center"
+          align="Left"
           gutterBottom
           sx={{
             mb: 6,
@@ -181,7 +181,7 @@ const Services = () => {
             },
           }}
         >
-          Our Services
+           Services
         </Typography>
       </motion.div>
 

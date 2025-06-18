@@ -19,14 +19,17 @@ import Banner02 from "../assets/Banner02.jpg";
 import Banner03 from "../assets/Banner03.jpg";
 import Banner04 from "../assets/Banner04.jpg";
 import Banner05 from "../assets/Banner05.jpg";
+import Banner06 from "../assets/Banner06.jpeg";
+// import Banner07 from "../assets/Banner07.png";
 
-const imagePaths = [Banner01, Banner02, Banner03, Banner04, Banner05];
+const imagePaths = [Banner01, Banner02, Banner03, Banner04, Banner05,Banner06];
 const textLines = [
   "We Automate, We Create, We Transform to Secure your business",
   "We Innovate, We Secure. Default settings increase breach risks.",
   "Digital Solutions that Drive Growth and Security",
   "Breach Victim? Know What Happens Next.",
   "Don't let Ransom Demands hold your business hostage",
+ "Our software development approach aims to help 'Code Your Way to Success'"
 ];
 
 const slideVariants = {
@@ -220,3 +223,5 @@ const LandingPage = (props) => {
 };
 
 export default LandingPage;
+
+

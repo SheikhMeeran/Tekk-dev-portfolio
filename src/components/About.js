@@ -80,6 +80,7 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
         >
           <Typography
             variant="h5"
+
             gutterBottom
             sx={{ fontWeight: 600, fontSize: "0.95rem" }}
           >
