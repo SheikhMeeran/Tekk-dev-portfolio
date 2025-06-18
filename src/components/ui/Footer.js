@@ -118,7 +118,8 @@ const Footer = ({ setValue, setSelected }) => {
                 USEFUL LINKS
               </Typography>
               {[
-                { label: "Your Account", to: "/account" },
+                { label: "Linkedin", to: "/ https://www.linkedin.com/in/tekk-dev-65804536b" },
+                { label: "Instagram", to: "/ https://www.instagram.com/tekkdev/saved/?hl=en" },
                 { label: "Help", to: "/Contact" },
               ].map((item, i) => (
                 <Typography

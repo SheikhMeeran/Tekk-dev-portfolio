@@ -714,35 +714,6 @@ const Software = (props) => {
       </Grid>
     </Grid>
 
- 
-     <Grid
-        container
-        spacing={4}
-        alignItems="center"
-        direction={medium ? "column" : "row"}
-        sx={{ px: { xs: 2, md: 10 }, py: 6 }}
-      >
-        <Grid item xs={12} md={6}>
-          <Typography variant="h4" gutterBottom>
-            Digital Documents & Data
-          </Typography>
-          <Typography variant="body1" paragraph sx={{ fontSize: "0.95rem", lineHeight: 1.6 }}>
-Reduce Errors. Reduce Waste. Reduce Costs.
-
-          </Typography>
-          <Typography variant="body1" paragraph sx={{ fontSize: "0.95rem", lineHeight: 1.6 }}> 
-Billions are spent annually on the purchasing, printing, and distribution of paper. On top of the           </Typography>
-          <Typography variant="body1" paragraph sx={{ fontSize: "0.95rem", lineHeight: 1.6 }}>
-massive environmental impact this has, it causes harm to your bottom line as well.          </Typography>
-          <Typography variant="body1" paragraph sx={{ fontSize: "0.95rem", lineHeight: 1.6 }}>
-By utilizing digital forms and documents you can remove these obsolete expenses,accelerate your communication,         </Typography>
-          <Typography variant="body1" paragraph sx={{ fontSize: "0.95rem", lineHeight: 1.6 }}>
-and help the Earth.         </Typography>
-        </Grid>
-        <Grid item xs={12} md={6} display="flex" justifyContent={medium ? "center" : "flex-end"}>
-          {documentsAnimationJSX}
-        </Grid>
-      </Grid>
 
 
      {/* Scale */}
