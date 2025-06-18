@@ -25,19 +25,16 @@ import { styled, useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../../assets/logo.jpg";
 
-// Fixed spacing under toolbar
 const ToolbarMargin = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
   marginBottom: "1.75em",
 }));
 
-// Logo styling
 const Logo = styled("img")(() => ({
   height: "3.5em",
   width: "auto",
 }));
 
-// Styled Tab
 const TabStyled = styled(Tab)(() => ({
   minWidth: 10,
   textTransform: "none",
@@ -46,7 +43,7 @@ const TabStyled = styled(Tab)(() => ({
   color: "#000",
   padding: "0.5rem 1rem",
   "&:hover": {
-    color: "#1976d2", // primary.main
+    color: "#1976d2",
   },
   "&.Mui-selected": {
     color: "#1976d2",
@@ -54,7 +51,6 @@ const TabStyled = styled(Tab)(() => ({
   },
 }));
 
-// Estimate Button
 const EstimateButton = styled(Button)(() => ({
   borderRadius: "10px",
   padding: "0.4em 1em",
@@ -68,7 +64,6 @@ const EstimateButton = styled(Button)(() => ({
   },
 }));
 
-// AppBar styling
 const AppBarStyled = styled(AppBar)(() => ({
   zIndex: 1301,
   backgroundColor: "#fff",
@@ -76,7 +71,6 @@ const AppBarStyled = styled(AppBar)(() => ({
   padding: "0 16px",
 }));
 
-// Scroll elevation effect
 const ElevationScroll = ({ children }) => {
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
   return React.cloneElement(children, { elevation: trigger ? 4 : 0 });
@@ -90,6 +84,7 @@ const Header = ({ value, setValue }) => {
   const [homeAnchor, setHomeAnchor] = useState(null);
   const [openHomeMenu, setOpenHomeMenu] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [openHomeDrawerSubmenu, setOpenHomeDrawerSubmenu] = useState(false);
 
   const handleHomeHover = useCallback((e) => {
     setHomeAnchor(e.currentTarget);
@@ -142,7 +137,39 @@ const Header = ({ value, setValue }) => {
       >
         <ToolbarMargin />
         <List disablePadding>
-          {routes.map((route) => (
+          <ListItem button onClick={() => setOpenHomeDrawerSubmenu(!openHomeDrawerSubmenu)}>
+            <ListItemText primary="Home" />
+          </ListItem>
+          {openHomeDrawerSubmenu && (
+            <>
+              <ListItem
+                sx={{ pl: 4 }}
+                button
+                component={Link}
+                to="/about"
+                onClick={() => {
+                  setOpenDrawer(false);
+                  setValue(0);
+                }}
+              >
+                <ListItemText primary="About" />
+              </ListItem>
+              <ListItem
+                sx={{ pl: 4 }}
+                button
+                component={Link}
+                to="/revolution"
+                onClick={() => {
+                  setOpenDrawer(false);
+                  setValue(0);
+                }}
+              >
+                <ListItemText primary="Revolution" />
+              </ListItem>
+            </>
+          )}
+
+          {routes.filter((route) => route.label !== "Home").map((route) => (
             <ListItem
               key={route.activeTabIndex}
               button
@@ -157,12 +184,7 @@ const Header = ({ value, setValue }) => {
               <ListItemText primary={route.label} />
             </ListItem>
           ))}
-          <ListItem button component={Link} to="/revolution" onClick={() => {
-            setOpenDrawer(false);
-            setValue(0);
-          }}>
-            <ListItemText primary="Revolution" />
-          </ListItem>
+
           <ListItem
             button
             component={Link}
@@ -216,11 +238,12 @@ const Header = ({ value, setValue }) => {
       <Popper open={openHomeMenu} anchorEl={homeAnchor} transition disablePortal>
         {({ TransitionProps }) => (
           <Grow {...TransitionProps} style={{ transformOrigin: "center top" }}>
-            <Paper>
+            <Paper sx={{ minWidth: 180 }}> {/* increased width here */}
               <ClickAwayListener onClickAway={handleMenuClose}>
                 <MenuList
                   onMouseOver={() => setOpenHomeMenu(true)}
                   onMouseLeave={handleMenuClose}
+                  sx={{ p: 0 }}
                 >
                   <MenuItem
                     component={Link}

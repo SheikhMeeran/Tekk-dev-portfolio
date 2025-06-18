@@ -80,7 +80,6 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
         >
           <Typography
             variant="h5"
-
             gutterBottom
             sx={{ fontWeight: 600, fontSize: "0.95rem" }}
           >
@@ -127,81 +126,69 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
           </Box>
         </motion.div>
 
-        {/* Mission Section */}
+        {/* Mission Section (no border or shadow) */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <Grid
-            container
-            spacing={4}
+          <Box
             sx={{
               px: { xs: 2, sm: 6 },
               my: 6,
-              alignItems: "center",
-              flexDirection: { xs: "column", md: "row" },
+              p: { xs: 3, md: 4 },
+              backgroundColor: "#fff",
             }}
           >
-            {/* Text Left */}
             <Grid
-              item
-              xs={12}
-              md={7}
-              sx={{
-                order: { xs: 1, md: 1 },
-                textAlign: "left",
-              }}
+              container
+              spacing={4}
+              justifyContent="center"
+              alignItems="center"
+              flexDirection={{ xs: "column", md: "row" }}
             >
-              <Typography
-                variant="h5"
-                gutterBottom
-                sx={{ fontWeight: 600, fontSize: "0.95rem" }}
-              >
-                Mission
-              </Typography>
-              <Typography
-                variant="body2"
-                paragraph
-                sx={{ fontSize: "0.95rem" }}
-              >
-                TekkDev strives to deliver quality security assessment & consulting by:
-              </Typography>
-              <Typography variant="body2" paragraph sx={{ fontSize: "0.95rem" }}>
-                ✔ Proactive security analysis
-              </Typography>
-              <Typography variant="body2" paragraph sx={{ fontSize: "0.95rem" }}>
-                ✔ Instilling security awareness
-              </Typography>
-              <Typography variant="body2" paragraph sx={{ fontSize: "0.95rem" }}>
-                ✔ Developing robust security architectures for resilient systems
-              </Typography>
-            </Grid>
+              {/* Text */}
+              <Grid item xs={12} md={7}>
+                <Typography
+                  variant="h5"
+                  gutterBottom
+                  sx={{ fontWeight: 600, fontSize: "0.95rem" }}
+                >
+                  Mission
+                </Typography>
+                <Typography
+                  variant="body2"
+                  paragraph
+                  sx={{ fontSize: "0.95rem" }}
+                >
+                  TekkDev strives to deliver quality security assessment & consulting by:
+                </Typography>
+                <Typography variant="body2" paragraph sx={{ fontSize: "0.95rem" }}>
+                  ✔ Proactive security analysis
+                </Typography>
+                <Typography variant="body2" paragraph sx={{ fontSize: "0.95rem" }}>
+                  ✔ Instilling security awareness
+                </Typography>
+                <Typography variant="body2" paragraph sx={{ fontSize: "0.95rem" }}>
+                  ✔ Developing robust security architectures for resilient systems
+                </Typography>
+              </Grid>
 
-            {/* Image Right - Adjusted */}
-            <Grid
-              item
-              xs={12}
-              md={5}
-              sx={{
-                textAlign: "center",
-                order: { xs: 2, md: 2 },
-              }}
-            >
-              <Box
-                component="img"
-                src={history}
-                alt="Mission Illustration"
-                sx={{
-                  maxWidth: 300,
-                  width: "100%",
-                  borderRadius: 2,
-                  ml: { md: 8 },
-                  mr: { md: -4 },
-                }}
-              />
+              {/* Image */}
+              <Grid item xs={12} md={5} sx={{ textAlign: "center" }}>
+                <Box
+                  component="img"
+                  src={history}
+                  alt="Mission Illustration"
+                  sx={{
+                    maxWidth: 300,
+                    width: "100%",
+                    borderRadius: 2,
+                  }}
+                />
+              </Grid>
             </Grid>
-          </Grid>
+          </Box>
         </motion.div>
 
         {/* Testimonials */}
@@ -234,8 +221,13 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
                 key={index}
                 sx={{
                   maxWidth: "22em",
-                  textAlign: "center",
                   mx: "auto",
+                  textAlign: "center",
+                  border: "1px solid #ccc",
+                  boxShadow: 3,
+                  borderRadius: 2,
+                  p: 3,
+                  backgroundColor: "#fff",
                 }}
               >
                 <StyledAvatar
