@@ -25,67 +25,58 @@ import { styled, useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../../assets/logo.jpg";
 
+// Fixed spacing under toolbar
 const ToolbarMargin = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
   marginBottom: "1.75em",
-  [theme.breakpoints.down("md")]: { marginBottom: "0.2em" },
 }));
 
-const Logo = styled("img")(({ theme }) => ({
+// Logo styling
+const Logo = styled("img")(() => ({
   height: "3.5em",
   width: "auto",
-  [theme.breakpoints.down("md")]: { height: "3.5em" },
-  [theme.breakpoints.down("sm")]: { height: "3em" },
-  [theme.breakpoints.up("xl")]: { height: "5.5em" },
 }));
 
-const TabStyled = styled(Tab)(({ theme }) => ({
+// Styled Tab
+const TabStyled = styled(Tab)(() => ({
   minWidth: 10,
   textTransform: "none",
-  fontSize: "0.7rem",
+  fontSize: "0.6rem",
   fontWeight: 500,
   color: "#000",
-  padding: theme.spacing(1.5, 2),
-  [theme.breakpoints.up("xl")]: {
-    fontSize: "1.1rem",
-    padding: theme.spacing(2, 3),
-  },
+  padding: "0.5rem 1rem",
   "&:hover": {
-    color: theme.palette.primary.main,
+    color: "#1976d2", // primary.main
   },
   "&.Mui-selected": {
-    color: theme.palette.primary.main,
-    fontWeight: 500,
+    color: "#1976d2",
+    fontWeight: 600,
   },
 }));
 
-const EstimateButton = styled(Button)(({ theme }) => ({
+// Estimate Button
+const EstimateButton = styled(Button)(() => ({
   borderRadius: "10px",
   padding: "0.4em 1em",
   textTransform: "none",
   fontWeight: 600,
   fontSize: "0.9rem",
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: "#1976d2",
   color: "#fff",
-  [theme.breakpoints.up("xl")]: {
-    fontSize: "1rem",
-    padding: "0.6em 1.5em",
-  },
   "&:hover": {
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: "#115293",
   },
 }));
 
-const AppBarStyled = styled(AppBar)(({ theme }) => ({
-  zIndex: theme.zIndex.modal + 1,
-  backgroundColor: theme.palette.common.white,
+// AppBar styling
+const AppBarStyled = styled(AppBar)(() => ({
+  zIndex: 1301,
+  backgroundColor: "#fff",
   boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-  padding: theme.spacing(0, 1),
-  [theme.breakpoints.up("xl")]: {
-    padding: theme.spacing(0, 6),
-  },
+  padding: "0 16px",
 }));
 
+// Scroll elevation effect
 const ElevationScroll = ({ children }) => {
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
   return React.cloneElement(children, { elevation: trigger ? 4 : 0 });
@@ -94,8 +85,7 @@ const ElevationScroll = ({ children }) => {
 const Header = ({ value, setValue }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const iOS =
-    typeof navigator !== "undefined" && /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const iOS = typeof navigator !== "undefined" && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   const [homeAnchor, setHomeAnchor] = useState(null);
   const [openHomeMenu, setOpenHomeMenu] = useState(false);
@@ -118,26 +108,10 @@ const Header = ({ value, setValue }) => {
         activeTabIndex: 0,
         mouseover: handleHomeHover,
       },
-      {
-        label: "Services",
-        link: "/services",
-        activeTabIndex: 1,
-      },
-      {
-        label: "Cyber Security",
-        link: "/software",
-        activeTabIndex: 2,
-      },
-      {
-        label: "Software Development",
-        link: "/websites",
-        activeTabIndex: 3,
-      },
-      {
-        label: "Contact Us",
-        link: "/contact",
-        activeTabIndex: 4,
-      },
+      { label: "Services", link: "/services", activeTabIndex: 1 },
+      { label: "Cyber Security", link: "/software", activeTabIndex: 2 },
+      { label: "Software Development", link: "/websites", activeTabIndex: 3 },
+      { label: "Contact Us", link: "/contact", activeTabIndex: 4 },
     ],
     [handleHomeHover]
   );
@@ -149,7 +123,7 @@ const Header = ({ value, setValue }) => {
       }
     });
     if (window.location.pathname === "/estimate") setValue(6);
-    if (window.location.pathname === "/revolution") setValue(0); // Handle as Home submenu
+    if (window.location.pathname === "/revolution") setValue(0);
   }, [value, setValue, routes]);
 
   const handleChange = (e, newValue) => {
@@ -183,15 +157,10 @@ const Header = ({ value, setValue }) => {
               <ListItemText primary={route.label} />
             </ListItem>
           ))}
-          <ListItem
-            button
-            component={Link}
-            to="/revolution"
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(0);
-            }}
-          >
+          <ListItem button component={Link} to="/revolution" onClick={() => {
+            setOpenDrawer(false);
+            setValue(0);
+          }}>
             <ListItemText primary="Revolution" />
           </ListItem>
           <ListItem
@@ -244,7 +213,6 @@ const Header = ({ value, setValue }) => {
         Get Estimate
       </EstimateButton>
 
-      {/* Home Submenu: About & Revolution */}
       <Popper open={openHomeMenu} anchorEl={homeAnchor} transition disablePortal>
         {({ TransitionProps }) => (
           <Grow {...TransitionProps} style={{ transformOrigin: "center top" }}>
@@ -259,17 +227,10 @@ const Header = ({ value, setValue }) => {
                     to="/about"
                     onClick={handleMenuClose}
                     sx={{
-                      fontSize: {
-                        xs: "0.75rem",
-                        md: "0.8rem",
-                        xl: "0.9rem",
-                      },
-                      px: {
-                        xs: 2,
-                        xl: 3,
-                      },
+                      fontSize: "0.7rem",
+                      px: 2,
                       "&:hover": {
-                        backgroundColor: theme.palette.primary.main,
+                        backgroundColor: "#1976d2",
                         color: "#fff",
                         fontWeight: 500,
                       },
@@ -282,17 +243,10 @@ const Header = ({ value, setValue }) => {
                     to="/revolution"
                     onClick={handleMenuClose}
                     sx={{
-                      fontSize: {
-                        xs: "0.75rem",
-                        md: "0.8rem",
-                        xl: "0.9rem",
-                      },
-                      px: {
-                        xs: 2,
-                        xl: 3,
-                      },
+                      fontSize: "0.7rem",
+                      px: 2,
                       "&:hover": {
-                        backgroundColor: theme.palette.primary.main,
+                        backgroundColor: "#1976d2",
                         color: "#fff",
                         fontWeight: 500,
                       },
@@ -313,7 +267,7 @@ const Header = ({ value, setValue }) => {
     <>
       <ElevationScroll>
         <AppBarStyled position="fixed" elevation={0}>
-          <Toolbar disableGutters sx={{ px: { xs: 1, sm: 2, md: 4, xl: 10 } }}>
+          <Toolbar disableGutters sx={{ px: 2 }}>
             <Button onClick={() => setValue(0)} component={Link} to="/">
               <Logo src={logo} alt="logo" />
             </Button>
