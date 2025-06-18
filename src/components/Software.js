@@ -30,11 +30,6 @@ import Manage from "../assets/Managed App Sec.jpeg";
 import Digital from "../assets/Digital Transformation .jpg";
 import Consultancy from "../assets/Consultancy .jpg";
 import { Container } from "@mui/material";
-
-
-// import TechStack from "./TechStack";
-
-
 const useStyles = makeStyles((theme) => ({
   heading: {
     maxWidth: "60em",
@@ -70,9 +65,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
 const Software = (props) => {
-  
   const classes = useStyles();
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
@@ -199,23 +192,17 @@ const Software = (props) => {
               onClick={() => {
                 props.setValue(1);
                 props.setSelected(null);
-              }}
-            >
+              }}>
               <img src={backArrow} alt="Back to Services Page" />
             </IconButton>
           </Grid>
         </>)}
 
        {/* part 1 */}
-
-        <Grid container spacing={4} alignItems="center">
-  {/* LEFT SIDE - TEXT */}
- 
-
-
 <Grid container spacing={4} alignItems="center">
   {/* LEFT SIDE - TEXT */}
-
+  <Grid container spacing={4} alignItems="center">
+  {/* LEFT SIDE - TEXT */}
 <Container maxWidth="xl">
       <Box
         sx={{
@@ -286,11 +273,6 @@ const Software = (props) => {
 </Grid>
 
 
-
-
-        
-
-
 {/* part 2 */}
 <Grid container spacing={4} alignItems="center">
   {/* LEFT SIDE - TEXT */}
@@ -347,12 +329,6 @@ const Software = (props) => {
 </Grid>
 
 
-
-
-
-
-
-
 {/* part 3 */}
 <Grid container spacing={4} alignItems="center">
   {/* LEFT SIDE - TEXT */}
@@ -402,13 +378,8 @@ const Software = (props) => {
     <img
       src={VAPT}
       alt="Incident Response"
-      style={{ width: '100%', height: 'auto'}}
-    />
-  </Grid>
-</Grid>
-
-
-
+      style={{ width: '100%', height: 'auto'}}/></Grid>
+    </Grid>
 <Grid container spacing={4} alignItems="center">
   {/* LEFT SIDE - TEXT */}
   <Box
@@ -418,20 +389,16 @@ const Software = (props) => {
     px: 2,
     py: 3,
     textAlign: 'left', // ensures all text is left-aligned
-  }}
->
+  }}>
   <Grid
     container
     direction="column"
     spacing={1}
-    className={classes.heading}
-  >
+    className={classes.heading}>
     <Grid item>
       <Typography
         variant="h5"
-        align="left" // force heading alignment to left
-        gutterBottom
-      >
+        align="left" gutterBottom>
         d) Incident Response
       </Typography>
     </Grid>
@@ -459,10 +426,6 @@ const Software = (props) => {
     />
   </Grid>
 </Grid>
-
-
-
-
 
 
 <Grid container spacing={4} alignItems="center">
@@ -526,12 +489,6 @@ const Software = (props) => {
 </Grid>
 
 
-
-
-
-
-
-
 <Grid container spacing={4} alignItems="center">
   {/* LEFT SIDE - TEXT */}
   <Box
@@ -541,14 +498,12 @@ const Software = (props) => {
     px: 2,
     py: 3,
     textAlign: 'left', // force text alignment
-  }}
->
+  }}>
   <Grid
     container
     direction="column"
     spacing={1}
-    className={classes.heading}
-  >
+    className={classes.heading}>
     <Grid item>
       <Typography
         variant="h5"
@@ -588,12 +543,6 @@ const Software = (props) => {
     />
   </Grid>
 </Grid>
-
-
-
-
-
-
 
 
 <Grid container spacing={4} alignItems="center">
@@ -661,8 +610,7 @@ const Software = (props) => {
         
 </>)}
 
-    
-      </Grid>
+    </Grid>
        <Grid
       container
       direction={isSmall ? "column" : "row"}
@@ -714,9 +662,7 @@ const Software = (props) => {
       </Grid>
     </Grid>
 
-
-
-     {/* Scale */}
+ {/* Scale */}
 <Box
       component="section"
       sx={{
@@ -724,15 +670,11 @@ const Software = (props) => {
         py: { xs: 6, md: 10 },
         backgroundColor: theme.palette.background.default,
       }}
-    >
-      
+    >   
     </Box>
-   
-    
      </Grid>
   );
 };
-
 export default Software;
 
 
