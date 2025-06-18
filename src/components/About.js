@@ -68,31 +68,14 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
 
   return (
     <>
-      <Container maxWidth="xl" sx={{ pb: 10 }}>
-        {/* Heading */}
-        <Box
-          sx={{
-            px: { xs: 3, sm: 6 },
-            mt: { xs: 3, sm: 6 },
-            mb: { xs: 2, sm: 4 },
-            textAlign: "left",
-          }}
-        >
-          <Typography
-            variant="h5"
-            gutterBottom
-            sx={{ fontWeight: 600, fontSize: "0.95rem" }}
-          >
+      <Container maxWidth="xl" sx={{ pb: 4 }}>
+        <Box sx={{ px: { xs: 3, sm: 6 }, mt: { xs: 3, sm: 6 }, mb: { xs: 2, sm: 4 }, textAlign: "left" }}>
+          <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, fontSize: "0.95rem" }}>
             About Us
           </Typography>
         </Box>
 
-        {/* About Text */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
+        <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
           <Typography
             variant="body2"
             sx={{
@@ -111,35 +94,15 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
           >
             {aboutText}
           </Typography>
-
           <Box sx={{ px: { xs: 2, sm: 6 }, mt: 2 }}>
-            <Button
-              onClick={handleToggle}
-              sx={{
-                fontSize: "0.85rem",
-                textTransform: "none",
-                px: 0,
-              }}
-            >
+            <Button onClick={handleToggle} sx={{ fontSize: "0.85rem", textTransform: "none", px: 0 }}>
               {expanded ? "Read Less" : "Read More"}
             </Button>
           </Box>
         </motion.div>
 
-        {/* Mission Section (no border or shadow) */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-        >
-          <Box
-            sx={{
-              px: { xs: 2, sm: 6 },
-              my: 6,
-              p: { xs: 3, md: 4 },
-              backgroundColor: "#fff",
-            }}
-          >
+        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+          <Box sx={{ px: { xs: 2, sm: 6 }, my: 6, p: { xs: 3, md: 4 }, backgroundColor: "#fff" }}>
             <Grid
               container
               spacing={4}
@@ -147,20 +110,11 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
               alignItems="center"
               flexDirection={{ xs: "column", md: "row" }}
             >
-              {/* Text */}
               <Grid item xs={12} md={7}>
-                <Typography
-                  variant="h5"
-                  gutterBottom
-                  sx={{ fontWeight: 600, fontSize: "0.95rem" }}
-                >
+                <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, fontSize: "0.95rem" }}>
                   Mission
                 </Typography>
-                <Typography
-                  variant="body2"
-                  paragraph
-                  sx={{ fontSize: "0.95rem" }}
-                >
+                <Typography variant="body2" paragraph sx={{ fontSize: "0.95rem" }}>
                   TekkDev strives to deliver quality security assessment & consulting by:
                 </Typography>
                 <Typography variant="body2" paragraph sx={{ fontSize: "0.95rem" }}>
@@ -173,48 +127,27 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
                   ✔ Developing robust security architectures for resilient systems
                 </Typography>
               </Grid>
-
-              {/* Image */}
               <Grid item xs={12} md={5} sx={{ textAlign: "center" }}>
                 <Box
                   component="img"
                   src={history}
                   alt="Mission Illustration"
-                  sx={{
-                    maxWidth: 300,
-                    width: "100%",
-                    borderRadius: 2,
-                  }}
+                  sx={{ maxWidth: 300, width: "100%", borderRadius: 2 }}
                 />
               </Grid>
             </Grid>
           </Box>
         </motion.div>
 
-        {/* Testimonials */}
         <Testimonials />
 
-        {/* Team Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
+        <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <Box sx={{ textAlign: "center", mb: 4 }}>
-            <Typography
-              variant="h5"
-              sx={{ fontWeight: 600, fontSize: "0.95rem" }}
-            >
+            <Typography variant="h5" sx={{ fontWeight: 600, fontSize: "0.95rem" }}>
               Team
             </Typography>
           </Box>
-
-          <Grid
-            container
-            justifyContent="center"
-            spacing={4}
-            sx={{ px: { xs: 2, sm: 6 }, mb: 12 }}
-          >
+          <Grid container justifyContent="center" spacing={4} sx={{ px: { xs: 2, sm: 6 }, mb: 6 }}>
             {teamMembers.map((member, index) => (
               <Grid
                 item
@@ -230,15 +163,8 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
                   backgroundColor: "#fff",
                 }}
               >
-                <StyledAvatar
-                  src={member.image}
-                  alt={`${member.name}'s profile`}
-                  sx={{ mx: "auto" }}
-                />
-                <Typography
-                  variant="h5"
-                  sx={{ mt: 2, fontWeight: 600, fontSize: "0.95rem" }}
-                >
+                <StyledAvatar src={member.image} alt={`${member.name}'s profile`} sx={{ mx: "auto" }} />
+                <Typography variant="h5" sx={{ mt: 2, fontWeight: 600, fontSize: "0.95rem" }}>
                   {member.name}
                 </Typography>
                 <Typography variant="caption" display="block" gutterBottom>
@@ -257,17 +183,9 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
         </motion.div>
       </Container>
 
-      {/* Call to Action */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <Box sx={{ width: "100%", mt: 10 }}>
-          <CallToAction
-            setValue={props.setValue}
-            setSelected={props.setSelected}
-          />
+      <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+        <Box sx={{ width: "100%", mt: 4 }}>
+          <CallToAction setValue={props.setValue} setSelected={props.setSelected} />
         </Box>
       </motion.div>
     </>
@@ -275,3 +193,6 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
 };
 
 export default About;
+
+
+

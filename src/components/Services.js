@@ -45,10 +45,10 @@ const ServiceSection = ({
       viewport={{ once: true, amount: 0.3 }}
       variants={sectionVariant}
     >
-      <Box sx={{ py: { xs: 6, md: 8 } }}>
+      <Box sx={{ py: { xs: 2, md: 3 } }}> {/* Reduced vertical padding */}
         <Grid
           container
-          spacing={6}
+          spacing={3} // Slightly tighter spacing
           direction={isSmallScreen ? "column-reverse" : "row"}
           alignItems="center"
         >
@@ -60,14 +60,14 @@ const ServiceSection = ({
                 display: "flex",
                 flexDirection: "column",
                 alignItems: isSmallScreen ? "center" : "flex-start",
-                pr: { md: 6 },
+                pr: { md: 5 },
               }}
             >
               <Typography
                 variant="h5"
                 fontWeight={700}
                 gutterBottom
-                sx={{ fontSize: "1.1rem" }}
+                sx={{ fontSize: "1.1rem", mb: 1 }}
               >
                 {title}
               </Typography>
@@ -75,7 +75,7 @@ const ServiceSection = ({
                 variant="subtitle1"
                 color="text.secondary"
                 gutterBottom
-                sx={{ fontSize: "0.95rem" }}
+                sx={{ fontSize: "0.95rem", mb: 1 }}
               >
                 {subtitle}
               </Typography>
@@ -115,7 +115,7 @@ const ServiceSection = ({
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                pl: { md: 6 },
+                pl: { md: 5 },
               }}
             >
               <Box
@@ -124,7 +124,7 @@ const ServiceSection = ({
                 alt={title}
                 sx={{
                   width: "100%",
-                  maxWidth: { xs: "90%", sm: "80%", md: 400 },
+                  maxWidth: { xs: "90%", sm: "80%", md: 380 },
                   display: "block",
                   mx: "auto",
                 }}
@@ -159,7 +159,7 @@ const ServiceSection = ({
 // Main Services Page
 const Services = () => {
   return (
-    <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
+    <Container maxWidth="lg" sx={{ py: { xs: 2, md: 4 } }}> {/* Reduced container padding */}
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -169,10 +169,10 @@ const Services = () => {
         <Typography
           variant="h4"
           fontWeight={600}
-          align="Left"
+          align="left"
           gutterBottom
           sx={{
-            mb: 6,
+            mb: 3,
             fontSize: "1.2rem",
             transition: "all 0.3s ease",
             "&:hover": {
@@ -181,7 +181,7 @@ const Services = () => {
             },
           }}
         >
-           Services
+          Services
         </Typography>
       </motion.div>
 
