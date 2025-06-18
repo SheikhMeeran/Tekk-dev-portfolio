@@ -102,11 +102,11 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-          <Box sx={{ px: { xs: 2, sm: 6 }, my: 6, p: { xs: 3, md: 4 }, backgroundColor: "#fff" }}>
+          <Box sx={{ px: { xs: 2, sm: 6 }, my: 2, p: { xs: 3, md:5 }, backgroundColor: "#fff" }}>
             <Grid
               container
-              spacing={4}
-              justifyContent="center"
+              spacing={{sm:10, md:35}}
+              justifyContent="left"
               alignItems="center"
               flexDirection={{ xs: "column", md: "row" }}
             >
@@ -189,7 +189,7 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <Box sx={{ width: "100%", mt: 4, mb: 8 }}>
+        <Box sx={{ width: "100%", mt: 4}}>
           <CallToAction setValue={props.setValue} setSelected={props.setSelected} />
         </Box>
       </motion.div>

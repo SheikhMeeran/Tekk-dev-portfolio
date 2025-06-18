@@ -45,7 +45,7 @@ const Websites = ({ setValue, setSelected }) => {
 
   const sectionStyle = {
     px: { xs: 2, md: 8 },
-    py: { xs: 5, md: 8 },
+    py: { xs: 5, md: 1 },
   };
 
   const textStyle = {
@@ -111,7 +111,7 @@ const Websites = ({ setValue, setSelected }) => {
                   </Typography>
                 </Box>
 
-                <Button onClick={() => setExpanded((prev) => !prev)} sx={{ mt: 1, color:"black" }}>
+                <Button onClick={() => setExpanded((prev) => !prev)} sx={{ mt: 1, color:"blue" }}>
                   {expanded ? "Read Less" : "Read More"}
                 </Button>
               </motion.div>

@@ -134,8 +134,8 @@ const useStyles = makeStyles((theme) => ({
   },
   specialText: {
     fontFamily: "Raleway",
-    fontWeight: 700,
-    fontSize: "1.5rem",
+    fontWeight: 400,
+    fontSize: "0.95rem",
     color: theme.palette.common.orange,
   },
 }));
@@ -516,15 +516,6 @@ const Estimate = (props) => {
     setQuestions(updatedQuestions);
     if (smallest) questionsRef.current.scrollIntoView({ behavior: "smooth" });
 
-    //if we need to restrict user to select only one type of service
-    //its kind of a reset function for question
-    //Without this block of code user can still go back n forth between questions even after going back to first question
-    // activeQuestion = updatedQuestions.filter(
-    //   (question) => question.active
-    // );
-    // if(activeQuestion[0].title === 'Which service are you interested in?'){
-    //   setQuestions(defaultQuestions);
-    // }
   };
 
   const previousQuestionDisabled = () => {
@@ -970,7 +961,7 @@ const Estimate = (props) => {
     <Grid container direction="row" style={{ marginBottom: "10em" }}>
       <Grid item container direction="column" md>
         <Grid item className={classes.heading}>
-          <Typography variant="h2">Estimate</Typography>
+          <Typography variant="h5">Estimate</Typography>
         </Grid>
         <Grid
           item

@@ -143,7 +143,7 @@ const Revolution = (props) => {
   return (
     <Grid container direction="column">
       <Grid item className={classes.heading}>
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h6" gutterBottom>
           The Revolution
         </Typography>
       </Grid>
@@ -152,7 +152,7 @@ const Revolution = (props) => {
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.8, ease: "easeOut" }}
 >
-  <Grid container justifyContent="center" style={{ padding: "2rem" }}>
+  <Grid container justifyContent="left" style={{ padding: "2rem" }}>
     <Grid
       container
       item
@@ -161,7 +161,7 @@ const Revolution = (props) => {
       direction="row"
       alignItems="center"
       justifyContent="space-between"
-      spacing={4}
+      spacing={20}
     >
       {/* Text Section */}
       <Grid
@@ -171,9 +171,10 @@ const Revolution = (props) => {
         container
         direction="column"
         alignItems="flex-start"
+        paddingLeft="3rem"
       >
         <div style={{ maxWidth: "28em", width: "100%" }}>
-          <Typography variant="h5" gutterBottom>
+          <Typography variant="h6" gutterBottom>
             Vision
           </Typography>
           <Typography
@@ -243,10 +244,11 @@ const Revolution = (props) => {
           lg
         >
           <Grid item align={smaller ? "center" : "left"}>
-            <Typography variant="h5" gutterBottom>
+            <Typography variant="h6" gutterBottom>
               Technology
             </Typography>
-          </Grid><Grid item sx={{ textAlign: smallest ? "center" : "justify" }}>
+          </Grid>
+          <Grid item sx={{ textAlign: smallest ? "center" : "justify" }}>
   <Typography variant="body1" paragraph sx={{ fontSize: "0.95rem" }}>
     In 2013, Facebook invented a new way of building websites. This
     new system, React.js, completely revolutionizes the process and
@@ -297,7 +299,7 @@ const Revolution = (props) => {
 
       
       <Grid item className={classes.heading} align="center">
-        <Typography variant="h3">Process</Typography>
+        <Typography variant="h5">Process</Typography>
       </Grid>
       <Grid
       container
@@ -326,7 +328,7 @@ const Revolution = (props) => {
         className={classes.itemContainer}
       >
         <Grid item sx={{ textAlign: { xs: "center", md: "left" } }}>
-          <Typography variant="h5" gutterBottom>
+          <Typography variant="h6" gutterBottom>
             Consultation
           </Typography>
         </Grid>
@@ -584,13 +586,14 @@ const Revolution = (props) => {
         md={8}
         xs={12}
         sx={{
-          px: 2,
+          px: 0,
           ml: { md: -4, lg: -6 }, // shift text to the left
+          
         }}
         className={classes.itemContainer}
       >
-        <Grid item sx={{ textAlign: { xs: "center", md: "left" } }}>
-          <Typography variant="h5" gutterBottom>
+        <Grid item sx={{ textAlign: { xs: "center", md: "left"} }}>
+          <Typography variant="h5"  color="#fff" gutterBottom>
             Review
           </Typography>
         </Grid>
@@ -637,7 +640,7 @@ const Revolution = (props) => {
           style={{
             width: "100%",
             maxWidth: "200px",
-            height: "auto",
+            height: "200px",
           }}
         />
       </Grid>
@@ -747,13 +750,13 @@ const Revolution = (props) => {
         md={8}
         xs={12}
         sx={{
-          px: 2,
+          px: 0,
           ml: { md: -4, lg: -6 },
         }}
         className={classes.itemContainer}
       >
         <Grid item sx={{ textAlign: { xs: "center", md: "left" } }}>
-          <Typography variant="h5" gutterBottom>
+          <Typography variant="h5"  color="#fff" gutterBottom>
             Launch
           </Typography>
         </Grid>
@@ -809,9 +812,9 @@ const Revolution = (props) => {
           src={launch}
           alt="rocket on a launch pad"
           style={{
-            width: "50%",
-            maxWidth: "250px",
-            height: "auto",
+            width: "100%",
+            maxWidth: "100%",
+            height: "250px",
           }}
         />
       </Grid>
@@ -900,12 +903,12 @@ const Revolution = (props) => {
         className={classes.imgContainer}
       >
         <img
-          src={maintain}
+          src={maintain }
           alt="a wrench and some screws"
           style={{
-            width: "70%",
+            width: "100%",
             maxWidth: "250px",
-            height: "auto",
+            height: "300px",
           }}
         />
       </Grid>
@@ -938,7 +941,7 @@ const Revolution = (props) => {
         className={classes.itemContainer}
       >
         <Grid item sx={{ textAlign: { xs: "center", md: "left" } }}>
-          <Typography variant="h5" gutterBottom>
+          <Typography variant="h5" color="#fff" gutterBottom>
             Iterate
           </Typography>
         </Grid>
