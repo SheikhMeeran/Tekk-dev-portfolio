@@ -238,7 +238,7 @@ const Revolution = (props) => {
     md={6}
     sx={{
       textAlign: "left",
-      pr: { xs: 0, md: 0}, // space between text and animation
+      pr: { xs: 0, md: 0,xl:0}, // space between text and animation
     }}
     className={classes.itemContainer}
   >
