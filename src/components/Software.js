@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 
-import grc from "../assets/GRC.jpeg";
+import grc from "../assets/a.GRC.jpeg";
 import cloud from "../assets/Cloud Assessment.jpg";
-import vapt from "../assets/VAPTcopy.jpeg";
+import vapt from "../assets/c. VAPT copy.jpeg";
 import incidence from "../assets/Incident Response .jpeg";
 import consultancy from "../assets/Consultancy .jpg";
 import transform from "../assets/g.Digital Transformation v2.jpg";

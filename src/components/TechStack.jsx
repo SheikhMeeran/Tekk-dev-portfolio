@@ -20,23 +20,26 @@ import three from '../assets/three tier.png';
 import onpremise from '../assets/onpremise.png';
 import nTier from '../assets/n-tier.png';
 import orchestration from '../assets/orchestration-layer.webp';
+import postgresql from '../assets/database.png'
+import react from '../assets/react.png'
+import oracle from '../assets/oracle-data-integrator.png'
 
 const techData = {
   Frontend: [
     { name: 'HTML', img: html },
     { name: 'CSS', img: css },
     { name: 'JavaScript', img: js },
+    { name: 'React', img: react },
     { name: 'jQuery', img: jquery },
     { name: 'Java', img: java },
-    { name: '.NET', img: dotnet },
-    { name: 'SASS', img: sass },
+  
   ],
   Backend: [
     { name: 'PHP', img: php },
     { name: 'Python', img: python },
-    { name: 'GitHub', img: github },
-    { name: 'MySQL', img: mysql },
-    { name: 'MongoDB', img: mongodb },
+      { name: '.NET', img: dotnet },
+    { name: 'SASS', img: sass },
+   
     { name: 'Django', img: django },
     { name: 'JavaScript', img: js },
     { name: 'NGINX', img: nginx },
@@ -44,12 +47,20 @@ const techData = {
   Deployment: [
     { name: 'Cloud', img: Cloud },
     { name: 'onpremise', img: onpremise },
+        { name: 'GitHub', img: github },
+
   ],
   Architecture: [
     { name: 'internet', img: internet },
     { name: 'three tier', img: three },
     { name: 'n-tier', img: nTier },
     { name: 'orchestration', img: orchestration },
+  ],
+  DataBasees: [
+     { name: 'MySQL', img: mysql },
+    { name: 'MongoDB', img: mongodb },
+    { name: 'Postgresql', img: postgresql },
+    { name: 'Oracle', img: oracle },
   ],
 };
 
@@ -59,7 +70,7 @@ const TechStack = () => {
   const isInView = useInView(logosRef, { once: true, margin: '-50px' });
 
   const containerStyle = {
-    minHeight: '100vh',
+    // minHeight: '100vh',
     width: '100%',
     backgroundColor: '#ffffff',
     color: '#000000',

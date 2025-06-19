@@ -19,7 +19,7 @@ import Banner02 from "../assets/Banner02.jpg";
 import Banner03 from "../assets/Banner03.jpg";
 import Banner04 from "../assets/Banner04.jpg";
 import Banner05 from "../assets/Banner05.jpg";
-import Banner06 from "../assets/Banner06.jpeg";
+import Banner06 from "../assets/banner08.jpg";
 
 const imagePaths = [Banner01, Banner02, Banner03, Banner04, Banner05, Banner06];
 const textLines = [
@@ -60,9 +60,9 @@ const LandingPage = (props) => {
         {/* Banner Section */}
         <Box
           sx={{
-            mt: { xs: "0.9rem", sm: "2.5rem", md: "2.5rem" }, // Reduced space below navbar
+            mt: { xs: "0.9rem", sm: "2.5rem", md: "1rem" }, // Reduced space below navbar
             width: "100%",
-            height: { xs: "250px", sm: "300px", md: "400px" },
+            height: { xs: "250px", sm: "300px", md: "430px" },
             position: "relative",
             overflow: "hidden",
           }}

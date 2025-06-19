@@ -16,6 +16,7 @@ import documentsAnimation from "../animations/documentsAnimation/data.js";
 import scaleAnimation from "../animations/scaleAnimation/data.json";
 import automationAnimation from "../animations/automationAnimation/data.json";
 import uxAnimation from "../animations/uxAnimation/data.js";
+import transform from "../assets/g.Digital Transformation v2.jpg";
 
 import CallToAction from "./ui/CallToAction";
 import TechStack from "./TechStack";
@@ -39,6 +40,7 @@ const Websites = ({ setValue, setSelected }) => {
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
   const medium = useMediaQuery(theme.breakpoints.down("md"));
   const [expanded, setExpanded] = useState(false);
+  const [expandedIndex, setExpandedIndex] = useState(null);
 
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -111,7 +113,8 @@ const Websites = ({ setValue, setSelected }) => {
                   </Typography>
                 </Box>
 
-                <Button onClick={() => setExpanded((prev) => !prev)} sx={{ mt: 1, color:"blue" }}>
+                <Button onClick={() => setExpanded((prev) => !prev)} sx={{ mt: 1, color: "blue" ,fontSize: "0.75rem",
+}}>
                   {expanded ? "Read Less" : "Read More"}
                 </Button>
               </motion.div>
@@ -120,6 +123,24 @@ const Websites = ({ setValue, setSelected }) => {
 
           {/* Reusable Sections */}
           {[
+            {
+              title: "Digital Transformation",
+              text: [
+  "Modern technologies, evolving frameworks, and growing user ",
+  "demands require continuous innovation in software development.",
+  "Applications must adapt quickly to remain scalable, secure, and ",
+  "efficient in today's fast-paced tech landscape.",
+  "❖ Our development process is agile and business-focused",
+  "❖ Identify and eliminate functional redundancies in code",
+  "❖ Aligns your product vision with development execution",
+  "❖ Optimize team workflows and available resources",
+  "❖ Scalable development practices with modular architecture",
+  "❖ Tailored to your specific software and business requirements",
+],
+
+              image: transform,
+              isImage: true,
+            },
             {
               title: "Digital Documents & Data",
               text: [
@@ -159,33 +180,71 @@ const Websites = ({ setValue, setSelected }) => {
               ],
               animation: uxAnimationJSX,
             },
-          ].map((section, index) => (
-            <Grid
-              container
-              key={index}
-              spacing={4}
-              alignItems="center"
-              direction={medium ? "column" : "row"}
-              sx={sectionStyle}
-            >
-              <Grid item xs={12} md={6}>
-                <Typography sx={titleStyle}>{section.title}</Typography>
-                {section.text.map((line, idx) => (
-                  <Typography key={idx} paragraph sx={textStyle}>
-                    {line}
-                  </Typography>
-                ))}
+          ].map((section, index) => {
+            const showReadMore = section.text.length > 4;
+            const isExpanded = expandedIndex === index;
+            const visibleText = showReadMore && !isExpanded ? section.text.slice(0, 3) : section.text;
+
+            return (
+              <Grid
+                container
+                key={index}
+                spacing={4}
+                alignItems="center"
+                direction={medium ? "column" : "row"}
+                sx={sectionStyle}
+              >
+                <Grid item xs={12} md={6}>
+                  <Typography sx={titleStyle}>{section.title}</Typography>
+                  {visibleText.map((line, idx) => (
+                    <Typography key={idx} paragraph sx={textStyle}>
+                      {line}
+                    </Typography>
+                  ))}
+                  {showReadMore && (
+                    <Button
+  onClick={() => setExpandedIndex(isExpanded ? null : index)}
+  sx={{
+    mt: 1,
+    px: 1.5,
+    py: 0.5,
+    fontSize: "0.95rem",
+    minWidth: "auto",
+    color: "blue",
+    textTransform: "none",
+  }}
+>
+  {isExpanded ? "Read Less" : "Read More"}
+</Button>
+                  )}
+                </Grid>
+                <Grid item xs={12} md={6} display="flex" justifyContent={medium ? "center" : "flex-end"}>
+                  {section.isImage ? (
+                    <Box
+                      component="img"
+                      src={section.image}
+                      alt={section.title}
+                      sx={{
+                        width: "100%",
+                        maxWidth: 400,
+                        height: "auto",
+                        borderRadius: 2,
+                        boxShadow: 3,
+                        marginLeft:"11rem",
+                      }}
+                    />
+                  ) : (
+                    section.animation
+                  )}
+                </Grid>
               </Grid>
-              <Grid item xs={12} md={6} display="flex" justifyContent={medium ? "center" : "flex-end"}>
-                {section.animation}
-              </Grid>
-            </Grid>
-          ))}
+            );
+          })}
 
           {/* Tech Stack */}
           <Grid item sx={{ ...sectionStyle, pb: 0 }}>
             <TechStack />
-            <Typography paragraph sx={{ ...textStyle, mb: 9}}>
+            <Typography paragraph sx={{ ...textStyle, mb: 9 }}>
               Our team specializes in building you the robust yet flexible architecture, where application development is supported through modular architecture and built on scalable microservices components. Our purpose-built, client-specific architecture covers on-premise as well as deployment based on cloud architecture. Our team has deployed, managed and developed a large scale multi-tenant architectures in past.
             </Typography>
           </Grid>

@@ -39,11 +39,11 @@ const TabStyled = styled(Tab)(() => ({
   minWidth: 10,
   textTransform: "none",
   fontSize: "0.7rem",
-  fontWeight: 500,
+  fontWeight: 800,
   color: "#000",
   padding: "0.5rem 1rem",
   "&:hover": {
-    color: "#1976d2",
+    color: "#000080	",
   },
   "&.Mui-selected": {
     color: "#1976d2",

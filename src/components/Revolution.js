@@ -174,7 +174,7 @@ const Revolution = (props) => {
         alignItems="flex-start"
         paddingLeft="5rem"
       >
-        <div style={{ maxWidth: "28em", width: "100%" }}>
+        <div style={{ maxWidth: "25em", width: "100%" }}>
           <Typography variant="h6" gutterBottom>
             Vision
           </Typography>
@@ -214,7 +214,7 @@ const Revolution = (props) => {
         <img
           src={vision}
           alt="Alberta Vision background"
-          style={{ width: "100%", maxWidth: "25em" }}
+          style={{ width: "100%", maxWidth: "20em" }}
         />
       </Grid>
     </Grid>
@@ -262,6 +262,7 @@ const Revolution = (props) => {
         sx={{
           fontSize: "0.9rem",
           lineHeight: 1.6,
+          maxWidth:"50em"
         }}
       >
         {paragraph}
@@ -317,11 +318,14 @@ const Revolution = (props) => {
         container
         direction="column"
         alignItems={{ xs: "center", md: "flex-start" }}
+      //  marginRight={{md:'220px'}}
+
         md={8}
         xs={12}
         sx={{
           px: 2,
           ml: { md: -4, lg: -6 },
+          
         }}
         className={classes.itemContainer}
       >
@@ -333,7 +337,7 @@ const Revolution = (props) => {
         <Grid item sx={{ textAlign: smallest ? "center" : "justify" }}>
          <Typography
   variant="body1"
-  sx={{ color: "black", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" }}
+  sx={{ color: "black", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" , maxWidth: "30em"}}
   paragraph
 >
   Our process begins the moment you realize you need a piece of
@@ -428,7 +432,7 @@ const Revolution = (props) => {
         <Grid item sx={{ textAlign: smallest ? "center" : "justify" }}>
         <Typography
   variant="body1"
-  sx={{ color: "#fff", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" }}
+  sx={{ color: "#fff", lineHeight: 1.4, mb: 1, fontSize: "0.95rem" }}
   paragraph
 >
   After we settle on the best path forward and decide on a solution to pursue,
@@ -437,7 +441,7 @@ const Revolution = (props) => {
 
           <Typography
   variant="body1"
-  sx={{ color: "black", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" }}
+  sx={{ color: "black", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" ,maxWidth: "30em"}}
   paragraph
 >
   Then it’s time for us to start on your minimum viable product. That’s just a
@@ -448,7 +452,7 @@ const Revolution = (props) => {
 
          <Typography
   variant="body1"
-  sx={{ color: "black", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" }}
+  sx={{ color: "black", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" , maxWidth: "30em"}}
   paragraph
 >
   This helps us understand and refine the solution itself before getting distracted by specifics and looks.
@@ -501,6 +505,7 @@ const Revolution = (props) => {
         container
         direction="column"
         alignItems={{ xs: "center", md: "flex-start" }}
+        marginRight={{md:'300px'}}
         md={8}
         xs={12}
         sx={{
@@ -514,10 +519,10 @@ const Revolution = (props) => {
             Design
           </Typography>
         </Grid>
-        <Grid item sx={{ textAlign: smallest ? "center" : "justify" }}>
+        <Grid item sx={{  textAlign: { xs: "center", md: "left" }}}>
           <Typography
   variant="body1"
-  sx={{ color: "black", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" }}
+  sx={{ color: "black", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" ,maxWidth: "30em"}}
   paragraph
 >
   Using the mockups and notes taken during the consultation as guides,
@@ -528,7 +533,7 @@ const Revolution = (props) => {
 
           <Typography
   variant="body1"
-  sx={{ color: "#fff", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" }}
+  sx={{ color: "#fff", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem",maxWidth: "30em" }}
   paragraph
 >
   No aspect is superfluous, and care will be taken with every decision.
@@ -544,8 +549,8 @@ const Revolution = (props) => {
         xs={12}
         sx={{
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: "right",
+          alignItems: "right",
           mt: { xs: 4, md: 0 },
           px: 2,
         }}
@@ -581,6 +586,7 @@ const Revolution = (props) => {
         container
         direction="column"
         alignItems={{ xs: "center", md: "flex-start" }}
+        marginRight={{md:'400px'}}
         md={8}
         xs={12}
         sx={{
@@ -598,7 +604,7 @@ const Revolution = (props) => {
         <Grid item sx={{ textAlign: smallest ? "center" : "justify" }}>
         <Typography
   variant="body1"
-  sx={{ color: "#f8f8f3", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" }}
+  sx={{ color: "#f8f8f3", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" ,maxWidth: "30em"}}
   paragraph
 >
   A second round of review is essential to our goal of creating
@@ -607,7 +613,7 @@ const Revolution = (props) => {
 
           <Typography
   variant="body1"
-  sx={{ color: "#fff", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" }}
+  sx={{ color: "#fff", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem"  ,maxWidth: "30em"}}
   paragraph
 >
   This time we’ll be going over the finalized designs in another fully
@@ -662,6 +668,7 @@ const Revolution = (props) => {
         container
         direction="column"
         alignItems={{ xs: "center", md: "flex-start" }}
+        marginRight={{md:'300px'}}
         md={8}
         xs={12}
         sx={{
@@ -675,7 +682,7 @@ const Revolution = (props) => {
             Build
           </Typography>
         </Grid>
-        <Grid item sx={{ textAlign: smallest ? "center" : "justify" }}>
+        <Grid item sx={{ textAlign: smallest ? "left" : "justify" , maxWidth: "30em"}}>
   {[
     "Here’s where we get down to business.",
     "Engineering begins after your approval on the final designs. We start by scaffolding out the project on a high level, prioritizing some areas over others.",
@@ -745,6 +752,7 @@ const Revolution = (props) => {
         container
         direction="column"
         alignItems={{ xs: "center", md: "flex-start" }}
+        marginRight={{md:'520px'}}
         md={8}
         xs={12}
         sx={{
@@ -769,7 +777,7 @@ const Revolution = (props) => {
 
          <Typography
   variant="body1"
-  sx={{ color: "#fff", lineHeight: 1.4, fontSize: "0.95rem", mb: 1.2 }}
+  sx={{ color: "#fff", lineHeight: 1.4, fontSize: "0.95rem", mb: 1.2 , maxWidth: "30em"}}
   paragraph
 >
   When construction comes to a close you’re the first one to know.
@@ -780,7 +788,7 @@ const Revolution = (props) => {
 
         <Typography
   variant="body1"
-  sx={{ color: "#fff", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" }}
+  sx={{ color: "#fff", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem", maxWidth: "30em" }}
   paragraph
 >
   When you say the word, we press the button and launch your project
@@ -835,6 +843,7 @@ const Revolution = (props) => {
         container
         direction="column"
         alignItems={{ xs: "center", md: "flex-start" }}
+        marginRight={{md:'420px'}}
         md={8}
         xs={12}
         sx={{
@@ -859,7 +868,7 @@ const Revolution = (props) => {
 
         <Typography
   variant="body1"
-  sx={{ color: "black", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" }}
+  sx={{ color: "black", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem",maxWidth: "30em" }}
   paragraph
 >
   After a successful launch we keep in close contact to listen to
@@ -873,6 +882,7 @@ const Revolution = (props) => {
     lineHeight: 1.4,
     mb: 1.2,
     fontSize: "0.95rem",
+    maxWidth: "30em"
   }}
   paragraph
 >
@@ -930,6 +940,7 @@ const Revolution = (props) => {
         container
         direction="column"
         alignItems={{ xs: "center", md: "flex-start" }}
+        marginRight={{md:'340px'}}
         md={8}
         xs={12}
         sx={{
@@ -946,7 +957,7 @@ const Revolution = (props) => {
         <Grid item sx={{ textAlign: smallest ? "center" : "justify" }}>
          <Typography
   variant="body1"
-  sx={{ color: "#f8f8f3", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" }}
+  sx={{ color: "#f8f8f3", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" , maxWidth: "30em"}}
   paragraph
 >
   The cycle repeats whenever you come up with a new idea for
@@ -955,7 +966,7 @@ const Revolution = (props) => {
 </Typography>
 <Typography
   variant="body1"
-  sx={{ color: "#fff", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" }}
+  sx={{ color: "#fff", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" , maxWidth: "30em" }}
   paragraph
 >
   By planning for future features and changes we can build and
@@ -966,7 +977,7 @@ const Revolution = (props) => {
 
         <Typography
   variant="body1"
-  sx={{ color: "#fff", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" }}
+  sx={{ color: "#fff", lineHeight: 1.4, mb: 1.2, fontSize: "0.95rem" , maxWidth: "30em" }}
   paragraph
 >
   Our iterative process will keep you current and competitive,

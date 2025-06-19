@@ -65,10 +65,11 @@ const useStyles = makeStyles((theme) => ({
   },
 
   icon: {
-    height: "10em",
-    width: "10em",
+    height: "6em",
+    width: "6em",
   },
   question: {
+    fontSize:"0.5rem",
     marginTop: "5em",
     marginBottom: "2em",
     marginLeft: "1em",
@@ -86,10 +87,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "30px",
     marginLeft: "20px",
     marginRight: "20px",
-    height: "45px",
+    height: "40px",
     width: "250px",
     marginTop: "0.5rem",
-    fontSize: "1.35rem",
+    fontSize: "0.9rem",
   },
 
   placeRequest: {

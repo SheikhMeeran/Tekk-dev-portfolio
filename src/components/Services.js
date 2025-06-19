@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import softwareIcon from "../assets/software.svg";
 import mobileIcon from "../assets/mobile.svg";
 import websiteIcon from "../assets/website.svg";
+import application from "../assets/appliction.svg";
 
 // Animation variants
 const sectionVariant = {
@@ -209,6 +210,15 @@ const Services = () => {
         link="/websites"
         reverse={false}
       />
+       <ServiceSection
+  title="Application Development"
+  subtitle="Smart Development: Time, Energy & Cost Efficiency"
+  description="Robust application development from concept creation to final deployment."
+  image={application}
+  link="/software"
+  reverse={true}
+/>
+
     </Container>
   );
 };
