@@ -4,6 +4,7 @@ import { makeStyles } from "@mui/styles"; // if you still need legacy styling
 import { useTheme } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import { Box } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CallToAction from "./ui/CallToAction";
 import technologyAnimation from "../animations/technologyAnimation/data.json";
@@ -21,7 +22,7 @@ import { motion } from "framer-motion";
 
 const useStyles = makeStyles((theme) => ({
   heading: {
-    paddingLeft: "5em",
+    paddingLeft: "7rem",
     paddingRight: "5em",
     marginBottom: "3em",
     marginTop: "2em",
@@ -161,7 +162,7 @@ const Revolution = (props) => {
       direction="row"
       alignItems="center"
       justifyContent="space-between"
-      spacing={20}
+      spacing={28}
     >
       {/* Text Section */}
       <Grid
@@ -171,7 +172,7 @@ const Revolution = (props) => {
         container
         direction="column"
         alignItems="flex-start"
-        paddingLeft="3rem"
+        paddingLeft="5rem"
       >
         <div style={{ maxWidth: "28em", width: "100%" }}>
           <Typography variant="h6" gutterBottom>
@@ -222,88 +223,85 @@ const Revolution = (props) => {
 
 
 
+<Grid
+  container
+  direction="row"
+  alignItems="flex-start"
+  justifyContent="flex-start"
+  className={classes.rowContainer}
+  sx={{ px: { xs: 2, sm: 3 }, py: 4 }}
+>
+  {/* TEXT SECTION */}
+  <Grid
+    item
+    xs={12}
+    md={6}
+    sx={{
+      textAlign: "left",
+      pr: { xs: 0, md: 2 }, // space between text and animation
+    }}
+    className={classes.itemContainer}
+  >
+    <Typography variant="h6" gutterBottom>
+      Technology
+    </Typography>
 
-      <Grid
-        container
-        direction="row"
-        alignItems="center"
-        justify="center"
-        className={classes.rowContainer}
+    {[
+      "In 2013, Facebook invented a new way of building websites. This new system, React.js, completely revolutionizes the process and practice of website development.",
+      "Instead of chaining together long individual pages, like traditional websites, React websites are built with little chunks of code called components. These components are faster, easier to maintain, and are easily reused and customized, each serving a singular purpose.",
+      "Two years later they shocked the world by releasing a similar system, React Native, for producing iOS and Android apps. Instead of having to master two completely separate development platforms, you can leverage the knowledge you already possessed from building websites and reapply it directly! This was a huge leap forward.",
+      "This technology is now being used by companies like AirBnB, Microsoft, Netflix, Pinterest, Skype, Tesla, UberEats, and when Facebook purchased Instagram large portions of it were even rebuilt using React.",
+      "Developers have since built on top of these systems by automating project setup and deployment, allowing creators to focus as much as possible on their work itself.",
+      "These technical advancements translate into savings by significantly reducing the workload and streamlining the workflow for developing new pieces of software, while also lowering the barrier to entry for mobile app development.",
+      "This puts personalization in your pocket — faster, better, and more affordable than ever before.",
+    ].map((paragraph, index) => (
+      <Typography
+        key={index}
+        variant="body1"
+        paragraph
+        sx={{
+          fontSize: "0.9rem",
+          lineHeight: 1.6,
+        }}
       >
-        {medium ? technologyAnimationJSX : null}
-        <Grid
-          item
-          container
-          direction="column"
-          alignItems={smaller ? "center" : "flex-start"}
-          style={{
-            marginLeft: 0,
-            marginRight: medium ? 0 : larger ? "2.5em" : "5em",
-          }}
-          className={classes.itemContainer}
-          lg
-        >
-          <Grid item align={smaller ? "center" : "left"}>
-            <Typography variant="h6" gutterBottom>
-              Technology
-            </Typography>
-          </Grid>
-          <Grid item sx={{ textAlign: smallest ? "center" : "justify" }}>
-  <Typography variant="body1" paragraph sx={{ fontSize: "0.95rem" }}>
-    In 2013, Facebook invented a new way of building websites. This
-    new system, React.js, completely revolutionizes the process and
-    practice of website development.
-  </Typography>
-  <Typography variant="body1" paragraph sx={{ fontSize: "0.95rem" }}>
-    Instead of chaining together long individual pages, like
-    traditional websites, React websites are built with little chunks
-    of code called components. These components are faster, easier to
-    maintain, and are easily reused and customized, each serving a
-    singular purpose.
-  </Typography>
-  <Typography variant="body1" paragraph sx={{ fontSize: "0.95rem" }}>
-    Two years later they shocked the world by releasing a similar
-    system, React Native, for producing iOS and Android apps. Instead
-    of having to master two completely separate development platforms,
-    you can leverage the knowledge you already possessed from building
-    websites and reapply it directly! This was a huge leap forward.
-  </Typography>
-  <Typography variant="body1" paragraph sx={{ fontSize: "0.95rem" }}>
-    This technology is now being used by companies like AirBnB,
-    Microsoft, Netflix, Pinterest, Skype, Tesla, UberEats, and when
-    Facebook purchased Instagram large portions of it were even
-    rebuilt using React.
-  </Typography>
-  <Typography variant="body1" paragraph sx={{ fontSize: "0.95rem" }}>
-    Developers have since built on top of these systems by automating
-    project setup and deployment, allowing creators to focus as much
-    as possible on their work itself.
-  </Typography>
-  <Typography variant="body1" paragraph sx={{ fontSize: "0.95rem" }}>
-    These technical advancements translate into savings by
-    significantly reducing the workload and streamlining the workflow
-    for developing new pieces of software, while also lowering the
-    barrier to entry for mobile app development.
-  </Typography>
-  <Typography variant="body1" paragraph sx={{ fontSize: "0.95rem" }}>
-    This puts personalization in your pocket — faster, better, and
-    more affordable than ever before.
-  </Typography>
+        {paragraph}
+      </Typography>
+    ))}
+  </Grid>
+
+  {/* ANIMATION SECTION */}
+  <Grid
+    item
+    xs={12}
+    md={4}
+    sx={{
+      display: "flex",
+      justifyContent: "flex-start", // align left
+      alignItems: "flex-start",
+      mt: { xs: 4, md: 0 },
+    }}
+  >
+    <Box
+      sx={{
+        width: "100%",
+        maxWidth: 280, // Adjust width here
+        height: "auto",
+      }}
+    >
+      {technologyAnimationJSX}
+    </Box>
+  </Grid>
 </Grid>
 
-          
-        </Grid>
-        {medium ? null : technologyAnimationJSX}
-      </Grid>
 
 
       
-      <Grid item className={classes.heading} align="center">
+      <Grid item className={classes.heading} align="left">
         <Typography variant="h5">Process</Typography>
       </Grid>
       <Grid
       container
-      alignItems="center"
+      alignItems="left"
       justifyContent="center"
       className={classes.processRowContainer}
       sx={{

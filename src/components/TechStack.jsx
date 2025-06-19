@@ -55,7 +55,6 @@ const techData = {
 
 const TechStack = () => {
   const [activeTab, setActiveTab] = useState('Frontend');
-
   const logosRef = useRef(null);
   const isInView = useInView(logosRef, { once: true, margin: '-50px' });
 
@@ -128,6 +127,7 @@ const TechStack = () => {
     maxWidth: '100%',
     margin: '20px auto',
     paddingLeft: '0px',
+    height: 'auto', // ✅ Ensures it fits content, prevents extra space
   };
 
   const logoCard = {
@@ -148,7 +148,7 @@ const TechStack = () => {
 
   return (
     <div style={containerStyle}>
-      {/* Animate heading drop-in */}
+      {/* Heading animation */}
       <motion.div
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -158,6 +158,7 @@ const TechStack = () => {
         Technologies<span style={{ color: '#3b82f6' }}>.</span>
       </motion.div>
 
+      {/* Description */}
       <div style={descriptionWrapper}>
         <p style={{ fontSize: '0.95rem', marginBottom: '10px', textAlign: 'left' }}>
           One partnership delivers all the experts you need
@@ -169,6 +170,7 @@ const TechStack = () => {
         </p>
       </div>
 
+      {/* Tabs */}
       <div style={tabsContainer}>
         {Object.keys(techData).map((tab) => (
           <button key={tab} style={tabStyle(tab)} onClick={() => setActiveTab(tab)}>
@@ -177,7 +179,7 @@ const TechStack = () => {
         ))}
       </div>
 
-      {/* Logos with scroll-triggered animation */}
+      {/* Logos */}
       <motion.div
         ref={logosRef}
         style={logosContainer}

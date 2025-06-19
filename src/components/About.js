@@ -68,8 +68,8 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
 
   return (
     <>
-      <Container maxWidth="xl" sx={{ pb: 4 }}>
-        <Box sx={{ px: { xs: 3, sm: 6 }, mt: { xs: 3, sm: 6 }, mb: { xs: 2, sm: 4 }, textAlign: "left" }}>
+      <Container maxWidth="xl" sx={{ pb: 0 }}>
+        <Box sx={{ px: { xs: 3, sm: 6 }, mt: { xs: 3, sm: 5 }, mb: 1, textAlign: "left" }}>
           <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, fontSize: "0.95rem" }}>
             About Us
           </Typography>
@@ -94,7 +94,7 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
           >
             {aboutText}
           </Typography>
-          <Box sx={{ px: { xs: 2, sm: 6 }, mt: 2 }}>
+          <Box sx={{ px: { xs: 2, sm: 6 }, mt: 1 }}>
             <Button onClick={handleToggle} sx={{ fontSize: "0.85rem", textTransform: "none", px: 0 }}>
               {expanded ? "Read Less" : "Read More"}
             </Button>
@@ -102,10 +102,10 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-          <Box sx={{ px: { xs: 2, sm: 6 }, my: 2, p: { xs: 3, md:5 }, backgroundColor: "#fff" }}>
+          <Box sx={{ px: { xs: 2, sm: 6 }, mt: 4, py: { xs: 2, md: 3 }, backgroundColor: "#fff" }}>
             <Grid
               container
-              spacing={{sm:10, md:35}}
+              spacing={{ sm: 10, md: 30 }}
               justifyContent="left"
               alignItems="center"
               flexDirection={{ xs: "column", md: "row" }}
@@ -142,12 +142,12 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
         <Testimonials />
 
         <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-          <Box sx={{ textAlign: "center", mb: 4 }}>
+          <Box sx={{ textAlign: "center", mb: 2, mt: 4 }}>
             <Typography variant="h5" sx={{ fontWeight: 600, fontSize: "0.95rem" }}>
               Team
             </Typography>
           </Box>
-          <Grid container justifyContent="center" spacing={4} sx={{ px: { xs: 2, sm: 6 }, mb: 6 }}>
+          <Grid container justifyContent="center" spacing={4} sx={{ px: { xs: 2, sm: 6 }, mb: 4 }}>
             {teamMembers.map((member, index) => (
               <Grid
                 item
@@ -183,13 +183,13 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
         </motion.div>
       </Container>
 
-      {/* Partners Section (Call to Action) - moved up from the bottom with mb */}
+      {/* CallToAction moved up closer to team section */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <Box sx={{ width: "100%", mt: 4}}>
+        <Box sx={{ width: "100%", mt: 2 }}>
           <CallToAction setValue={props.setValue} setSelected={props.setSelected} />
         </Box>
       </motion.div>
