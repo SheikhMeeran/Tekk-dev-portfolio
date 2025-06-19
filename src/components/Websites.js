@@ -17,6 +17,7 @@ import scaleAnimation from "../animations/scaleAnimation/data.json";
 import automationAnimation from "../animations/automationAnimation/data.json";
 import uxAnimation from "../animations/uxAnimation/data.js";
 import transform from "../assets/g.Digital Transformation v2.jpg";
+import application from "../assets/Custom-Software-Application-Development.jpg";
 
 import CallToAction from "./ui/CallToAction";
 import TechStack from "./TechStack";
@@ -35,6 +36,7 @@ const documentsAnimationJSX = (
   <Lottie animationData={documentsAnimation} style={{ width: 400, height: 200 }} />
 );
 
+
 const Websites = ({ setValue, setSelected }) => {
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
@@ -52,7 +54,7 @@ const Websites = ({ setValue, setSelected }) => {
 
   const textStyle = {
     fontSize: "0.95rem",
-    lineHeight: 1.6,
+    lineHeight: 1.3,
     textAlign: "left",
   };
 
@@ -126,8 +128,8 @@ const Websites = ({ setValue, setSelected }) => {
             {
               title: "Digital Transformation",
               text: [
-  "Modern technologies, evolving frameworks, and growing user ",
-  "demands require continuous innovation in software development.",
+  "Modern technologies, evolving frameworks, and growing user demands require ",
+  "continuous innovation in software development.",
   "Applications must adapt quickly to remain scalable, secure, and ",
   "efficient in today's fast-paced tech landscape.",
   "❖ Our development process is agile and business-focused",
@@ -164,10 +166,13 @@ const Websites = ({ setValue, setSelected }) => {
             {
               title: "Automation",
               text: [
-                "Why waste time when you don’t have to?",
-                "We help you identify and automate time or event-based processes.",
-                "Increasing efficiency increases profits, freeing you to focus on growth—not busywork.",
-              ],
+  "Don’t just build software—ship it faster and safer with smart CI/CD automation.",
+  "We help you identify and automate time or event-based processes.",
+ "From code to production in a click—CI/CD automation that delivers speed, reliability,",
+ " and peace of mind.",
+ "Empower your pipeline with CI/CD—automate, deploy, and scale with zero friction.",
+],
+
               animation: automationAnimationJSX,
             },
             {
@@ -179,6 +184,27 @@ const Websites = ({ setValue, setSelected }) => {
                 "problems rather than create them.",
               ],
               animation: uxAnimationJSX,
+            },
+            {
+              title: "Application development",
+              text: [
+                "We turn ideas into scalable, secure, and high-performance  applications—tailored to your ",
+                " business goals.",
+
+                "From concept to code to launch, our application development  process ensures",
+                " precision, agility, and impact.",
+ 
+                "Build robust web and mobile apps with intuitive design, powerful ",
+                "backend logic, and future-ready architecture.",
+
+                "Our development approach blends modern technologies with user-first",
+                " thinking—delivering apps that perform and impress."<
+
+                "Accelerate digital transformation with custom application development ",
+                "that scales with your growth."
+              ],
+                isImage: true,
+                 image: application,
             },
           ].map((section, index) => {
             const showReadMore = section.text.length > 4;
@@ -226,11 +252,11 @@ const Websites = ({ setValue, setSelected }) => {
                       alt={section.title}
                       sx={{
                         width: "100%",
-                        maxWidth: 400,
+                        maxWidth: 300,
                         height: "auto",
                         borderRadius: 2,
                         boxShadow: 3,
-                        marginLeft:"11rem",
+                        marginLeft:"5rem",
                       }}
                     />
                   ) : (

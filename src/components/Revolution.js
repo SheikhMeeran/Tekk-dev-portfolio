@@ -162,7 +162,7 @@ const Revolution = (props) => {
       direction="row"
       alignItems="center"
       justifyContent="space-between"
-      spacing={28}
+      spacing={30}
     >
       {/* Text Section */}
       <Grid
@@ -174,7 +174,7 @@ const Revolution = (props) => {
         alignItems="flex-start"
         paddingLeft="5rem"
       >
-        <div style={{ maxWidth: "25em", width: "100%" }}>
+        <div style={{ maxWidth: "30em", width: "100%" }}>
           <Typography variant="h6" gutterBottom>
             Vision
           </Typography>
@@ -235,10 +235,10 @@ const Revolution = (props) => {
   <Grid
     item
     xs={12}
-    md={6}
+    md={8}
     sx={{
       textAlign: "left",
-      pr: { xs: 0, md: 0}, // space between text and animation
+      pr: { xs: 0, md:19}, // space between text and animation
     }}
     className={classes.itemContainer}
   >
@@ -310,6 +310,7 @@ const Revolution = (props) => {
         py: 6,
         px: 2,
         flexDirection: { xs: "column", sm: "column", md: "row" },
+        marginLeft: "3rem ",
       }}
     >
       {/* Text Section */}
