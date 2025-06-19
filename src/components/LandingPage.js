@@ -19,7 +19,8 @@ import Banner02 from "../assets/Banner02.jpg";
 import Banner03 from "../assets/Banner03.jpg";
 import Banner04 from "../assets/Banner04.jpg";
 import Banner05 from "../assets/Banner05.jpg";
-import Banner06 from "../assets/banner08.jpg";
+// import Banner06 from "../assets/banner08.jpg";
+import Banner06 from "../assets/banner09.jpg";
 
 const imagePaths = [Banner01, Banner02, Banner03, Banner04, Banner05, Banner06];
 const textLines = [
