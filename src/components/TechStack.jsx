@@ -56,7 +56,7 @@ const techData = {
     { name: 'n-tier', img: nTier },
     { name: 'orchestration', img: orchestration },
   ],
-  DataBasees: [
+  DataBases: [
      { name: 'MySQL', img: mysql },
     { name: 'MongoDB', img: mongodb },
     { name: 'Postgresql', img: postgresql },

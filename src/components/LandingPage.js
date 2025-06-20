@@ -10,6 +10,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
+import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 
 import ButtonArrow from "./ui/ButtonArrow";
 import CallToAction from "./ui/CallToAction";
@@ -45,9 +46,17 @@ const LandingPage = (props) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setCurrentIndex((prev) => (prev + 1) % imagePaths.length);
-    }, 10000);
+    }, 7000);
     return () => clearTimeout(timer);
   }, [currentIndex]);
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % imagePaths.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + imagePaths.length) % imagePaths.length);
+  };
 
   return (
     <motion.div
@@ -60,11 +69,14 @@ const LandingPage = (props) => {
         {/* Banner Section */}
         <Box
           sx={{
-            mt: { xs: "2.5rem", sm: "4rem", md: "3rem" }, // 👈 Adjusted margin for spacing from navbar
+            mt: { xs: "2.5rem", sm: "4rem", md: "3rem" },
             width: "100%",
             height: { xs: "250px", sm: "300px", md: "430px" },
             position: "relative",
             overflow: "hidden",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
           {isSmallScreen ? (
@@ -99,13 +111,65 @@ const LandingPage = (props) => {
                     height: "100%",
                     objectFit: "cover",
                     objectPosition: "left",
-                    opacity: isActive ? 1 : 0,
+                    opacity: isActive ? 1: 0,
                     transition: "opacity 1s ease-in-out",
                   }}
                 />
               );
             })
           )}
+
+          {/* Left Arrow Box */}
+          <Box
+            onClick={handlePrev}
+            sx={{
+              position: "absolute",
+              left: { xs: 8, sm: 16 },
+              top: "50%",
+              transform: "translateY(-50%)",
+              zIndex: 1,
+              width: 40,
+              height: 40,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 0, 0, 0.4)",
+              borderRadius: "8px",
+              cursor: "pointer",
+              transition: "background-color 0.3s ease",
+              "&:hover": {
+                backgroundColor: "rgba(0, 0, 0, 0.6)",
+              },
+            }}
+          >
+            <ArrowBackIos sx={{ color: "#fff", fontSize: "1rem" }} />
+          </Box>
+
+          {/* Right Arrow Box */}
+          <Box
+            onClick={handleNext}
+            sx={{
+              position: "absolute",
+              right: { xs: 8, sm: 16 },
+              top: "50%",
+              transform: "translateY(-50%)",
+              zIndex: 3,
+              width: 40,
+              height: 40,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 0, 0, 0.4)",
+              borderRadius: "8px",
+              cursor: "pointer",
+              transition: "background-color 0.3s ease",
+              "&:hover": {
+                backgroundColor: "rgba(0, 0, 0, 0.6)",
+              },
+            }}
+          >
+            <ArrowForwardIos sx={{ color: "#fff", fontSize: "1rem" }} />
+          </Box>
         </Box>
 
         {/* Hero Text + Buttons */}

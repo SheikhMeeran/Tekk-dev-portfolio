@@ -36,7 +36,6 @@ const documentsAnimationJSX = (
   <Lottie animationData={documentsAnimation} style={{ width: 400, height: 200 }} />
 );
 
-
 const Websites = ({ setValue, setSelected }) => {
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
@@ -115,10 +114,18 @@ const Websites = ({ setValue, setSelected }) => {
                   </Typography>
                 </Box>
 
-                <Button onClick={() => setExpanded((prev) => !prev)} sx={{ mt: 1, color: "blue" ,fontSize: "0.75rem",
-}}>
-                  {expanded ? "Read Less" : "Read More"}
-                </Button>
+               <Button
+  onClick={() => setExpanded((prev) => !prev)}
+  sx={{
+    mt: 1,
+    color: "#1976d2", // MUI blue
+    fontSize: "0.65rem",
+    textTransform: "none", // prevents all uppercase
+  }}
+>
+  {expanded ? "Read less" : "Read more"}
+</Button>
+
               </motion.div>
             </motion.div>
           </Grid>
@@ -128,18 +135,17 @@ const Websites = ({ setValue, setSelected }) => {
             {
               title: "Digital Transformation",
               text: [
-  "Modern technologies, evolving frameworks, and growing user demands require ",
-  "continuous innovation in software development.",
-  "Applications must adapt quickly to remain scalable, secure, and ",
-  "efficient in today's fast-paced tech landscape.",
-  "❖ Our development process is agile and business-focused",
-  "❖ Identify and eliminate functional redundancies in code",
-  "❖ Aligns your product vision with development execution",
-  "❖ Optimize team workflows and available resources",
-  "❖ Scalable development practices with modular architecture",
-  "❖ Tailored to your specific software and business requirements",
-],
-
+                "Modern technologies, evolving frameworks, and growing user demands require ",
+                "continuous innovation in software development.",
+                "Applications must adapt quickly to remain scalable, secure, and ",
+                "efficient in today's fast-paced tech landscape.",
+                "❖ Our development process is agile and business-focused",
+                "❖ Identify and eliminate functional redundancies in code",
+                "❖ Aligns your product vision with development execution",
+                "❖ Optimize team workflows and available resources",
+                "❖ Scalable development practices with modular architecture",
+                "❖ Tailored to your specific software and business requirements",
+              ],
               image: transform,
               isImage: true,
             },
@@ -166,13 +172,12 @@ const Websites = ({ setValue, setSelected }) => {
             {
               title: "Automation",
               text: [
-  "Don’t just build software—ship it faster and safer with smart CI/CD automation.",
-  "We help you identify and automate time or event-based processes.",
- "From code to production in a click—CI/CD automation that delivers speed, reliability,",
- " and peace of mind.",
- "Empower your pipeline with CI/CD—automate, deploy, and scale with zero friction.",
-],
-
+                "Don’t just build software—ship it faster and safer with smart CI/CD automation.",
+                "We help you identify and automate time or event-based processes.",
+                "From code to production in a click—CI/CD automation that delivers speed, reliability,",
+                " and peace of mind.",
+                "Empower your pipeline with CI/CD—automate, deploy, and scale with zero friction.",
+              ],
               animation: automationAnimationJSX,
             },
             {
@@ -190,21 +195,17 @@ const Websites = ({ setValue, setSelected }) => {
               text: [
                 "We turn ideas into scalable, secure, and high-performance  applications—tailored to your ",
                 " business goals.",
-
                 "From concept to code to launch, our application development  process ensures",
                 " precision, agility, and impact.",
- 
                 "Build robust web and mobile apps with intuitive design, powerful ",
                 "backend logic, and future-ready architecture.",
-
                 "Our development approach blends modern technologies with user-first",
-                " thinking—delivering apps that perform and impress."<
-
+                " thinking—delivering apps that perform and impress.",
                 "Accelerate digital transformation with custom application development ",
-                "that scales with your growth."
+                "that scales with your growth.",
               ],
-                isImage: true,
-                 image: application,
+              isImage: true,
+              image: application,
             },
           ].map((section, index) => {
             const showReadMore = section.text.length > 4;
@@ -229,22 +230,28 @@ const Websites = ({ setValue, setSelected }) => {
                   ))}
                   {showReadMore && (
                     <Button
-  onClick={() => setExpandedIndex(isExpanded ? null : index)}
-  sx={{
-    mt: 1,
-    px: 1.5,
-    py: 0.5,
-    fontSize: "0.95rem",
-    minWidth: "auto",
-    color: "blue",
-    textTransform: "none",
-  }}
->
-  {isExpanded ? "Read Less" : "Read More"}
-</Button>
+                      onClick={() => setExpandedIndex(isExpanded ? null : index)}
+                      sx={{
+                        mt: 1,
+                        px: 0.6,
+                        py: 0.5,
+                        fontSize: "0.75rem",
+                        minWidth: "auto",
+                        color: "#1976d2",
+                        textTransform: "none",
+                      }}
+                    >
+                      {isExpanded ? "Read less" : "Read more"}
+                    </Button>
                   )}
                 </Grid>
-                <Grid item xs={12} md={6} display="flex" justifyContent={medium ? "center" : "flex-end"}>
+                <Grid
+                  item
+                  xs={12}
+                  md={6}
+                  display="flex"
+                  justifyContent={medium ? "center" : "flex-end"}
+                >
                   {section.isImage ? (
                     <Box
                       component="img"
@@ -256,7 +263,7 @@ const Websites = ({ setValue, setSelected }) => {
                         height: "auto",
                         borderRadius: 2,
                         boxShadow: 3,
-                        marginLeft:"5rem",
+                        marginLeft: "5rem",
                       }}
                     />
                   ) : (

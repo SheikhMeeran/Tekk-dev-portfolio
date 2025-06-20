@@ -18,6 +18,7 @@ import engagement from "../assets/increaseEngagement.svg";
 const useStyles = makeStyles((theme) => ({
   heading: {
     maxWidth: "60em",
+    
     [theme.breakpoints.down("md")]: {
       maxWidth: "45em",
     },

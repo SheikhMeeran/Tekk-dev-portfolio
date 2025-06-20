@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Container,
@@ -9,10 +9,13 @@ import {
   useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
+
 import softwareIcon from "../assets/software.svg";
 import mobileIcon from "../assets/mobile.svg";
 import websiteIcon from "../assets/website.svg";
 import application from "../assets/appliction.svg";
+import aug from "../assets/aug.jpg";
+import aug2 from "../assets/aug2.jpg";
 
 // Animation variants
 const sectionVariant = {
@@ -28,6 +31,33 @@ const sectionVariant = {
   },
 };
 
+// Auto image switcher for Staff Augmentation
+const AutoChangingImage = ({ images, alt }) => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <Box
+      component="img"
+      src={images[index]}
+      alt={alt}
+      sx={{
+        width: "100%",
+        maxWidth: { xs: "90%", sm: "80%", md: 380 },
+        display: "block",
+        mx: "auto",
+        transition: "opacity 0.5s ease-in-out",
+      }}
+    />
+  );
+};
+
 const ServiceSection = ({
   title,
   subtitle,
@@ -38,6 +68,15 @@ const ServiceSection = ({
 }) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const [expanded, setExpanded] = useState(false);
+  const isStaffAugmentation = title === "Staff Augmentation";
+
+  // Limit for description preview
+  const charLimit = 250;
+  const isLongText = description.length > charLimit;
+  const visibleText = expanded || !isLongText
+    ? description
+    : description.slice(0, charLimit) + "...";
 
   return (
     <motion.div
@@ -46,10 +85,10 @@ const ServiceSection = ({
       viewport={{ once: true, amount: 0.3 }}
       variants={sectionVariant}
     >
-      <Box sx={{ py: { xs: 2, md: 3 } }}> {/* Reduced vertical padding */}
+      <Box sx={{ py: { xs: 2, md: 3 } }}>
         <Grid
           container
-          spacing={3} // Slightly tighter spacing
+          spacing={3}
           direction={isSmallScreen ? "column-reverse" : "row"}
           alignItems="center"
         >
@@ -72,6 +111,7 @@ const ServiceSection = ({
               >
                 {title}
               </Typography>
+
               <Typography
                 variant="subtitle1"
                 color="text.secondary"
@@ -80,19 +120,37 @@ const ServiceSection = ({
               >
                 {subtitle}
               </Typography>
+
               <Typography
                 variant="body2"
                 color="text.secondary"
-                sx={{ mb: 2, fontSize: "0.95rem" }}
+                sx={{ mb: 1, fontSize: "0.95rem", whiteSpace: "pre-line" }}
               >
-                {description}
+                {visibleText}
               </Typography>
+
+              {isLongText && (
+                <Button
+                  variant="text"
+                  onClick={() => setExpanded(!expanded)}
+                  sx={{
+                    color: "primary.main",
+                    textTransform: "none",
+                    fontWeight: 500,
+                    px: 0,
+                    minWidth: 0,
+                  }}
+                >
+                  {expanded ? "Read Less" : "Read More"}
+                </Button>
+              )}
 
               {!isSmallScreen && (
                 <Button
                   variant="contained"
                   href={link}
                   sx={{
+                    mt: 2,
                     backgroundColor: "white",
                     color: "black",
                     textTransform: "none",
@@ -119,17 +177,22 @@ const ServiceSection = ({
                 pl: { md: 5 },
               }}
             >
-              <Box
-                component="img"
-                src={image}
-                alt={title}
-                sx={{
-                  width: "100%",
-                  maxWidth: { xs: "90%", sm: "80%", md: 380 },
-                  display: "block",
-                  mx: "auto",
-                }}
-              />
+              {isStaffAugmentation ? (
+                <AutoChangingImage images={[aug, aug2]} alt={title} />
+              ) : (
+                <Box
+                  component="img"
+                  src={image}
+                  alt={title}
+                  sx={{
+                    width: "100%",
+                    maxWidth: { xs: "90%", sm: "80%", md: 380 },
+                    display: "block",
+                    mx: "auto",
+                  }}
+                />
+              )}
+
               {isSmallScreen && (
                 <Button
                   variant="contained"
@@ -160,7 +223,7 @@ const ServiceSection = ({
 // Main Services Page
 const Services = () => {
   return (
-    <Container maxWidth="lg" sx={{ py: { xs: 2, md: 4 } }}> {/* Reduced container padding */}
+    <Container maxWidth="lg" sx={{ py: { xs: 2, md: 4 } }}>
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -191,7 +254,6 @@ const Services = () => {
         subtitle="Extend Functionality. Extend Access. Increase Engagement."
         description="Integrate your web experience or create a standalone app with either mobile platform."
         image={mobileIcon}
-        link="/mobileapps"
         reverse={false}
       />
       <ServiceSection
@@ -207,18 +269,34 @@ const Services = () => {
         subtitle="Reach More. Discover More. Sell More."
         description="Bring your business online with a fast and SEO-optimized website built for impact."
         image={websiteIcon}
+        reverse={false}
+      />
+      <ServiceSection
+        title="Application Development"
+        subtitle="Smart Development: Time, Energy & Cost Efficiency"
+        description="Robust application development from concept creation to final deployment."
+        image={application}
+        link="/Websites/"
+        reverse={true}
+      />
+      <ServiceSection
+        title="Staff Augmentation"
+        subtitle='TekkDev offers “Staff augmentation services”'
+        description={`Twhich facilitates your business to add involve external resources with specific 
+skillsets to your existing team on contractual basis 
+for projects or related product development activities to fill 
+skill gaps or speedup your deliverables or meet your timelines.
+We offer flexible outsourcing model which supports your software delivery 
+plan with skilled workforce quickly with addition of contractual employees
+Though we are not limited to skillset but can meet 
+your immediate needs for MERN, C++, Node.js, React and more
+Our aim is to support in providing  companies to meet project 
+deadlines, by specialized resources with established credentials, 
+and ultimately reduce hiring costs.`}
+        image={aug}
         link="/websites"
         reverse={false}
       />
-       <ServiceSection
-  title="Application Development"
-  subtitle="Smart Development: Time, Energy & Cost Efficiency"
-  description="Robust application development from concept creation to final deployment."
-  image={application}
-  link="/software"
-  reverse={true}
-/>
-
     </Container>
   );
 };
