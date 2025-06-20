@@ -20,13 +20,18 @@ import technologyAnimation from "../animations/technologyAnimation/data.json";
 const sections = [
   {
     title: "Vision",
-    description: `We will always deliver services that are professional and proactive, 
-     ensuring our clients receive solutions that are:
+    description: `Our vision is to be recognized as a strategic partner who not only meets 
+expectations but consistently exceeds them.
+We are committed to building long-term relationships by empowering our clients 
+through innovation, integrity, and consistent performance.
+ We will always deliver services that are professional and proactive, 
+  ensuring our clients receive solutions that are:
 
 ❖ Reliable
 ❖ Knowledgeable
 ❖ Pragmatic
 ❖ Trusted`,
+
     image: vision,
   },
   {
