@@ -120,10 +120,10 @@ Our iterative process will keep you current and competitive, allowing you to qui
 
 const ServicesSections = () => {
   const [expanded, setExpanded] = useState(false);
+  const [expandedTech, setExpandedTech] = useState(false);
 
   return (
     <Box sx={{ px: { xs: 2, md: 4 }, py: { xs: 6, md: 8 }, fontSize: "0.95rem" }}>
-      {/* Revolution Heading */}
       <Container maxWidth="lg">
         <motion.div
           initial={{ y: -20, opacity: 0 }}
@@ -234,7 +234,11 @@ const ServicesSections = () => {
                       color: isBlue ? "#fff" : "inherit",
                     }}
                   >
-                    {isFirst && !expanded ? shortText : fullText}
+                    {isFirst && !expanded
+                      ? shortText
+                      : isTechnology && !expandedTech
+                      ? fullText.split("\n").slice(0, 6).join("\n")
+                      : fullText}
                   </Typography>
 
                   {isFirst && (
@@ -250,6 +254,23 @@ const ServicesSections = () => {
                         }}
                       >
                         {expanded ? "Read Less" : "Read More"}
+                      </Typography>
+                    </Box>
+                  )}
+
+                  {isTechnology && (
+                    <Box mt={2}>
+                      <Typography
+                        variant="body2"
+                        onClick={() => setExpandedTech((prev) => !prev)}
+                        sx={{
+                          color: "#1976d2",
+                          cursor: "pointer",
+                          fontWeight: 500,
+                          "&:hover": { textDecoration: "underline" },
+                        }}
+                      >
+                        {expandedTech ? "Read Less" : "Read More"}
                       </Typography>
                     </Box>
                   )}
@@ -289,7 +310,7 @@ const ServicesSections = () => {
                           ? { xs: "90%", sm: 220, md: 250 }
                           : { xs: "100%", sm: 300, md: 350 },
                         height: "auto",
-                        maxHeight: isReview ? 180 : "none", // 👈 Adjusted height
+                        maxHeight: isReview ? 180 : "none",
                         objectFit: "contain",
                         borderRadius: 2,
                       }}
@@ -309,7 +330,7 @@ const ServicesSections = () => {
           position: "relative",
           left: "50%",
           right: "50%",
-          top: "65px",
+          top: "65px", // reduced from 65px
           marginLeft: "-50vw",
           marginRight: "-50vw",
         }}
