@@ -13,7 +13,7 @@ import build from "../assets/buildIcon.svg";
 import launch from "../assets/launchIcon.svg";
 import maintain from "../assets/maintain.png";
 import iterate from "../assets/iterateIcon.svg";
-import glass from "../assets/glass.png";
+import glass from "../assets/glas.png";
 import rocket from "../assets/rocket.png";
 import technologyAnimation from "../animations/technologyAnimation/data.json";
 
@@ -31,7 +31,6 @@ through innovation, integrity, and consistent performance.
 ❖ Knowledgeable
 ❖ Pragmatic
 ❖ Trusted`,
-
     image: vision,
   },
   {
@@ -124,8 +123,7 @@ const ServicesSections = () => {
 
   return (
     <Box sx={{ px: { xs: 2, md: 4 }, py: { xs: 6, md: 8 }, fontSize: "0.95rem" }}>
-      
-      {/* Revolution Heading with Drop Animation */}
+      {/* Revolution Heading */}
       <Container maxWidth="lg">
         <motion.div
           initial={{ y: -20, opacity: 0 }}
@@ -152,13 +150,13 @@ const ServicesSections = () => {
         const isLastThree = index >= sections.length - 3;
         const isBlue = [5, 7, 9].includes(index);
         const isConsultation = section.title === "Consultation";
+        const isReview = section.title === "Review";
 
         const fullText = section.description;
         const shortText = fullText.split("\n").slice(0, 4).join("\n");
 
         return (
           <React.Fragment key={index}>
-            {/* Process Heading before Consultation with Animation */}
             {isConsultation && (
               <Container maxWidth="lg">
                 <motion.div
@@ -195,7 +193,7 @@ const ServicesSections = () => {
                 py: isBlue ? 4 : 0,
               }}
             >
-              {/* Text Section */}
+              {/* Text */}
               <Grid
                 item
                 xs={12}
@@ -258,7 +256,7 @@ const ServicesSections = () => {
                 </motion.div>
               </Grid>
 
-              {/* Image / Animation */}
+              {/* Image or Animation */}
               <Grid
                 item
                 xs={12}
@@ -291,7 +289,8 @@ const ServicesSections = () => {
                           ? { xs: "90%", sm: 220, md: 250 }
                           : { xs: "100%", sm: 300, md: 350 },
                         height: "auto",
-                        objectFit: "cover",
+                        maxHeight: isReview ? 180 : "none", // 👈 Adjusted height
+                        objectFit: "contain",
                         borderRadius: 2,
                       }}
                     />
@@ -310,7 +309,7 @@ const ServicesSections = () => {
           position: "relative",
           left: "50%",
           right: "50%",
-          top:"65px",
+          top: "65px",
           marginLeft: "-50vw",
           marginRight: "-50vw",
         }}
