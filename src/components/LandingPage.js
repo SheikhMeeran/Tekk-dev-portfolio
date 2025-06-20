@@ -60,7 +60,7 @@ const LandingPage = (props) => {
         {/* Banner Section */}
         <Box
           sx={{
-            mt: { xs: "0.9rem", sm: "2.5rem", md: "1rem" }, // Reduced space below navbar
+            mt: { xs: "2.5rem", sm: "4rem", md: "3rem" }, // 👈 Adjusted margin for spacing from navbar
             width: "100%",
             height: { xs: "250px", sm: "300px", md: "430px" },
             position: "relative",
@@ -80,7 +80,7 @@ const LandingPage = (props) => {
                 position: "absolute",
                 width: "100%",
                 height: "100%",
-                objectFit: "contain", // Ensures image fits without cropping
+                objectFit: "contain",
                 objectPosition: "left",
                 backgroundColor: "#fff",
               }}

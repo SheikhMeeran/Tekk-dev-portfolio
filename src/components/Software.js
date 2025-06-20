@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 
+// Images
 import grc from "../assets/a.GRC.jpeg";
 import cloud from "../assets/Cloud Assessment.jpg";
 import vapt from "../assets/c. VAPT copy.jpeg";
@@ -10,6 +11,7 @@ import consultancy from "../assets/Consultancy .jpg";
 import transform from "../assets/g.Digital Transformation v2.jpg";
 import manage from "../assets/Managed App Sec.jpeg";
 
+// Sections data
 const sections = [
   {
     title: "Governance, Risk and Compliance (GRC)",
@@ -121,40 +123,43 @@ const dropInHeading = {
 
 const ServicesSections = () => {
   const [expanded, setExpanded] = useState(false);
-
   const handleToggle = () => setExpanded((prev) => !prev);
 
   return (
     <Box sx={{ px: { xs: 2, md: 4 }, py: { xs: 6, md: 8 } }}>
-      {/* Top Heading */}
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={dropInHeading}
+      {/* Heading aligned with sections */}
+      <Box
+        sx={{
+          maxWidth: "1400px",
+          mx: "auto",
+          px: { xs: 2, sm: 3 },
+          mt: { xs: 2, md: 3 },
+          mb: { xs: 4, md: 6 },
+        }}
       >
-        <Typography
-          variant="h5"
-          sx={{
-            fontSize: "1rem",
-            fontWeight: 800,
-            mb: 5,
-            mt: -6, // move up
-            
-            pl: { xs: 0, sm: 1, md:0}, // move left
-            ml: { xs: 1, sm: 2 },
-            transition: "all 0.3s ease-in-out",
-            "&:hover": {
-              color: "#1976d2",
-              fontSize: "1.15rem",
-            },
-          }}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={dropInHeading}
         >
-          Cyber Security
-        </Typography>
-      </motion.div>
+          <Typography
+            variant="h5"
+            sx={{
+              fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" },
+              fontWeight: 800,
+              transition: "all 0.3s ease-in-out",
+              "&:hover": {
+                color: "#1976d2",
+              },
+            }}
+          >
+            Cyber Security
+          </Typography>
+        </motion.div>
+      </Box>
 
-      {/* Service Sections */}
+      {/* Sections Loop */}
       {sections.map((section, index) => {
         const isFirst = index === 0;
         const fullText = section.description;
@@ -171,7 +176,7 @@ const ServicesSections = () => {
               flexDirection: { xs: "column", md: "row" },
             }}
           >
-            {/* Text Section */}
+            {/* Text Content */}
             <Grid
               item
               xs={12}

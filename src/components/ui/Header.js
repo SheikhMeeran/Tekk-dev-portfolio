@@ -25,9 +25,9 @@ import { styled, useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../../assets/logo.jpg";
 
+// ✅ Updated: Removed marginBottom to avoid extra space below header
 const ToolbarMargin = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
-  marginBottom: "1.75em",
 }));
 
 const Logo = styled("img")(() => ({
@@ -43,7 +43,7 @@ const TabStyled = styled(Tab)(() => ({
   color: "#000",
   padding: "0.5rem 1rem",
   "&:hover": {
-    color: "#000080	",
+    color: "#000080",
   },
   "&.Mui-selected": {
     color: "#1976d2",
@@ -169,21 +169,23 @@ const Header = ({ value, setValue }) => {
             </>
           )}
 
-          {routes.filter((route) => route.label !== "Home").map((route) => (
-            <ListItem
-              key={route.activeTabIndex}
-              button
-              component={Link}
-              to={route.link}
-              selected={value === route.activeTabIndex}
-              onClick={() => {
-                setOpenDrawer(false);
-                setValue(route.activeTabIndex);
-              }}
-            >
-              <ListItemText primary={route.label} />
-            </ListItem>
-          ))}
+          {routes
+            .filter((route) => route.label !== "Home")
+            .map((route) => (
+              <ListItem
+                key={route.activeTabIndex}
+                button
+                component={Link}
+                to={route.link}
+                selected={value === route.activeTabIndex}
+                onClick={() => {
+                  setOpenDrawer(false);
+                  setValue(route.activeTabIndex);
+                }}
+              >
+                <ListItemText primary={route.label} />
+              </ListItem>
+            ))}
 
           <ListItem
             button
@@ -238,7 +240,7 @@ const Header = ({ value, setValue }) => {
       <Popper open={openHomeMenu} anchorEl={homeAnchor} transition disablePortal>
         {({ TransitionProps }) => (
           <Grow {...TransitionProps} style={{ transformOrigin: "center top" }}>
-            <Paper sx={{ minWidth: 180 }}> {/* increased width here */}
+            <Paper sx={{ minWidth: 180 }}>
               <ClickAwayListener onClickAway={handleMenuClose}>
                 <MenuList
                   onMouseOver={() => setOpenHomeMenu(true)}
@@ -304,8 +306,3 @@ const Header = ({ value, setValue }) => {
 };
 
 export default Header;
-
-
-
-
-
