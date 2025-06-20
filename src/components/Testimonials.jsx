@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import GCS from "../assets/GCS1.png";
 import {
   Box,
   Typography,
@@ -21,9 +22,9 @@ import {
 const testimonialsData = [
   {
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat aut consequatur illo animi optio exercitationem doloribus eligendi iusto atque repudiandae. Distinctio.",
-    name: "Ahmed",
+    name: "GCS",
     role: "CEO ",
-    image: "/images/testimonials/client-1.jpg",
+    image: GCS,
   },
   {
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat aut consequatur illo animi optio exercitationem doloribus eligendi iusto atque repudiandae. Distinctio.",
@@ -161,7 +162,7 @@ export default function Testimonials() {
                 sx={{
                   width: isSm ? 64 : 80,
                   height: isSm ? 64 : 80,
-                  border: '4px solid black',
+                  border: '1px solid black',
                   boxShadow: 3,
                 }}
               />
