@@ -25,7 +25,6 @@ import { styled, useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../../assets/logo.jpg";
 
-// ✅ Updated: Removed marginBottom to avoid extra space below header
 const ToolbarMargin = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
@@ -84,7 +83,6 @@ const Header = ({ value, setValue }) => {
   const [homeAnchor, setHomeAnchor] = useState(null);
   const [openHomeMenu, setOpenHomeMenu] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [openHomeDrawerSubmenu, setOpenHomeDrawerSubmenu] = useState(false);
 
   const handleHomeHover = useCallback((e) => {
     setHomeAnchor(e.currentTarget);
@@ -137,38 +135,45 @@ const Header = ({ value, setValue }) => {
       >
         <ToolbarMargin />
         <List disablePadding>
-          <ListItem button onClick={() => setOpenHomeDrawerSubmenu(!openHomeDrawerSubmenu)}>
+          {/* Home, About, Revolution as separate items */}
+          <ListItem
+            button
+            component={Link}
+            to="/"
+            selected={value === 0}
+            onClick={() => {
+              setOpenDrawer(false);
+              setValue(0);
+            }}
+          >
             <ListItemText primary="Home" />
           </ListItem>
-          {openHomeDrawerSubmenu && (
-            <>
-              <ListItem
-                sx={{ pl: 4 }}
-                button
-                component={Link}
-                to="/about"
-                onClick={() => {
-                  setOpenDrawer(false);
-                  setValue(0);
-                }}
-              >
-                <ListItemText primary="About" />
-              </ListItem>
-              <ListItem
-                sx={{ pl: 4 }}
-                button
-                component={Link}
-                to="/revolution"
-                onClick={() => {
-                  setOpenDrawer(false);
-                  setValue(0);
-                }}
-              >
-                <ListItemText primary="Revolution" />
-              </ListItem>
-            </>
-          )}
+          <ListItem
+            button
+            component={Link}
+            to="/about"
+            selected={window.location.pathname === "/about"}
+            onClick={() => {
+              setOpenDrawer(false);
+              setValue(0);
+            }}
+          >
+            <ListItemText primary="About" />
+          </ListItem>
+          <ListItem
+            button
+            component={Link}
+            to="/revolution"
+            selected={window.location.pathname === "/revolution"}
+            onClick={() => {
+              setOpenDrawer(false);
+              setValue(0);
+            }}
+          >
+            <ListItemText primary="Revolution" />
+          </ListItem>
 
+          {/* Other routes */}
           {routes
             .filter((route) => route.label !== "Home")
             .map((route) => (
@@ -187,6 +192,7 @@ const Header = ({ value, setValue }) => {
               </ListItem>
             ))}
 
+          {/* Get Estimate */}
           <ListItem
             button
             component={Link}
