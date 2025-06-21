@@ -139,7 +139,7 @@ const ServicesSections = () => {
               mb: 5,
             }}
           >
-            The Revolution
+            The Evolution
           </Typography>
         </motion.div>
       </Container>

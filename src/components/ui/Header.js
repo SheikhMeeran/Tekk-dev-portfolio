@@ -283,7 +283,7 @@ const Header = ({ value, setValue }) => {
                       },
                     }}
                   >
-                    Revolution
+                    Evolution
                   </MenuItem>
                 </MenuList>
               </ClickAwayListener>
