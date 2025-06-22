@@ -40,6 +40,7 @@ import data from "../assets/data.svg";
 import android from "../assets/android.svg";
 import biometrics from "../assets/biometrics.svg";
 import globe from "../assets/globe.svg";
+import { Box } from "@mui/material";
 
 import estimateAnimation from "../animations/estimateAnimation/data.json";
 
@@ -1111,195 +1112,195 @@ const Estimate = (props) => {
         Get Estimate
       </Button>
  
-    <Dialog open={open} onClose={() => setOpen(false)} fullWidth maxWidth="md">
-      <DialogContent>
-        <Grid
-          container
-          justifyContent="center"
-          alignItems="flex-start"
-          direction={{ xs: "column", md: "row" }}
-          spacing={4}
-          sx={{ px: { xs: 2, sm: 4 }, py: 2 }}
+<Dialog open={open} onClose={() => setOpen(false)} fullWidth maxWidth="md">
+  <DialogContent sx={{ py: 6, px: { xs: 1, sm: 2 } }}>
+    <Grid
+      container
+      alignItems="center"
+      justifyContent="center"
+      sx={{
+        backgroundColor: "#fff",
+        borderRadius: 4,
+        overflow: "hidden",
+        width: "100%",
+        boxShadow: 3,
+        flexDirection: { xs: "column", md: "row" },
+      }}
+    >
+      {/* Left: Project Summary */}
+      <Grid
+        item
+        xs={12}
+        md={6}
+        sx={{
+          bgcolor: "#f9f9f9",
+          py: 4,
+          px: { xs: 2, sm: 3 },
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+        }}
+      >
+        <Typography
+          variant="h6"
+          sx={{
+            fontSize: "1.2rem",
+            fontWeight: "bold",
+            mb: 2,
+          }}
         >
-          {/* Left Side: Estimate Summary */}
-          <Grid
-            item
-            container
-            direction="column"
-            md={5}
-            xs={12}
-            sx={{ maxWidth: { md: "35em" } }}
+          Project Estimate Summary
+        </Typography>
+
+        <Box sx={{ width: "100%" }}>
+          {questions.length > 2 ? softwareSelectionsJSX : websiteSelectionJSX}
+        </Box>
+      </Grid>
+
+      {/* Right: Contact Form */}
+      <Grid
+        item
+        xs={12}
+        md={6}
+        sx={{
+          py: 5,
+          px: { xs: 2, sm: 4 },
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        <Typography
+          variant="h6"
+          sx={{ fontWeight: "bold", mb: 2, textAlign: "left" }}
+        >
+          Get in touch
+        </Typography>
+
+        <TextField
+          label="Name"
+          id="name"
+          error={nameHelperText.length !== 0}
+          helperText={nameHelperText}
+          value={name}
+          onChange={onFieldInputChange}
+          fullWidth
+          variant="outlined"
+          sx={{ mb: 2 }}
+        />
+
+        <TextField
+          label="Email"
+          id="email"
+          error={emailHelperText.length !== 0}
+          helperText={emailHelperText}
+          value={email}
+          onChange={onFieldInputChange}
+          fullWidth
+          variant="outlined"
+          sx={{ mb: 2 }}
+        />
+
+        <TextField
+          label="Phone"
+          id="phone"
+          error={phoneHelperText.length !== 0}
+          helperText={phoneHelperText}
+          value={phone}
+          onChange={onFieldInputChange}
+          fullWidth
+          variant="outlined"
+          sx={{ mb: 2 }}
+        />
+
+        <TextField
+          placeholder="Tell us about your project here..."
+          id="message"
+          rows={5}
+          multiline
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          fullWidth
+          variant="outlined"
+          sx={{ mb: 2 }}
+        />
+
+        <Typography
+          variant="body1"
+          align="justify"
+          paragraph
+          sx={{ fontSize: "0.95rem" }}
+        >
+          We can create this digital solution for an estimated{" "}
+          <Box
+            component="span"
+            sx={{ color: "secondary.main", fontWeight: 600 }}
           >
-            <Grid item>
-              <Typography
-                variant="h6"
-                sx={{
-                  fontSize: "1.2rem",
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  mt: 1,
-                  mb: 2,
-                  ml:-35,
-                }}
-              >
-                Project Estimate Summary
-              </Typography>
-            </Grid>
+            ${estimate.toFixed(2)}
+          </Box>
+          .
+        </Typography>
 
-            <Grid item>
-              {questions.length > 2
-                ? softwareSelectionsJSX
-                : websiteSelectionJSX}
-            </Grid>
-          </Grid>
+        <Typography
+          variant="body2"
+          align="justify"
+          paragraph
+          sx={{ fontSize: "0.9rem" }}
+        >
+          Fill out your name, phone number and email to place your request, and
+          we'll get back to you with details moving forward and a final price.
+        </Typography>
 
-          {/* Right Side: Contact Form */}
-          <Grid
-            item
-            container
-            direction="column"
-            md={7}
-            xs={12}
-            sx={{ maxWidth: "30em" }}
+        <Grid item container justifyContent="center" sx={{ mt: 2 }}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={placeRequest}
+            disabled={
+              name.length === 0 ||
+              nameHelperText.length !== 0 ||
+              email.length === 0 ||
+              emailHelperText.length !== 0 ||
+              phone.length === 0 ||
+              phoneHelperText.length !== 0 ||
+              message.length === 0
+            }
+            sx={{
+              borderRadius: "25px",
+              fontWeight: 600,
+              px: 4,
+              py: 1.5,
+              textTransform: "none",
+            }}
           >
-            <Grid item>
-              <Typography
-                variant="h6"
-                sx={{ fontWeight: "bold", mb: 2, fontSize: "1.2rem" }}
-              >
-                Contact Us
-              </Typography>
-            </Grid>
-
-            <Grid item>
-              <TextField
-                label="Name"
-                id="name"
-                error={nameHelperText.length !== 0}
-                helperText={nameHelperText}
-                value={name}
-                onChange={onFieldInputChange}
-                fullWidth
-              />
-            </Grid>
-
-            <Grid item sx={{ mt: 1.5 }}>
-              <TextField
-                label="Email"
-                id="email"
-                error={emailHelperText.length !== 0}
-                helperText={emailHelperText}
-                value={email}
-                onChange={onFieldInputChange}
-                fullWidth
-              />
-            </Grid>
-
-            <Grid item sx={{ mt: 1.5 }}>
-              <TextField
-                label="Phone"
-                id="phone"
-                error={phoneHelperText.length !== 0}
-                helperText={phoneHelperText}
-                value={phone}
-                onChange={onFieldInputChange}
-                fullWidth
-              />
-            </Grid>
-
-            <Grid item sx={{ mt: 2 }}>
-              <TextField
-                InputProps={{ disableUnderline: true }}
-                placeholder="Tell us about your project here..."
-                id="message"
-                rows={6}
-                value={message}
-                className={classes.message}
-                onChange={(e) => setMessage(e.target.value)}
-                multiline
-                fullWidth
-                sx={{ fontSize: "0.95rem" }}
-              />
-            </Grid>
-
-            <Grid item sx={{ mt: 2 }}>
-              <Typography
-                variant="body1"
-                align="justify"
-                paragraph
-                sx={{ fontSize: "0.95rem" }}
-              >
-                We can create this digital solution for an estimated{" "}
-                <span className={classes.specialText}>
-                  ${estimate.toFixed(2)}
-                </span>
-                .
-              </Typography>
-              <Typography
-                variant="body1"
-                align="justify"
-                paragraph
-                sx={{ fontSize: "0.95rem" }}
-              >
-                Fill out your name, phone number and email to place your
-                request, and we'll get back to you with details moving forward
-                and a final price.
-              </Typography>
-            </Grid>
-
-            {/* Place Request Button */}
-            <Grid
-              item
-              container
-              justifyContent="center"
-              sx={{ mt: 2 }}
-            >
-              <Button
-                variant="contained"
-                color="secondary"
-                className={classes.placeRequest}
-                onClick={placeRequest}
-                disabled={
-                  name.length === 0 ||
-                  nameHelperText.length !== 0 ||
-                  email.length === 0 ||
-                  emailHelperText.length !== 0 ||
-                  phone.length === 0 ||
-                  phoneHelperText.length !== 0 ||
-                  message.length === 0
-                }
-              >
-                {loading ? (
-                  <CircularProgress size={25} />
-                ) : (
-                  placeRequestButtonJSX
-                )}
-              </Button>
-            </Grid>
-
-            {/* Cancel Button on New Line */}
-            {!medium && (
-              <Grid
-                item
-                container
-                justifyContent="center"
-                sx={{ mt: 1 }}
-              >
-                <Button
-                  variant="text"
-                  color="secondary"
-                  onClick={() => setOpen(false)}
-                  className={classes.transparentOnHover}
-                  disableRipple
-                >
-                  Cancel
-                </Button>
-              </Grid>
+            {loading ? (
+              <CircularProgress size={24} color="inherit" />
+            ) : (
+              placeRequestButtonJSX
             )}
-          </Grid>
+          </Button>
         </Grid>
-      </DialogContent>
-    </Dialog>
+
+        {/* Optional Cancel Button */}
+        {!medium && (
+          <Grid item container justifyContent="center" sx={{ mt: 2 }}>
+            <Button
+              variant="text"
+              color="secondary"
+              onClick={() => setOpen(false)}
+              sx={{ textTransform: "none" }}
+            >
+              Cancel
+            </Button>
+          </Grid>
+        )}
+      </Grid>
+    </Grid>
+  </DialogContent>
+</Dialog>
+
+
+
 
     </Grid>
   </Grid>
