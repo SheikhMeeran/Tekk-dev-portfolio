@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import {
   Grid,
@@ -49,10 +49,21 @@ const Contact = () => {
 
   const handleSend = () => {
     setLoading(true);
-    axios
-      .get("https://us-central1-beri-tech.cloudfunctions.net/sendMail", {
-        params: { name, email, phone, message },
-      })
+
+    const templateParams = {
+      name,
+      email,
+      phone,
+      message,
+    };
+
+    emailjs
+      .send(
+        "service_k396mqw",
+        "template_6j9gsog",
+        templateParams,
+        "cfvRGxo-iqc-r3cVg"
+      )
       .then(() => {
         setLoading(false);
         setOpen(false);
@@ -83,10 +94,9 @@ const Contact = () => {
     </>
   );
 
-  // ✅ Focus style
   const focusRedSx = {
     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#CD5C5C	",
+      borderColor: "#CD5C5C",
     },
     "& .MuiInputLabel-root.Mui-focused": {
       color: "black",
@@ -102,7 +112,7 @@ const Contact = () => {
         position: "relative",
         width: "100%",
         minHeight: "calc(100vh - 160px)",
-        pt: { xs: 8, sm: 10 },
+        pt: { xs: 12, sm: 14 },
         pb: { xs: 6, sm: 8 },
         overflow: "hidden",
       }}
@@ -204,9 +214,29 @@ const Contact = () => {
         </Grid>
       </motion.div>
 
+      {/* ✅ Updated Dialog with Scrollable Content */}
       <Dialog open={open} onClose={() => setOpen(false)} fullScreen={isSmall}>
-        <DialogTitle>Confirm Message</DialogTitle>
-        <DialogContent>
+        <DialogTitle
+          sx={{
+            fontSize: isSmall ? "1.2rem" : "1.5rem",
+            paddingX: isSmall ? 2 : 3,
+            paddingTop: isSmall ? 2 : 6,
+          }}
+        >
+          Confirm Message
+        </DialogTitle>
+        <DialogContent
+          dividers
+          sx={{
+            maxHeight: "80vh",
+            overflowY: "auto",
+            paddingBottom: 2,
+            paddingTop: 1,
+            [theme.breakpoints.down("sm")]: {
+              paddingX: 1,
+            },
+          }}
+        >
           <Grid container direction="column" spacing={2}>
             {[{ label: "Name", val: name, fn: setName },
               { label: "Email", val: email, fn: setEmail },
@@ -258,7 +288,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
-
-
-
