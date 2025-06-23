@@ -106,6 +106,8 @@ const Contact = () => {
     },
   };
 
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
   return (
     <Box
       sx={{
@@ -159,23 +161,53 @@ const Contact = () => {
         </Typography>
 
         <Grid container spacing={2} direction="column" sx={{ mt: 2 }}>
-          {[{ label: "Name", val: name, fn: setName },
-            { label: "Email", val: email, fn: setEmail },
-            { label: "Phone", val: phone, fn: setPhone },
-          ].map((field, i) => (
-            <Grid item key={i}>
-              <TextField
-                fullWidth
-                label={field.label}
-                value={field.val}
-                required
-                onChange={handleChange(field.fn)}
-                variant="outlined"
-                size={isSmall ? "small" : "medium"}
-                sx={focusRedSx}
-              />
-            </Grid>
-          ))}
+          <Grid item>
+            <TextField
+              fullWidth
+              label="Name"
+              value={name}
+              required
+              onChange={handleChange(setName)}
+              variant="outlined"
+              size={isSmall ? "small" : "medium"}
+              sx={focusRedSx}
+            />
+          </Grid>
+
+          <Grid item>
+            <TextField
+              fullWidth
+              label="Email"
+              value={email}
+              required
+              onChange={handleChange(setEmail)}
+              variant="outlined"
+              type="email"
+              error={email.length > 0 && !isEmailValid}
+              helperText={
+                email.length > 0 && !isEmailValid ? "Enter a valid email (e.g., example@mail.com)" : ""
+              }
+              size={isSmall ? "small" : "medium"}
+              sx={focusRedSx}
+            />
+          </Grid>
+
+          <Grid item>
+            <TextField
+              fullWidth
+              label="Phone"
+              value={phone}
+              required
+              onChange={(e) => {
+                const val = e.target.value;
+                if (/^\d*$/.test(val)) setPhone(val);
+              }}
+              variant="outlined"
+              inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+              size={isSmall ? "small" : "medium"}
+              sx={focusRedSx}
+            />
+          </Grid>
 
           <Grid item>
             <TextField
@@ -183,7 +215,7 @@ const Contact = () => {
               label="Message"
               multiline
               required
-              rows={5}
+              rows={7}
               value={message}
               onChange={handleChange(setMessage)}
               variant="outlined"
@@ -206,7 +238,7 @@ const Contact = () => {
                 },
               }}
               onClick={() => setOpen(true)}
-              disabled={!name || !email || !phone || !message}
+              disabled={!name || !email || !isEmailValid || !phone || !message}
             >
               {sendButtonJSX("Send Message")}
             </Button>
@@ -214,7 +246,6 @@ const Contact = () => {
         </Grid>
       </motion.div>
 
-      {/* ✅ Updated Dialog with Scrollable Content */}
       <Dialog open={open} onClose={() => setOpen(false)} fullScreen={isSmall}>
         <DialogTitle
           sx={{
@@ -238,24 +269,60 @@ const Contact = () => {
           }}
         >
           <Grid container direction="column" spacing={2}>
-            {[{ label: "Name", val: name, fn: setName },
-              { label: "Email", val: email, fn: setEmail },
-              { label: "Phone", val: phone, fn: setPhone },
-              { label: "Message", val: message, fn: setMessage, multiline: true, rows: 4 },
-            ].map((field, i) => (
-              <Grid item key={i}>
-                <TextField
-                  label={field.label}
-                  fullWidth
-                  value={field.val}
-                  onChange={handleChange(field.fn)}
-                  variant="outlined"
-                  multiline={field.multiline}
-                  rows={field.rows}
-                  sx={focusRedSx}
-                />
-              </Grid>
-            ))}
+            <Grid item>
+              <TextField
+                label="Name"
+                fullWidth
+                value={name}
+                onChange={handleChange(setName)}
+                variant="outlined"
+                sx={focusRedSx}
+              />
+            </Grid>
+
+            <Grid item>
+              <TextField
+                label="Email"
+                fullWidth
+                value={email}
+                onChange={handleChange(setEmail)}
+                variant="outlined"
+                type="email"
+                error={email.length > 0 && !isEmailValid}
+                helperText={
+                  email.length > 0 && !isEmailValid ? "Enter a valid email (e.g., example@mail.com)" : ""
+                }
+                sx={focusRedSx}
+              />
+            </Grid>
+
+            <Grid item>
+              <TextField
+                label="Phone"
+                fullWidth
+                value={phone}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (/^\d*$/.test(val)) setPhone(val);
+                }}
+                variant="outlined"
+                inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+                sx={focusRedSx}
+              />
+            </Grid>
+
+            <Grid item>
+              <TextField
+                label="Message"
+                fullWidth
+                multiline
+                rows={4}
+                value={message}
+                onChange={handleChange(setMessage)}
+                variant="outlined"
+                sx={focusRedSx}
+              />
+            </Grid>
 
             <Grid item container justifyContent="flex-end" spacing={2}>
               <Grid item>
@@ -266,6 +333,7 @@ const Contact = () => {
                   onClick={handleSend}
                   variant="contained"
                   color="primary"
+                  disabled={!name || !email || !isEmailValid || !phone || !message}
                 >
                   {loading ? <CircularProgress size={20} /> : sendButtonJSX("Send")}
                 </Button>
