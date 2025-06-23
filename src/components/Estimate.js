@@ -826,7 +826,7 @@ const Estimate = (props) => {
   );
 
   const softwareSelectionsJSX = (
-    <Grid container direction="column" style={{ marginBottom: "2.5em" }}>
+    <Grid container direction="column" style={{ marginBottom: "2em" }}>
       <Grid
         item
         container
@@ -835,7 +835,8 @@ const Estimate = (props) => {
         style={{ marginBottom: "1.25em" }}
       >
         <Grid item xs={2}>
-          <img src={check} alt="checkmark" />
+          {/* <img src={check} alt="checkmark" /> */}
+          ✔
         </Grid>
         <Grid item xs={10}>
           <Typography variant="body1" fontSize={"0.95rem"}>
@@ -878,7 +879,8 @@ const Estimate = (props) => {
         style={{ marginBottom: "1.25em" }}
       >
         <Grid item xs={2}>
-          <img src={check} alt="checkmark" />
+          {/* <img src={check} alt="checkmark" /> */}
+          ✔
         </Grid>
         <Grid item xs={10}>
           <Typography variant="body1" fontSize={"0.95rem"}>
@@ -920,7 +922,8 @@ const Estimate = (props) => {
         style={{ marginBottom: "1.25em" }}
       >
         <Grid item xs={2}>
-          <img src={check} alt="checkmark" />
+          {/* <img src={check}  alt="checkmark" /> */}
+          ✔
         </Grid>
         <Grid item xs={10}>
           <Typography variant="body1" fontSize={"0.95rem"}>
@@ -1112,7 +1115,10 @@ const Estimate = (props) => {
         Get Estimate
       </Button>
  
-<Dialog open={open} onClose={() => setOpen(false)} fullWidth maxWidth="md">
+
+
+
+<Dialog open={open} onClose={() => setOpen(false)}  maxWidth="md">
   <DialogContent sx={{ py: 6, px: { xs: 1, sm: 2 } }}>
     <Grid
       container
@@ -1133,7 +1139,7 @@ const Estimate = (props) => {
         xs={12}
         md={6}
         sx={{
-          bgcolor: "#f9f9f9",
+          bgcolor: "#fff",
           py: 4,
           px: { xs: 2, sm: 3 },
           display: "flex",
@@ -1214,7 +1220,7 @@ const Estimate = (props) => {
         />
 
         <TextField
-          placeholder="Tell us about your project here..."
+          placeholder="Tell us about more project here..."
           id="message"
           rows={5}
           multiline
@@ -1225,27 +1231,12 @@ const Estimate = (props) => {
           sx={{ mb: 2 }}
         />
 
-        <Typography
-          variant="body1"
-          align="justify"
-          paragraph
-          sx={{ fontSize: "0.95rem" }}
-        >
-          We can create this digital solution for an estimated{" "}
-          <Box
-            component="span"
-            sx={{ color: "secondary.main", fontWeight: 600 }}
-          >
-            ${estimate.toFixed(2)}
-          </Box>
-          .
-        </Typography>
-
+      
         <Typography
           variant="body2"
           align="justify"
           paragraph
-          sx={{ fontSize: "0.9rem" }}
+          sx={{ fontSize: "0.95rem" }}
         >
           Fill out your name, phone number and email to place your request, and
           we'll get back to you with details moving forward and a final price.

@@ -16,7 +16,7 @@ import history from "../assets/history.svg";
 import founder from "../assets/waleed-portrait.webp";
 import founder2 from "../assets/founder2.jpeg";
 import founder3 from "../assets/founder3.jpg";
-import Testimonials from "./Testimonials";
+// import Testimonials from "./Testimonials";
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
   width: 250,
@@ -139,7 +139,7 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
           </Box>
         </motion.div>
 
-        <Testimonials />
+        {/* <Testimonials /> */}
 
         <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <Box sx={{ textAlign: "center", mb: 2, mt: 4 }}>
