@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import GCS from "../assets/GCS1.png";
+import Cmc from "../assets/cms.jpeg";
+import Ict from "../assets/ictt.png";
+// import GCS from "../assets/GCS1.png";
 import {
   Box,
   Typography,
@@ -30,7 +33,7 @@ const testimonialsData = [
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat aut consequatur illo animi optio exercitationem doloribus eligendi iusto atque repudiandae. Distinctio.",
     name: "infocommtech",
     role: "Founder",
-    image: "/images/testimonials/client-2.jpg",
+    image: Ict,
   },
   {
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat aut consequatur illo animi optio exercitationem doloribus eligendi iusto atque repudiandae. Distinctio.",
@@ -40,9 +43,9 @@ const testimonialsData = [
   },
   {
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat aut consequatur illo animi optio exercitationem doloribus eligendi iusto atque repudiandae. Distinctio.",
-    name: "Uhuru Kenyatta",
+    name: "CMC",
     role: "CEO & Founder",
-    image: "/images/testimonials/client-4.jpg",
+    image: Cmc,
   },
 ];
 
@@ -162,7 +165,7 @@ export default function Testimonials() {
                 sx={{
                   width: isSm ? 64 : 80,
                   height: isSm ? 64 : 80,
-                  border: '1px solid black',
+                  // border: '1px solid black',
                   boxShadow: 3,
                 }}
               />
@@ -191,9 +194,9 @@ export default function Testimonials() {
 
 const arrowButtonStyles = {
   color: 'black',
-  border: '1px solid #ccc',
-  width: 44,
-  height: 44,
+  // border: '1px solid #ccc',
+  width: 54,
+  height: 54,
   transition: 'all 0.3s',
   '&:hover': {
     backgroundColor: 'black',
