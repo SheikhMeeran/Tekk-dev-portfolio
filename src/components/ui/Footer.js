@@ -96,6 +96,7 @@ const Footer = () => {
               {[
                 { label: "Cyber Security", to: "/software" },
                 { label: "Software Development", to: "/websites" },
+                { label: "Partners", to: "/testimonials" },
               ].map((item, i) => (
                 <Typography
                   key={i}

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import GCS from "../assets/GCS1.png";
-import Cmc from "../assets/cms.jpeg";
-import Ict from "../assets/ictt.png";
-// import GCS from "../assets/GCS1.png";
+import GCS from "../assets/GCSS.png"
+import Cmc from "../assets/CMS.png"
+import Ict from "../assets/ICCT.png"
+// import GCS from "../assets/GCS1.png";""
 import {
   Box,
   Typography,
@@ -24,19 +24,27 @@ import {
 
 const testimonialsData = [
   {
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat aut consequatur illo animi optio exercitationem doloribus eligendi iusto atque repudiandae. Distinctio.",
+    text:`GCS started its operations from USA and subsequently established its first office in Pakistan (2007). Over the years, GCS has become known as a leading provider of ICT integrations, diverse technology solutions and services in Pakistan, and expanded its operations in Turkey, Africa and UAE. With Saudi Arabia and China in the planning for the year 2025, our goal is to help our clients stay ahead of the curve and stay competitive in today's fast-paced digital world.`
+,
     name: "GCS",
-    role: "CEO ",
     image: GCS,
   },
   {
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat aut consequatur illo animi optio exercitationem doloribus eligendi iusto atque repudiandae. Distinctio.",
+text: `• One of Pakistan’s largest IT companies
+Integrates diverse hardware and software into unified solutions
+Simplifies technology environments for clients
+Helps businesses achieve their goals through smart IT alignment
+Offers a full suite of solutions, services, and capabilities
+Committed to excellence at every level`,
+
     name: "infocommtech",
-    role: "Founder",
     image: Ict,
   },
   {
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat aut consequatur illo animi optio exercitationem doloribus eligendi iusto atque repudiandae. Distinctio.",
+text: `• Multi-disciplinary team: Engineers, Transport Economists, Geo-Tech Experts, Geologists, QC Specialists, Tech Experts & Technicians
+• Delivering impactful professional consulting & engineering services
+• Launched an ICT consulting division
+• Partnered with leading global InfoSec & tech consulting firms`,
     name: "pakccl",
     role: "Global Brand Manager",
     image: "/images/testimonials/client-3.jpg",
@@ -203,3 +211,7 @@ const arrowButtonStyles = {
     color: '#fff',
   },
 };
+
+
+
+
