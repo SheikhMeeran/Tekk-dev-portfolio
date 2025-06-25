@@ -301,11 +301,11 @@ const Header = () => {
                       "&:hover": {
                         backgroundColor: "#1976d2",
                         color: "#fff",
-                        fontWeight: 500,
+                        fontWeight: 600,
                       },
                     }}
                   >
-                    Revolution
+                    Evolution
                   </MenuItem>
                   <MenuItem
                     component={Link}
