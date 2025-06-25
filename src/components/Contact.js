@@ -59,10 +59,13 @@ const Contact = () => {
 
     emailjs
       .send(
-        "service_k396mqw",
-        "template_6j9gsog",
+        // "service_k396mqw",
+        "service_gtxju0u",
+        // "template_6j9gsog",
+        "template_627092p",
         templateParams,
-        "cfvRGxo-iqc-r3cVg"
+        // "cfvRGxo-iqc-r3cVg"
+        "AaS_If9vy77wGqVZO"
       )
       .then(() => {
         setLoading(false);

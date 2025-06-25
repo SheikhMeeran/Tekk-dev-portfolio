@@ -38,7 +38,7 @@ const AnimatedRoutes = ({ pageProps }) => {
         <Route path="/about" element={<About {...pageProps} />} />
         <Route path="/contact" element={<Contact {...pageProps} />} />
         <Route path="/estimate" element={<Estimate {...pageProps} />} />
-        <Route path="/partner" element={<Testimonials {...pageProps} />} /> {/* ✅ Partner Route */}
+        <Route path="/testimonials" element={<Testimonials {...pageProps} />} /> {/* ✅ Partner Route */}
       </Routes>
     </AnimatePresence>
   );

@@ -826,7 +826,7 @@ const Estimate = (props) => {
   );
 
   const softwareSelectionsJSX = (
-    <Grid container direction="column" style={{ marginBottom: "2em" }}>
+    <Grid container direction="column" >
       <Grid
         item
         container
@@ -834,7 +834,7 @@ const Estimate = (props) => {
         alignItems="center"
         style={{ marginBottom: "1.25em" }}
       >
-        <Grid item xs={2}>
+        <Grid item xs={2} ml={-8}>
           {/* <img src={check} alt="checkmark" /> */}
           ✔
         </Grid>
@@ -878,7 +878,7 @@ const Estimate = (props) => {
         alignItems="center"
         style={{ marginBottom: "1.25em" }}
       >
-        <Grid item xs={2}>
+        <Grid item xs={2} ml={-8}>
           {/* <img src={check} alt="checkmark" /> */}
           ✔
         </Grid>
@@ -921,7 +921,7 @@ const Estimate = (props) => {
         alignItems="center"
         style={{ marginBottom: "1.25em" }}
       >
-        <Grid item xs={2}>
+        <Grid item xs={2} ml={-8}>
           {/* <img src={check}  alt="checkmark" /> */}
           ✔
         </Grid>
@@ -936,7 +936,7 @@ const Estimate = (props) => {
   );
 
   const websiteSelectionJSX = (
-    <Grid container direction="column" style={{ marginBottom: "2.5em" }}>
+    <Grid container direction="column" style={{ marginBottom: "1em" }}>
       <Grid
         item
         container
@@ -1118,19 +1118,17 @@ const Estimate = (props) => {
 
 
 
-<Dialog open={open} onClose={() => setOpen(false)}  maxWidth="md">
-  <DialogContent sx={{ py: 6, px: { xs: 1, sm: 2 } }}>
+<Dialog open={open} onClose={() => setOpen(false)} maxWidth="md">
+  <DialogContent sx={{ py: 4, px: { xs: 1, sm: 2 } }}>
     <Grid
       container
       alignItems="center"
       justifyContent="center"
       sx={{
-        backgroundColor: "#fff",
-        borderRadius: 4,
         overflow: "hidden",
         width: "100%",
-        boxShadow: 3,
         flexDirection: { xs: "column", md: "row" },
+        mt: -1.5, // Moves content upward
       }}
     >
       {/* Left: Project Summary */}
@@ -1153,6 +1151,7 @@ const Estimate = (props) => {
             fontSize: "1.2rem",
             fontWeight: "bold",
             mb: 2,
+            ml: -8,
           }}
         >
           Project Estimate Summary
@@ -1169,7 +1168,7 @@ const Estimate = (props) => {
         xs={12}
         md={6}
         sx={{
-          py: 5,
+          // py: 5,
           px: { xs: 2, sm: 4 },
           display: "flex",
           flexDirection: "column",
@@ -1231,7 +1230,6 @@ const Estimate = (props) => {
           sx={{ mb: 2 }}
         />
 
-      
         <Typography
           variant="body2"
           align="justify"
@@ -1289,7 +1287,6 @@ const Estimate = (props) => {
     </Grid>
   </DialogContent>
 </Dialog>
-
 
 
 
