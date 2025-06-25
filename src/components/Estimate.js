@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     width: "6em",
   },
   question: {
-    fontSize:"0.5rem",
+    fontSize:"0.3rem",
     marginTop: "5em",
     marginBottom: "2em",
     marginLeft: "1em",
@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
     height: "40px",
     width: "250px",
     marginTop: "0.5rem",
-    fontSize: "0.9rem",
+    fontSize: "0.95rem",
   },
 
   placeRequest: {
@@ -96,10 +96,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "30px",
     marginLeft: "20px",
     marginRight: "20px",
-    height: "45px",
+    height: "25px",
     width: "200px",
     marginTop: "0.5rem",
-    fontSize: "1.15rem",
+    fontSize: "0.95rem",
   },
   transparentOnHover: {
     "&:hover": {
@@ -834,7 +834,7 @@ const Estimate = (props) => {
         alignItems="center"
         style={{ marginBottom: "1.25em" }}
       >
-        <Grid item xs={2} ml={-8}>
+        <Grid item xs={2} ml={-8} mr={1}>
           {/* <img src={check} alt="checkmark" /> */}
           ✔
         </Grid>
@@ -878,7 +878,7 @@ const Estimate = (props) => {
         alignItems="center"
         style={{ marginBottom: "1.25em" }}
       >
-        <Grid item xs={2} ml={-8}>
+        <Grid item xs={2} ml={-8} mr={1}>
           {/* <img src={check} alt="checkmark" /> */}
           ✔
         </Grid>
@@ -921,7 +921,7 @@ const Estimate = (props) => {
         alignItems="center"
         style={{ marginBottom: "1.25em" }}
       >
-        <Grid item xs={2} ml={-8}>
+        <Grid item xs={2} ml={-8} mr={1}>
           {/* <img src={check}  alt="checkmark" /> */}
           ✔
         </Grid>
@@ -944,7 +944,7 @@ const Estimate = (props) => {
         alignItems="center"
         style={{ marginBottom: "1.25em" }}
       >
-        <Grid item xs={2} ml={-8}>
+        <Grid item xs={2} ml={-8} mr={1}>
  
           ✔
         </Grid>
@@ -1118,7 +1118,6 @@ const Estimate = (props) => {
  
 
 
-
 <Dialog open={open} onClose={() => setOpen(false)} maxWidth="md">
   <DialogContent sx={{ py: 4, px: { xs: 1, sm: 2 } }}>
     <Grid
@@ -1129,7 +1128,7 @@ const Estimate = (props) => {
         overflow: "hidden",
         width: "100%",
         flexDirection: { xs: "column", md: "row" },
-        mt: -1.5, // Moves content upward
+        mt: -1.5,
       }}
     >
       {/* Left: Project Summary */}
@@ -1169,7 +1168,6 @@ const Estimate = (props) => {
         xs={12}
         md={6}
         sx={{
-          // py: 5,
           px: { xs: 2, sm: 4 },
           display: "flex",
           flexDirection: "column",
@@ -1183,6 +1181,7 @@ const Estimate = (props) => {
           Get in touch
         </Typography>
 
+        {/* Name Field */}
         <TextField
           label="Name"
           id="name"
@@ -1193,8 +1192,16 @@ const Estimate = (props) => {
           fullWidth
           variant="outlined"
           sx={{ mb: 2 }}
+          InputProps={{
+            sx: {
+              height: 40,
+              fontSize: "0.8rem",
+            },
+          }}
+          InputLabelProps={{ sx: { fontSize: "0.8rem" } }}
         />
 
+        {/* Email Field */}
         <TextField
           label="Email"
           id="email"
@@ -1205,8 +1212,16 @@ const Estimate = (props) => {
           fullWidth
           variant="outlined"
           sx={{ mb: 2 }}
+          InputProps={{
+            sx: {
+              height: 40,
+              fontSize: "0.8rem",
+            },
+          }}
+          InputLabelProps={{ sx: { fontSize: "0.8rem" } }}
         />
 
+        {/* Phone Field */}
         <TextField
           label="Phone"
           id="phone"
@@ -1217,25 +1232,40 @@ const Estimate = (props) => {
           fullWidth
           variant="outlined"
           sx={{ mb: 2 }}
+          InputProps={{
+            sx: {
+              height: 40,
+              fontSize: "0.8rem",
+            },
+          }}
+          InputLabelProps={{ sx: { fontSize: "0.8rem" } }}
         />
 
+        {/* Message / Textarea Field */}
         <TextField
           placeholder="Tell us about more project here..."
           id="message"
-          rows={5}
+          rows={9}
           multiline
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           fullWidth
           variant="outlined"
-          sx={{ mb: 2 }}
+          sx={{
+            mb: 2,
+            "& .MuiInputBase-root": {
+              fontSize: "0.8rem",
+              padding: "6px",
+            },
+          }}
+          InputLabelProps={{ sx: { fontSize: "0.8rem" } }}
         />
 
         <Typography
           variant="body2"
           align="justify"
           paragraph
-          sx={{ fontSize: "0.95rem" }}
+          sx={{ fontSize: "0.9rem" }}
         >
           Fill out your name, phone number and email to place your request, and
           we'll get back to you with details moving forward and a final price.
@@ -1271,7 +1301,6 @@ const Estimate = (props) => {
           </Button>
         </Grid>
 
-        {/* Optional Cancel Button */}
         {!medium && (
           <Grid item container justifyContent="center" sx={{ mt: 2 }}>
             <Button
@@ -1291,6 +1320,7 @@ const Estimate = (props) => {
 
 
 
+
     </Grid>
   </Grid>
 </Grid>
@@ -1298,29 +1328,3 @@ const Estimate = (props) => {
   );
 };
 export default Estimate;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
