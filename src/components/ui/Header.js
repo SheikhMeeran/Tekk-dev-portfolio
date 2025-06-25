@@ -122,8 +122,8 @@ const Header = () => {
       setValue(6);
     } else if (
       path === "/about" ||
-      path === "/revolution" ||
-      path === "/partner"
+      path === "/evolution" || 
+      path === "/testimonials"
     ) {
       setValue(0);
     }
@@ -172,27 +172,28 @@ const Header = () => {
           <ListItem
             button
             component={Link}
-            to="/revolution"
-            selected={location.pathname === "/revolution"}
+            to="/evolution" // updated from /revolution
+            selected={location.pathname === "/evolution"}
             onClick={() => {
               setOpenDrawer(false);
               setValue(0);
             }}
           >
-            <ListItemText primary="Revolution" />
+            <ListItemText primary="Evolution" />
           </ListItem>
           <ListItem
-            button
-            component={Link}
-            to="/partner"
-            selected={location.pathname === "/partner"}
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(0);
-            }}
-          >
-            <ListItemText primary="Partner" />
-          </ListItem>
+  button
+  component={Link}
+  to="/testimonials"
+  selected={location.pathname === "/testimonials"}
+  onClick={() => {
+    setOpenDrawer(false);
+    setValue(0);
+  }}
+>
+  <ListItemText primary="Partner" />
+</ListItem>
+
 
           {routes
             .filter((route) => route.label !== "Home")
@@ -293,7 +294,7 @@ const Header = () => {
                   </MenuItem>
                   <MenuItem
                     component={Link}
-                    to="/revolution"
+                    to="/evolution" // updated from /revolution
                     onClick={handleMenuClose}
                     sx={{
                       fontSize: "0.7rem",
@@ -309,7 +310,8 @@ const Header = () => {
                   </MenuItem>
                   <MenuItem
                     component={Link}
-                    to="/partner"
+                    to="/testimonials"
+
                     onClick={handleMenuClose}
                     sx={{
                       fontSize: "0.7rem",

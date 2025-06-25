@@ -14,8 +14,9 @@ import { motion } from "framer-motion";
 import CallToAction from "../components/ui/CallToAction";
 import history from "../assets/history.svg";
 import founder from "../assets/waleed-portrait.webp";
-import founder2 from "../assets/founder2.jpeg";
-import founder3 from "../assets/founder3.jpg";
+// import founder2 from "../assets/founder2.jpeg";
+// import founder3 from "../assets/founder3.jpg";
+import founder3 from "../assets/profile.jpeg";
 // import Testimonials from "./Testimonials";
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
@@ -48,7 +49,7 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
     {
       name: "Umer Azhar",
       title: "HOD",
-      image: founder2,
+      image: founder3,
       bio: `Umer is a strategic leader who helps bridge technology with cybersecurity operations.
         His experience includes managing high-risk security assessments and guiding enterprise-level compliance.`,
     },
@@ -198,3 +199,5 @@ TekkDev Cybersecurity professionals trained locally and internationally with yea
 };
 
 export default About;
+
+

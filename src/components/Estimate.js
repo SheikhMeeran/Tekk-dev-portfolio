@@ -15,7 +15,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import Snackbar from "@mui/material/Snackbar";
 import CircularProgress from "@mui/material/CircularProgress";
-import check from "../assets/check.svg";
+// import check from "../assets/check.svg";
 import send from "../assets/send.svg";
 import software from "../assets/software.svg";
 import mobile from "../assets/mobile.svg";
@@ -944,15 +944,16 @@ const Estimate = (props) => {
         alignItems="center"
         style={{ marginBottom: "1.25em" }}
       >
-        <Grid item xs={2}>
-          <img src={check} alt="checkmark" />
+        <Grid item xs={2} ml={-8}>
+ 
+          ✔
         </Grid>
-        <Grid item xs={10}>
-          <Typography variant="body1">
+        <Grid item xs={10} >
+          <Typography variant="body1" fontSize={"0.95rem"} ml={1}>
             You want{" "}
             {category === "Basic"
-              ? "a Basic Website."
-              : `an ${category} Website.`}
+              ? "  a Basic Website."
+              : ` an ${category} Website.`}
           </Typography>
         </Grid>
       </Grid>

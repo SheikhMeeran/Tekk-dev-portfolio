@@ -52,7 +52,7 @@ This puts personalization in your pocket — faster, better, and more affordable
   },
   {
     title: "Consultation",
-    description: `Our process begins the moment you realize you need a piece of technology for your business. Whether you already have an idea for where to start and what to do, or if you just know you want to step things up, our initial consultation will help you examine your business holistically to find the best solutions.`,
+    description: 'Our process begins the moment you realize you need a piece of technology for your business. Whether you already have an idea for where to start and what to do, or if you just know you want to step things up, our initial consultation will help you examine your business holistically to find the best solutions.',
     image: consultation,
   },
   {
@@ -64,7 +64,7 @@ This helps us understand and refine the solution itself before getting distracte
   },
   {
     title: "Design",
-    description: `Using the mockups and notes taken during the consultation as guides, we will start ironing out what the final product will look like. This also involves using any brand material like fonts, colors, and logos to extend the experience you’re already familiar with.`,
+    description:' Using the mockups and notes taken during the consultation as guides, we will start ironing out what the final product will look like. This also involves using any brand material like fonts, colors, and logos to extend the experience you re already familiar with',
     image: design,
   },
   {
