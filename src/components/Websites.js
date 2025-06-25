@@ -350,10 +350,13 @@ const Websites = ({ setValue, setSelected }) => {
   };
 
   // Scroll to section if URL hash is present
- useEffect(() => {
+useEffect(() => {
   if (window.location.hash === "#target-section" && targetRef.current) {
     setTimeout(() => {
-      targetRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      targetRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
     }, 200);
   }
 }, []);

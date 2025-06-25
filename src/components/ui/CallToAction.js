@@ -114,7 +114,7 @@ const CallToAction = ({ setValue, setSelected }) => {
         >
           <Button
             component={Link}
-            to="/revolution"
+            to="/evolution"
             onClick={() => {
               setValue(2);
               setSelected(null);

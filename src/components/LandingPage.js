@@ -238,7 +238,7 @@ const LandingPage = (props) => {
 
             <Button
               component={Link}
-              to="/revolution"
+              to="/evolution"
               onClick={() => {
                 props.setValue(2);
                 props.setSelected(null);

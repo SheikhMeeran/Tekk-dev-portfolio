@@ -50,7 +50,7 @@ text: `• Multi-disciplinary team: Engineers, Transport Economists, Geo-Tech Ex
     image: "/images/testimonials/client-3.jpg",
   },
   {
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat aut consequatur illo animi optio exercitationem doloribus eligendi iusto atque repudiandae. Distinctio.",
+    text: "Striving to remain Pakistan’s #1 company in the field of IT infrastructure by providing most advanced and premium-quality services to our customers.",
     name: "CMC",
     role: "CEO & Founder",
     image: Cmc,

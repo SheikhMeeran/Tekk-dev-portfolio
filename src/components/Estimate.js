@@ -41,6 +41,7 @@ import android from "../assets/android.svg";
 import biometrics from "../assets/biometrics.svg";
 import globe from "../assets/globe.svg";
 import { Box } from "@mui/material";
+import emailjs from "@emailjs/browser";
 
 import estimateAnimation from "../animations/estimateAnimation/data.json";
 
@@ -780,43 +781,58 @@ const Estimate = (props) => {
     }
     return disabled;
   };
+const resetFormFields = () => {
+  setName("");
+  setEmail("");
+  setPhone("");
+  setMessage("");
+  setNameHelperText("");
+  setEmailHelperText("");
+  setPhoneHelperText("");
+};
+const placeRequest = () => {
+  setLoading(true);
 
-  const placeRequest = () => {
-    setLoading(true);
-    axios
-      .get("https://us-central1-beri-tech.cloudfunctions.net/sendMail", {
-        params: {
-          name: name,
-          email: email,
-          phone: phone,
-          message: message,
-          total: estimate,
-          service: service,
-          platforms: platforms,
-          features: features,
-          customFeatures: customFeatures,
-          users: users,
-        },
-      })
-      .then((res) => {
-        setLoading(false);
-        setOpen(false);
-        setAlert({
-          open: true,
-          message: "Request has been placed successfully.",
-          backgroundColor: "#4BB543",
-        });
-      })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-        setAlert({
-          open: true,
-          message: "Something went wrong! Please try again.",
-          backgroundColor: "#FF3232",
-        });
+const templateParams = {
+  name,
+  email,
+  phone,
+  message,
+  total: estimate,
+  service,
+  platforms: Array.isArray(platforms) ? platforms.join(", ") : platforms || "",
+  features: Array.isArray(features) ? features.join(", ") : features || "",
+  customFeatures: Array.isArray(customFeatures) ? customFeatures.join(", ") : customFeatures || "",
+  users,
+};
+
+
+  emailjs
+    .send(
+      'service_gtxju0u',      
+      'template_woe1kn1',      
+      templateParams,
+      'AaS_If9vy77wGqVZO'     
+    )
+    .then(() => {
+      setLoading(false);
+      setOpen(false);
+      setAlert({
+        open: true,
+        message: "Request has been placed successfully.",
+        backgroundColor: "#4BB543",
       });
-  };
+    })
+    .catch((err) => {
+      console.error("EmailJS error:", err);
+      setLoading(false);
+      setAlert({
+        open: true,
+        message: "Something went wrong! Please try again.",
+        backgroundColor: "#FF3232",
+      });
+    });
+};
 
   const placeRequestButtonJSX = (
     <React.Fragment>
@@ -957,44 +973,57 @@ const Estimate = (props) => {
   );
 
   return (
-    <Grid
-      container
-      direction="row"
-      spacing={4}
+<Grid
+  container
+  spacing={4}
+  sx={{
+    px: 2,
+    mt: 5,
+    flexDirection: { xs: "column", md: "row" }, // column on mobile, row on desktop
+    flexWrap: "nowrap",
+  }}
+>
+  {/* Left Side: Lottie Animation */}
+  <Grid
+    item
+    xs={12}
+    md={6}
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: { xs: "center", md: "flex-start" },
+      px: { xs: 0, md: 0 }, // no padding on desktop
+      mx: { xs: "auto", md: -0 }, // center on mobile, align left on desktop
+      width: { md: "100%" },
+    }}
+  >
+    <Box
       sx={{
-        flexWrap: "nowrap",
-        px: 2,
-        mt: 5,
-        [theme.breakpoints.down("md")]: {
-          flexDirection: "row",
-          overflowX: "auto",
-        },
+        width: { xs: "90%", md: "100%" },
+        maxWidth: 500,
+        pl: { xs: 0, md: 0 },
       }}
     >
-      {/* Left Side: Lottie Animation */}
-      <Grid
-        item
-        md={6}
-        sx={{
-          minWidth: "30%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          pr: 4,
-        }}
+      <Typography
+        variant="h5"
+        sx={{ fontSize: "1rem", mb: 2, fontWeight: "bold" }}
       >
-        <Typography
-          variant="h5"
-          sx={{ fontSize: "1rem", mb: 2, fontWeight: "bold" }}
-        >
-          Estimate Preview
-        </Typography>
-        <Lottie options={defaultOptions} height="100%" width="100%" />
-      </Grid>
+        Estimate Preview
+      </Typography>
+      <Lottie options={defaultOptions} height="100%" width="100%" />
+    </Box>
+  </Grid>
 
       {/* Right Side: Questions/Service Options */}
-      <Grid item md={6} sx={{ minWidth: "70%" }}>
+       <Grid
+    item
+    xs={12}
+    md={6}
+    sx={{
+      minWidth: { xs: "100%", md: "60%" },
+    }}
+  >
         {questions
           .filter((question) => question.active)
           .map((question, index) => (
@@ -1104,6 +1133,7 @@ const Estimate = (props) => {
             className={classes.estimate}
             disabled={estimateDisabled()}
             onClick={() => {
+              resetFormFields();
               setOpen(true);
               calculateCost();
               getCategory();
@@ -1115,12 +1145,20 @@ const Estimate = (props) => {
             Get Estimate
           </Button>
 
-          <Dialog open={open} onClose={() => setOpen(false)} maxWidth="sm" sx={{
-    "& .MuiDialog-paper": {
-      borderRadius: 3,
-      maxHeight: "80vh",
-    },
-  }}>
+          <Dialog
+            open={open}
+            onClose={() => {
+              resetFormFields();
+              setOpen(false);
+            }}
+            maxWidth="md"
+            sx={{
+              "& .MuiDialog-paper": {
+                borderRadius: 3,
+                maxHeight: "80vh",
+              },
+            }}
+          >
             <DialogContent sx={{ py: 4, px: { xs: 1, sm: 2 } }}>
               <Grid
                 container
@@ -1150,16 +1188,23 @@ const Estimate = (props) => {
                   <Typography
                     variant="h6"
                     sx={{
-                      fontSize: "1.2rem",
+                      fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" },
                       fontWeight: "bold",
                       mb: 2,
-                      ml: -8,
+                      ml: { xs: 0, md: -8 }, // No left margin on mobile, keep -8 on desktop
+                      textAlign: { xs: "center", md: "left" }, // Optional: center on mobile
                     }}
                   >
                     Project Estimate Summary
                   </Typography>
 
-                  <Box sx={{ width: "100%" }}>
+                  <Box
+                    sx={{
+                      width: "100%",
+                      overflowX: { xs: "auto", md: "visible" },
+                      px: { xs: 1, sm: 2, md: 0 },
+                    }}
+                  >
                     {questions.length > 2
                       ? softwareSelectionsJSX
                       : websiteSelectionJSX}
