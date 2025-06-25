@@ -1,7 +1,17 @@
-html, body {
+html, body, #root {
   margin: 0;
   padding: 0;
   height: 100%;
   overflow-x: hidden;
   scroll-behavior: smooth;
+}
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* full height of screen */
+}
+
+.content {
+  flex: 1; /* fills the space between header and footer */
+  padding: 2rem 1rem; /* adjust as needed */
 }

@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     width: "6em",
   },
   question: {
-    fontSize:"0.3rem",
+    fontSize: "0.3rem",
     marginTop: "5em",
     marginBottom: "2em",
     marginLeft: "1em",
@@ -514,7 +514,6 @@ const Estimate = (props) => {
     //Finally Update the question structure in state
     setQuestions(updatedQuestions);
     if (smallest) questionsRef.current.scrollIntoView({ behavior: "smooth" });
-
   };
 
   const previousQuestionDisabled = () => {
@@ -551,8 +550,8 @@ const Estimate = (props) => {
         //Check if there is any already or previously selected option exist
         //if condition is true => toggle the previously selected option
         if (previouslySelectedOption[0]) {
-          previouslySelectedOption[0].selected = !previouslySelectedOption[0]
-            .selected;
+          previouslySelectedOption[0].selected =
+            !previouslySelectedOption[0].selected;
           if (previouslySelectedOption[0] === selectedOption) {
             selectedOption.selected = !selectedOption.selected;
           }
@@ -627,11 +626,12 @@ const Estimate = (props) => {
       case "phone":
         setPhone(event.target.value);
         if (event.target.value !== "") {
-          valid = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(
-            event.target.value
-          );
+          valid =
+            /^\+?(\d{1,4})?[-.\s]?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/.test(
+              event.target.value.trim()
+            );
           if (!valid) {
-            setPhoneHelperText("Invalid Phone Number");
+            setPhoneHelperText("Invalid phone number format");
           } else {
             setPhoneHelperText("");
           }
@@ -826,7 +826,7 @@ const Estimate = (props) => {
   );
 
   const softwareSelectionsJSX = (
-    <Grid container direction="column" >
+    <Grid container direction="column">
       <Grid
         item
         container
@@ -835,8 +835,7 @@ const Estimate = (props) => {
         style={{ marginBottom: "1.25em" }}
       >
         <Grid item xs={2} ml={-8} mr={1}>
-          {/* <img src={check} alt="checkmark" /> */}
-          ✔
+          {/* <img src={check} alt="checkmark" /> */}✔
         </Grid>
         <Grid item xs={10}>
           <Typography variant="body1" fontSize={"0.95rem"}>
@@ -879,8 +878,7 @@ const Estimate = (props) => {
         style={{ marginBottom: "1.25em" }}
       >
         <Grid item xs={2} ml={-8} mr={1}>
-          {/* <img src={check} alt="checkmark" /> */}
-          ✔
+          {/* <img src={check} alt="checkmark" /> */}✔
         </Grid>
         <Grid item xs={10}>
           <Typography variant="body1" fontSize={"0.95rem"}>
@@ -922,8 +920,7 @@ const Estimate = (props) => {
         style={{ marginBottom: "1.25em" }}
       >
         <Grid item xs={2} ml={-8} mr={1}>
-          {/* <img src={check}  alt="checkmark" /> */}
-          ✔
+          {/* <img src={check}  alt="checkmark" /> */}✔
         </Grid>
         <Grid item xs={10}>
           <Typography variant="body1" fontSize={"0.95rem"}>
@@ -945,10 +942,9 @@ const Estimate = (props) => {
         style={{ marginBottom: "1.25em" }}
       >
         <Grid item xs={2} ml={-8} mr={1}>
- 
           ✔
         </Grid>
-        <Grid item xs={10} >
+        <Grid item xs={10}>
           <Typography variant="body1" fontSize={"0.95rem"} ml={1}>
             You want{" "}
             {category === "Basic"
@@ -961,370 +957,374 @@ const Estimate = (props) => {
   );
 
   return (
-<Grid
-  container
-  direction="row"
-  spacing={4}
-  sx={{
-    flexWrap: "nowrap",
-    px: 2,
-    mt: 5,
-    [theme.breakpoints.down("md")]: {
-      flexDirection: "row",
-      overflowX: "auto",
-    },
-  }}
->
-  {/* Left Side: Lottie Animation */}
-  <Grid
-    item
-    md={6}
-    sx={{
-      minWidth: "30%",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      pr: 4,
-    }}
-  >
-    <Typography
-      variant="h5"
-      sx={{ fontSize: "1rem", mb: 2, fontWeight: "bold" }}
-    >
-      Estimate Preview
-    </Typography>
-    <Lottie options={defaultOptions} height="100%" width="100%" />
-  </Grid>
-
-  {/* Right Side: Questions/Service Options */}
-  <Grid item md={6} sx={{ minWidth: "70%" }}>
-    {questions
-      .filter((question) => question.active)
-      .map((question, index) => (
-        <React.Fragment key={index}>
-          <Grid item className={classes.question}>
-            <Typography variant="h5" sx={{ fontSize: "1rem" }} align="center">
-              {question.title}
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              sx={{ fontSize: "0.95rem" }}
-              align="center"
-              gutterBottom
-            >
-              {question.subtitle}
-            </Typography>
-          </Grid>
-          <Grid item container spacing={2} justifyContent="center">
-            {question.options.map((option, i) => (
-              <Grid item key={i}>
-                <Button
-                  onClick={() => handleOptionSelection(option.id)}
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    textTransform: "none",
-                    backgroundColor: option.selected
-                      ? theme.palette.primary.main
-                      : "#f9f9f9",
-                    color: option.selected ? "#fff" : "#333",
-                    borderRadius: 2,
-                    boxShadow: 1,
-                    minWidth: 150,
-                    p: 2,
-                    "&:hover": {
-                      backgroundColor: option.selected
-                        ? theme.palette.primary.dark
-                        : "#e0e0e0",
-                    },
-                  }}
-                >
-                  <img
-                    src={option.icon}
-                    alt={option.iconAlt}
-                    className={classes.icon}
-                    style={{ width: 50, height: 50 }}
-                  />
-                  <Typography
-                    variant="h6"
-                    align="center"
-                    sx={{ fontSize: "0.95rem", mt: 1 }}
-                  >
-                    {option.title}
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    align="center"
-                    sx={{ fontSize: "0.8rem" }}
-                  >
-                    {option.subtitle}
-                  </Typography>
-                </Button>
-              </Grid>
-            ))}
-          </Grid>
-        </React.Fragment>
-      ))}
-
-<Grid
-  container
-  justifyContent="space-around"
-  alignItems="center"
-  sx={{ mt: 4, mb: 3 }}
->
-  <IconButton
-    onClick={previousQuestion}
-    disabled={previousQuestionDisabled()}
-    sx={{ mr: 2 }} // Right spacing
-  >
-    <img
-      src={previousQuestionDisabled() ? backArrowDisabled : backArrow}
-      alt="Previous"
-    />
-  </IconButton>
-
-  <IconButton
-    onClick={nextQuestion}
-    disabled={nextQuestionDisabled()}
-    sx={{ ml: -1 }} // Shift to left slightly
-  >
-    <img
-      src={nextQuestionDisabled() ? forwardArrowDisabled : forwardArrow}
-      alt="Next"
-    />
-  </IconButton>
-</Grid>
-
-
-    <Grid item align="center" sx={{ mb:3 }}>
-      <Button
-        variant="contained"
-        color="secondary"
-        className={classes.estimate}
-        disabled={estimateDisabled()}
-        onClick={() => {
-          setOpen(true);
-          calculateCost();
-          getCategory();
-          getPlatforms();
-          getFeatures();
-          getCustomFeatures();
-        }}
-      >
-        Get Estimate
-      </Button>
- 
-
-
-<Dialog open={open} onClose={() => setOpen(false)} maxWidth="md">
-  <DialogContent sx={{ py: 4, px: { xs: 1, sm: 2 } }}>
     <Grid
       container
-      alignItems="center"
-      justifyContent="center"
+      direction="row"
+      spacing={4}
       sx={{
-        overflow: "hidden",
-        width: "100%",
-        flexDirection: { xs: "column", md: "row" },
-        mt: -1.5,
+        flexWrap: "nowrap",
+        px: 2,
+        mt: 5,
+        [theme.breakpoints.down("md")]: {
+          flexDirection: "row",
+          overflowX: "auto",
+        },
       }}
     >
-      {/* Left: Project Summary */}
+      {/* Left Side: Lottie Animation */}
       <Grid
         item
-        xs={12}
         md={6}
         sx={{
-          bgcolor: "#fff",
-          py: 4,
-          px: { xs: 2, sm: 3 },
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-start",
-        }}
-      >
-        <Typography
-          variant="h6"
-          sx={{
-            fontSize: "1.2rem",
-            fontWeight: "bold",
-            mb: 2,
-            ml: -8,
-          }}
-        >
-          Project Estimate Summary
-        </Typography>
-
-        <Box sx={{ width: "100%" }}>
-          {questions.length > 2 ? softwareSelectionsJSX : websiteSelectionJSX}
-        </Box>
-      </Grid>
-
-      {/* Right: Contact Form */}
-      <Grid
-        item
-        xs={12}
-        md={6}
-        sx={{
-          px: { xs: 2, sm: 4 },
+          minWidth: "30%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
+          alignItems: "center",
+          pr: 4,
         }}
       >
         <Typography
-          variant="h6"
-          sx={{ fontWeight: "bold", mb: 2, textAlign: "left" }}
+          variant="h5"
+          sx={{ fontSize: "1rem", mb: 2, fontWeight: "bold" }}
         >
-          Get in touch
+          Estimate Preview
         </Typography>
+        <Lottie options={defaultOptions} height="100%" width="100%" />
+      </Grid>
 
-        {/* Name Field */}
-        <TextField
-          label="Name"
-          id="name"
-          error={nameHelperText.length !== 0}
-          helperText={nameHelperText}
-          value={name}
-          onChange={onFieldInputChange}
-          fullWidth
-          variant="outlined"
-          sx={{ mb: 2 }}
-          InputProps={{
-            sx: {
-              height: 40,
-              fontSize: "0.8rem",
-            },
-          }}
-          InputLabelProps={{ sx: { fontSize: "0.8rem" } }}
-        />
+      {/* Right Side: Questions/Service Options */}
+      <Grid item md={6} sx={{ minWidth: "70%" }}>
+        {questions
+          .filter((question) => question.active)
+          .map((question, index) => (
+            <React.Fragment key={index}>
+              <Grid item className={classes.question}>
+                <Typography
+                  variant="h5"
+                  sx={{ fontSize: "1rem" }}
+                  align="center"
+                >
+                  {question.title}
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  sx={{ fontSize: "0.95rem" }}
+                  align="center"
+                  gutterBottom
+                >
+                  {question.subtitle}
+                </Typography>
+              </Grid>
+              <Grid item container spacing={2} justifyContent="center">
+                {question.options.map((option, i) => (
+                  <Grid item key={i}>
+                    <Button
+                      onClick={() => handleOptionSelection(option.id)}
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        textTransform: "none",
+                        backgroundColor: option.selected
+                          ? theme.palette.primary.main
+                          : "#f9f9f9",
+                        color: option.selected ? "#fff" : "#333",
+                        borderRadius: 2,
+                        boxShadow: 1,
+                        minWidth: 150,
+                        p: 2,
+                        "&:hover": {
+                          backgroundColor: option.selected
+                            ? theme.palette.primary.dark
+                            : "#e0e0e0",
+                        },
+                      }}
+                    >
+                      <img
+                        src={option.icon}
+                        alt={option.iconAlt}
+                        className={classes.icon}
+                        style={{ width: 50, height: 50 }}
+                      />
+                      <Typography
+                        variant="h6"
+                        align="center"
+                        sx={{ fontSize: "0.95rem", mt: 1 }}
+                      >
+                        {option.title}
+                      </Typography>
+                      <Typography
+                        variant="caption"
+                        align="center"
+                        sx={{ fontSize: "0.8rem" }}
+                      >
+                        {option.subtitle}
+                      </Typography>
+                    </Button>
+                  </Grid>
+                ))}
+              </Grid>
+            </React.Fragment>
+          ))}
 
-        {/* Email Field */}
-        <TextField
-          label="Email"
-          id="email"
-          error={emailHelperText.length !== 0}
-          helperText={emailHelperText}
-          value={email}
-          onChange={onFieldInputChange}
-          fullWidth
-          variant="outlined"
-          sx={{ mb: 2 }}
-          InputProps={{
-            sx: {
-              height: 40,
-              fontSize: "0.8rem",
-            },
-          }}
-          InputLabelProps={{ sx: { fontSize: "0.8rem" } }}
-        />
-
-        {/* Phone Field */}
-        <TextField
-          label="Phone"
-          id="phone"
-          error={phoneHelperText.length !== 0}
-          helperText={phoneHelperText}
-          value={phone}
-          onChange={onFieldInputChange}
-          fullWidth
-          variant="outlined"
-          sx={{ mb: 2 }}
-          InputProps={{
-            sx: {
-              height: 40,
-              fontSize: "0.8rem",
-            },
-          }}
-          InputLabelProps={{ sx: { fontSize: "0.8rem" } }}
-        />
-
-        {/* Message / Textarea Field */}
-        <TextField
-          placeholder="Tell us about more project here..."
-          id="message"
-          rows={9}
-          multiline
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          fullWidth
-          variant="outlined"
-          sx={{
-            mb: 2,
-            "& .MuiInputBase-root": {
-              fontSize: "0.8rem",
-              padding: "6px",
-            },
-          }}
-          InputLabelProps={{ sx: { fontSize: "0.8rem" } }}
-        />
-
-        <Typography
-          variant="body2"
-          align="justify"
-          paragraph
-          sx={{ fontSize: "0.9rem" }}
+        <Grid
+          container
+          justifyContent="space-around"
+          alignItems="center"
+          sx={{ mt: 4, mb: 3 }}
         >
-          Fill out your name, phone number and email to place your request, and
-          we'll get back to you with details moving forward and a final price.
-        </Typography>
+          <IconButton
+            onClick={previousQuestion}
+            disabled={previousQuestionDisabled()}
+            sx={{ mr: 2 }} // Right spacing
+          >
+            <img
+              src={previousQuestionDisabled() ? backArrowDisabled : backArrow}
+              alt="Previous"
+            />
+          </IconButton>
 
-        <Grid item container justifyContent="center" sx={{ mt: 2 }}>
+          <IconButton
+            onClick={nextQuestion}
+            disabled={nextQuestionDisabled()}
+            sx={{ ml: -1 }} // Shift to left slightly
+          >
+            <img
+              src={nextQuestionDisabled() ? forwardArrowDisabled : forwardArrow}
+              alt="Next"
+            />
+          </IconButton>
+        </Grid>
+
+        <Grid item align="center" sx={{ mb: 3 }}>
           <Button
             variant="contained"
             color="secondary"
-            onClick={placeRequest}
-            disabled={
-              name.length === 0 ||
-              nameHelperText.length !== 0 ||
-              email.length === 0 ||
-              emailHelperText.length !== 0 ||
-              phone.length === 0 ||
-              phoneHelperText.length !== 0 ||
-              message.length === 0
-            }
-            sx={{
-              borderRadius: "25px",
-              fontWeight: 600,
-              px: 4,
-              py: 1.5,
-              textTransform: "none",
+            className={classes.estimate}
+            disabled={estimateDisabled()}
+            onClick={() => {
+              setOpen(true);
+              calculateCost();
+              getCategory();
+              getPlatforms();
+              getFeatures();
+              getCustomFeatures();
             }}
           >
-            {loading ? (
-              <CircularProgress size={24} color="inherit" />
-            ) : (
-              placeRequestButtonJSX
-            )}
+            Get Estimate
           </Button>
-        </Grid>
 
-        {!medium && (
-          <Grid item container justifyContent="center" sx={{ mt: 2 }}>
-            <Button
-              variant="text"
-              color="secondary"
-              onClick={() => setOpen(false)}
-              sx={{ textTransform: "none" }}
-            >
-              Cancel
-            </Button>
-          </Grid>
-        )}
+          <Dialog open={open} onClose={() => setOpen(false)} maxWidth="sm" sx={{
+    "& .MuiDialog-paper": {
+      borderRadius: 3,
+      maxHeight: "80vh",
+    },
+  }}>
+            <DialogContent sx={{ py: 4, px: { xs: 1, sm: 2 } }}>
+              <Grid
+                container
+                alignItems="center"
+                justifyContent="center"
+                sx={{
+                  overflow: "hidden",
+                  width: "100%",
+                  flexDirection: { xs: "column", md: "row" },
+                  mt: -1.5,
+                }}
+              >
+                {/* Left: Project Summary */}
+                <Grid
+                  item
+                  xs={12}
+                  md={6}
+                  sx={{
+                    bgcolor: "#fff",
+                    py: 4,
+                    px: { xs: 2, sm: 3 },
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-start",
+                  }}
+                >
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontSize: "1.2rem",
+                      fontWeight: "bold",
+                      mb: 2,
+                      ml: -8,
+                    }}
+                  >
+                    Project Estimate Summary
+                  </Typography>
+
+                  <Box sx={{ width: "100%" }}>
+                    {questions.length > 2
+                      ? softwareSelectionsJSX
+                      : websiteSelectionJSX}
+                  </Box>
+                </Grid>
+
+                {/* Right: Contact Form */}
+                <Grid
+                  item
+                  xs={12}
+                  md={6}
+                  sx={{
+                    px: { xs: 2, sm: 4 },
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Typography
+                    variant="h6"
+                    sx={{ fontWeight: "bold", mb: 2, textAlign: "left" }}
+                  >
+                    Get in touch
+                  </Typography>
+
+                  {/* Name Field */}
+                  <TextField
+                    label="Name"
+                    id="name"
+                    error={nameHelperText.length !== 0}
+                    helperText={nameHelperText}
+                    value={name}
+                    onChange={onFieldInputChange}
+                    fullWidth
+                    variant="outlined"
+                    sx={{ mb: 2 }}
+                    InputProps={{
+                      sx: {
+                        height: 40,
+                        fontSize: "0.8rem",
+                      },
+                    }}
+                    InputLabelProps={{ sx: { fontSize: "0.8rem" } }}
+                  />
+
+                  {/* Email Field */}
+                  <TextField
+                    label="Email"
+                    id="email"
+                    error={emailHelperText.length !== 0}
+                    helperText={emailHelperText}
+                    value={email}
+                    onChange={onFieldInputChange}
+                    fullWidth
+                    variant="outlined"
+                    sx={{ mb: 2 }}
+                    InputProps={{
+                      sx: {
+                        height: 40,
+                        fontSize: "0.8rem",
+                      },
+                    }}
+                    InputLabelProps={{ sx: { fontSize: "0.8rem" } }}
+                  />
+
+                  {/* Phone Field */}
+                  <TextField
+                    label="Phone"
+                    id="phone"
+                    error={phoneHelperText.length !== 0}
+                    helperText={phoneHelperText}
+                    value={phone}
+                    onChange={onFieldInputChange}
+                    fullWidth
+                    variant="outlined"
+                    sx={{ mb: 2 }}
+                    InputProps={{
+                      sx: {
+                        height: 40,
+                        fontSize: "0.8rem",
+                      },
+                    }}
+                    InputLabelProps={{ sx: { fontSize: "0.8rem" } }}
+                  />
+
+                  {/* Message / Textarea Field */}
+                  <TextField
+                    placeholder="Tell us about more project here..."
+                    id="message"
+                    rows={9}
+                    multiline
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    fullWidth
+                    variant="outlined"
+                    sx={{
+                      mb: 2,
+                      "& .MuiInputBase-root": {
+                        fontSize: "0.8rem",
+                        padding: "6px",
+                      },
+                    }}
+                    InputLabelProps={{ sx: { fontSize: "0.8rem" } }}
+                  />
+
+                  <Typography
+                    variant="body2"
+                    align="justify"
+                    paragraph
+                    sx={{ fontSize: "0.9rem" }}
+                  >
+                    Fill out your name, phone number and email to place your
+                    request, and we'll get back to you with details moving
+                    forward and a final price.
+                  </Typography>
+
+                  <Grid item container justifyContent="center" sx={{ mt: 2 }}>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={placeRequest}
+                      disabled={
+                        name.length === 0 ||
+                        nameHelperText.length !== 0 ||
+                        email.length === 0 ||
+                        emailHelperText.length !== 0 ||
+                        phone.length === 0 ||
+                        phoneHelperText.length !== 0 ||
+                        message.length === 0
+                      }
+                      sx={{
+                        borderRadius: "25px",
+                        fontWeight: 600,
+                        px: 4,
+                        py: 1.5,
+                        textTransform: "none",
+                      }}
+                    >
+                      {loading ? (
+                        <CircularProgress size={24} color="inherit" />
+                      ) : (
+                        placeRequestButtonJSX
+                      )}
+                    </Button>
+                  </Grid>
+
+                  {!medium && (
+                    <Grid item container justifyContent="center" sx={{ mt: 2 }}>
+                      <Button
+                        variant="text"
+                        color="secondary"
+                        onClick={() => setOpen(false)}
+                        sx={{ textTransform: "none" }}
+                      >
+                        Cancel
+                      </Button>
+                    </Grid>
+                  )}
+                </Grid>
+              </Grid>
+            </DialogContent>
+          </Dialog>
+        </Grid>
       </Grid>
     </Grid>
-  </DialogContent>
-</Dialog>
-
-
-
-
-    </Grid>
-  </Grid>
-</Grid>
-
   );
 };
 export default Estimate;
